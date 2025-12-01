@@ -130,11 +130,9 @@ st.markdown(
 
 # ====================== DB selection ======================
 DEFAULT_DB_CANDIDATES = [
-    "/Users/avivziv/Downloads/streamlit_db.db",
-    "aso_enriched_final_consolidated_new_treatments_replaced.db",
-    "aso_enriched_final_consolidated_new_treatments.db",
-    "aso_enriched_final_consolidated.db",
+    "final_so_far_13_11.db",   # the DB inside your repo
 ]
+
 existing = [str(p) for p in map(Path, DEFAULT_DB_CANDIDATES) if p.exists()]
 
 with st.sidebar:
