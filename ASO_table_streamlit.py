@@ -611,123 +611,137 @@ else:
 st.markdown('</div>', unsafe_allow_html=True)
 
 # ====================== Chart (SINGLE SECTION with unique keys) ======================
+# ====================== Chart (SINGLE SECTION with unique keys) ======================
 st.markdown('<div class="aso-card">', unsafe_allow_html=True)
 st.markdown("### 🎨 Chart")
 
 if df.empty:
     st.info("No data to chart.")
 else:
-    # Use the edited / filtered dataframe from the table above if available
     chart_df = edited_df if "edited_df" in locals() else df
 
     dims = [c for c in chart_df.columns if c.startswith("g")]
     output_metric_cols = [c for c in chart_df.columns if c in METRICS.keys()]
-
-    # Map grouping aliases (g1, g2, ...) back to their human-readable labels
-    dim_labels = {f"g{i}": gb_all[i - 1] for i in range(1, len(gb_all) + 1)}
+    dim_labels = {f"g{i}": gb_all[i-1] for i in range(1, len(gb_all)+1)}
 
     cc1, cc2, cc3, cc4 = st.columns([1.2, 1, 1, 1])
-    chart_type = cc1.selectbox("Chart type", ["Bar", "Line", "Pie"], index=0, key="chart_type_main")
-
+    chart_type = cc1.selectbox("Chart type", ["Bar", "Line", "Pie"], index=0)
     if not output_metric_cols:
         st.info("Add at least one metric to draw a chart.")
-    else:
-        metric_for_chart = cc2.selectbox("Metric", output_metric_cols, index=0, key="chart_metric_main")
-        sort_x = cc3.toggle("Sort by metric (desc)", value=True, key="sort_desc_main")
-        log_y = cc4.toggle("Log scale (y)", value=False, key="logy_main")
+        st.markdown('</div>', unsafe_allow_html=True)
+        st.stop()
 
-        work = chart_df.copy()
-        work[metric_for_chart] = pd.to_numeric(work[metric_for_chart], errors="coerce")
-        work = work.dropna(subset=[metric_for_chart])
-        for d in dims: work[d] = work[d].astype(str)
+    metric_for_chart = cc2.selectbox("Metric", output_metric_cols, index=0)
+    sort_x = cc3.toggle("Sort by metric (desc)", value=True)
+    log_y = cc4.toggle("Log scale (y)", value=False)
 
-        if work.empty:
-            st.info("No rows with numeric values for the selected metric after filtering.")
+    work = chart_df.copy()
+    work[metric_for_chart] = pd.to_numeric(work[metric_for_chart], errors="coerce")
+    work = work.dropna(subset=[metric_for_chart])
+    for d in dims:
+        work[d] = work[d].astype(str)
+
+    if work.empty:
+        st.info("No valid numeric data for chart.")
+        st.markdown('</div>', unsafe_allow_html=True)
+        st.stop()
+
+    # ----- PIE -----
+    if chart_type == "Pie":
+        if len(dims) == 0:
+            st.info("Pick at least one grouping column to draw a pie chart.")
         else:
-            if sort_x and chart_type != "Pie" and dims:
+            names_col = dims[0]
+            names_label = dim_labels.get(names_col, names_col)
+            donut = st.checkbox("Donut (ring) style", value=True)
+
+            fig = px.pie(
+                work,
+                names=names_col,
+                values=metric_for_chart,
+                hole=0.45 if donut else 0.0,
+                color_discrete_sequence=COLOR_SEQ,
+                title=f"{metric_for_chart} share by {names_label}"
+            )
+            render_plotly(fig)
+
+    # ----- BAR / LINE -----
+    else:
+        # 0 dimensions
+        if len(dims) == 0:
+            st.info("Select at least one 'Group by' dimension to draw a chart.")
+
+        # 1 dimension
+        elif len(dims) == 1:
+            x = dims[0]
+            x_label = dim_labels.get(x, x)
+            if sort_x:
                 work = work.sort_values(by=metric_for_chart, ascending=False)
 
-            if chart_type == "Pie":
-                if len(dims) == 0:
-                    st.info("Pick at least one grouping column to draw a pie chart.")
-                else:
-                    donut = st.checkbox("Donut (ring) style", value=True, key="donut_main")
-                    names_col = dims[0]
-                    names_label = dim_labels.get(names_col, names_col)
-                    fig = px.pie(
-                        work, names=names_col, values=metric_for_chart,
-                        hole=0.45 if donut else 0.0, color_discrete_sequence=COLOR_SEQ,
-                        title=f"{metric_for_chart} share by {names_label}",
-                    )
+            if chart_type == "Bar":
+                fig = px.bar(work, x=x, y=metric_for_chart,
+                             color_discrete_sequence=COLOR_SEQ,
+                             title=f"{metric_for_chart} by {x_label}")
+            else:
+                fig = px.line(work, x=x, y=metric_for_chart,
+                              color_discrete_sequence=COLOR_SEQ,
+                              title=f"{metric_for_chart} by {x_label}")
 
-                    render_plotly(fig)
+            if log_y:
+                fig.update_yaxes(type="log")
+            render_plotly(fig)
 
-            elif len(dims) == 1:
-                x = dims[0]
-                x_label = dim_labels.get(x, x)
-                if chart_type == "Bar":
-                    fig = px.bar(work, x=x, y=metric_for_chart,
-                                 color_discrete_sequence=COLOR_SEQ,
-                                 title=f"{metric_for_chart} by {x_label}")
-                else:
-                    fig = px.line(work, x=x, y=metric_for_chart,
-                                  color_discrete_sequence=COLOR_SEQ,
-                                  title=f"{metric_for_chart} by {x_label}")
+        # 2 dimensions
+        elif len(dims) == 2:
+            x, color = dims[0], dims[1]
+            x_label = dim_labels.get(x, x)
+            color_label = dim_labels.get(color, color)
+            if sort_x:
+                work = work.sort_values(by=metric_for_chart, ascending=False)
 
-                if log_y: fig.update_yaxes(type="log")
-                render_plotly(fig)
+            if chart_type == "Bar":
+                fig = px.bar(work, x=x, y=metric_for_chart, color=color, barmode="group",
+                             color_discrete_sequence=COLOR_SEQ,
+                             title=f"{metric_for_chart} by {x_label} and {color_label}")
+            else:
+                fig = px.line(work, x=x, y=metric_for_chart, color=color,
+                              color_discrete_sequence=COLOR_SEQ,
+                              title=f"{metric_for_chart} by {x_label} and {color_label}")
 
-            elif len(dims) == 2:
-                x, color = dims[0], dims[1]
-                x_label = dim_labels.get(x, x)
-                color_label = dim_labels.get(color, color)
-                if chart_type == "Bar":
-                    fig = px.bar(work, x=x, y=metric_for_chart, color=color, barmode="group",
-                                 color_discrete_sequence=COLOR_SEQ,
-                                 title=f"{metric_for_chart} by {x_label} and {color_label}")
-                else:
-                    fig = px.line(work, x=x, y=metric_for_chart, color=color,
-                                  color_discrete_sequence=COLOR_SEQ,
-                                  title=f"{metric_for_chart} by {x_label} and {color_label}")
+            if log_y:
+                fig.update_yaxes(type="log")
+            render_plotly(fig)
 
-                if log_y: fig.update_yaxes(type="log")
-                render_plotly(fig)
+        # 3 dimensions
+        elif len(dims) >= 3:
+            x, color, facet = dims[0], dims[1], dims[2]
+            x_label = dim_labels.get(x, x)
+            color_label = dim_labels.get(color, color)
+            facet_label = dim_labels.get(facet, facet)
 
-                elif len(dims) == 3:
-                    x, color, facet = dims[0], dims[1], dims[2]
-                    x_label = dim_labels.get(x, x)
-                    color_label = dim_labels.get(color, color)
-                    facet_label = dim_labels.get(facet, facet)
+            if chart_type == "Bar":
+                fig = px.bar(
+                    work, x=x, y=metric_for_chart, color=color, facet_col=facet,
+                    facet_col_wrap=3, barmode="group",
+                    color_discrete_sequence=COLOR_SEQ,
+                    title=f"{metric_for_chart} by {x_label}, {color_label} (facet: {facet_label})"
+                )
+            else:
+                fig = px.line(
+                    work, x=x, y=metric_for_chart, color=color, facet_col=facet,
+                    facet_col_wrap=3, color_discrete_sequence=COLOR_SEQ,
+                    title=f"{metric_for_chart} by {x_label}, {color_label} (facet: {facet_label})"
+                )
 
-                    if chart_type == "Bar":
-                        fig = px.bar(
-                            work, x=x, y=metric_for_chart, color=color, facet_col=facet,
-                            facet_col_wrap=3, barmode="group", color_discrete_sequence=COLOR_SEQ,
-                            title=f"{metric_for_chart} by {x_label}, {color_label} (facet: {facet_label})"
-                        )
-                    else:
-                        fig = px.line(
-                            work, x=x, y=metric_for_chart, color=color, facet_col=facet,
-                            facet_col_wrap=3, color_discrete_sequence=COLOR_SEQ,
-                            title=f"{metric_for_chart} by {x_label}, {color_label} (facet: {facet_label})"
-                        )
+            if log_y:
+                fig.update_yaxes(type="log")
 
-                    if log_y:
-                        fig.update_yaxes(type="log")
-
-                    fig.update_layout(margin=dict(l=30, r=30, t=60, b=220), height=680)
-                    render_plotly(fig)
-
-                else:
-                    st.info("Select at least one 'Group by' dimension to draw a chart.")
-
-
-                if log_y: fig.update_yaxes(type="log")
-                fig.update_layout(margin=dict(l=30, r=30, t=60, b=220), height=680)
-                render_plotly(fig)
+            fig.update_layout(margin=dict(l=30, r=30, t=60, b=220), height=680)
+            render_plotly(fig)
 
 st.markdown('</div>', unsafe_allow_html=True)
 st.markdown('<div class="aso-spacer-xxl"></div>', unsafe_allow_html=True)
+
 
 # ====================== Reference: row counts ======================
 with st.expander("🗂️ Tables & row counts (reference)"):
