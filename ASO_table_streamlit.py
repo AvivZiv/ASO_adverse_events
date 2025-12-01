@@ -693,20 +693,34 @@ else:
                 if log_y: fig.update_yaxes(type="log")
                 render_plotly(fig)
 
-            else:
-                x, color, facet = dims[0], dims[1], dims[2]
-                x_label = dim_labels.get(x, x)
-                color_label = dim_labels.get(color, color)
-                facet_label = dim_labels.get(facet, facet)
-                if chart_type == "Bar":
-                    fig = px.bar(work, x=x, y=metric_for_chart, color=color, facet_col=facet,
-                                 facet_col_wrap=3, barmode="group",
-                                 color_discrete_sequence=COLOR_SEQ,
-                                 title=f"{metric_for_chart} by {x_label}, {color_label} (facet: {facet_label})")
+                elif len(dims) == 3:
+                    x, color, facet = dims[0], dims[1], dims[2]
+                    x_label = dim_labels.get(x, x)
+                    color_label = dim_labels.get(color, color)
+                    facet_label = dim_labels.get(facet, facet)
+
+                    if chart_type == "Bar":
+                        fig = px.bar(
+                            work, x=x, y=metric_for_chart, color=color, facet_col=facet,
+                            facet_col_wrap=3, barmode="group", color_discrete_sequence=COLOR_SEQ,
+                            title=f"{metric_for_chart} by {x_label}, {color_label} (facet: {facet_label})"
+                        )
+                    else:
+                        fig = px.line(
+                            work, x=x, y=metric_for_chart, color=color, facet_col=facet,
+                            facet_col_wrap=3, color_discrete_sequence=COLOR_SEQ,
+                            title=f"{metric_for_chart} by {x_label}, {color_label} (facet: {facet_label})"
+                        )
+
+                    if log_y:
+                        fig.update_yaxes(type="log")
+
+                    fig.update_layout(margin=dict(l=30, r=30, t=60, b=220), height=680)
+                    render_plotly(fig)
+
                 else:
-                    fig = px.line(work, x=x, y=metric_for_chart, color=color, facet_col=facet, facet_col_wrap=3,
-                                  color_discrete_sequence=COLOR_SEQ,
-                                  title=f"{metric_for_chart} by {x_label}, {color_label} (facet: {facet_label})")
+                    st.info("Select at least one 'Group by' dimension to draw a chart.")
+
 
                 if log_y: fig.update_yaxes(type="log")
                 fig.update_layout(margin=dict(l=30, r=30, t=60, b=220), height=680)
