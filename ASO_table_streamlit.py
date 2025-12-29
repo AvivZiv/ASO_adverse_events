@@ -192,8 +192,12 @@ def table_exists(name: str) -> bool:
 
 # ====================== AE table autodetect ======================
 candidate_ae = [
-    "adverse_events_final_29_12",
-    "adverse_events_final_29_12"
+    "adverse_events_normalized_v8_validated",
+    "adverse_events_normalized_v8v",
+    "adverse_events_normalized_v8",
+    "adverse_events_normalized_v7v",
+    "adverse_events_normalized_v7",
+    "adverse_events_13_11"
 ]
 available_ae = [t for t in candidate_ae if table_exists(t)]
 if not available_ae:
