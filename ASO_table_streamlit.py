@@ -11,6 +11,17 @@ st.set_page_config(page_title="ASO Analytics", layout="wide", page_icon="🧬")
 
 # ---------- Theme System (colorful + elegant) ----------
 PALETTES = {
+    "Minimal": {
+        "bg_grad": "#f8f9fa",
+        "card_bg": "#ffffff",
+        "glass_border": "rgba(0,0,0,0.08)",
+        "text_primary": "#212529",
+        "muted": "#6c757d",
+        "accent": "#0f172a",
+        "chip_bg": "#e9ecef",
+        "chip_text": "#495057",
+        "plot": ["#334155", "#0ea5e9", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"],
+    },
     "Aurora": {
         "bg_grad": "linear-gradient(135deg,#0ea5e9 0%,#6366f1 50%,#a855f7 100%)",
         "card_bg": "rgba(255,255,255,.7)",
@@ -112,21 +123,18 @@ def inject_theme(palette: Dict[str, str]):
     )
 
 with st.sidebar:
-    st.markdown("### 🎨 Theme")
+    settings_expander = st.expander("⚙️ Settings", expanded=False)
+
+with settings_expander:
+    st.markdown("#### 🎨 Theme")
     theme_name = st.selectbox("Palette", list(PALETTES.keys()), index=0, key="sel_palette")
 inject_theme(PALETTES[theme_name])
 COLOR_SEQ = PALETTES[theme_name]["plot"]
 
 # ====================== Header ======================
-st.markdown(
-    """
-    <div class="aso-banner">
-        <h1>🧬 SafeSense: ASO Human Trials Global Safety Atlas</h1>
-        <div class="aso-sub">A colorful, elegant explorer for treatments, adverse effects, and trials.</div>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+st.title("🧬 SafeSense")
+st.markdown("##### ASO Human Trials Global Safety Atlas")
+
 
 # ====================== DB selection ======================
 DEFAULT_DB_CANDIDATES = [
@@ -135,8 +143,7 @@ DEFAULT_DB_CANDIDATES = [
 
 existing = [str(p) for p in map(Path, DEFAULT_DB_CANDIDATES) if p.exists()]
 
-with st.sidebar:
-    st.markdown('<div class="aso-card">', unsafe_allow_html=True)
+with settings_expander:
     st.markdown("#### 📦 Database")
     db_path = st.text_input(
         "SQLite DB path",
@@ -144,8 +151,6 @@ with st.sidebar:
         key="db_path_input",
     )
     st.caption("Tip: Update the path if your DB lives elsewhere.")
-    st.markdown('<span class="aso-chip">Schema-aware</span> &nbsp; <span class="aso-chip">No ORM</span> &nbsp; <span class="aso-chip">Local-only</span>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
 
 if not db_path:
     st.info("Enter path to your `.db` in the sidebar.")
@@ -229,8 +234,7 @@ if csv_path.exists():
     except Exception:
         pass
 
-    with st.sidebar:
-        st.markdown('<div class="aso-card">', unsafe_allow_html=True)
+    with settings_expander:
         st.markdown("#### 📂 Custom Data")
         if st.button("Reload Custom CSV"):
             try:
@@ -263,7 +267,6 @@ if csv_path.exists():
                     
             except Exception as e:
                 st.error(f"Error loading CSV: {e}")
-        st.markdown('</div>', unsafe_allow_html=True)
 
 # ====================== AE table autodetect ======================
 candidate_ae = [
