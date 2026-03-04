@@ -109,6 +109,31 @@ def inject_theme(palette: Dict[str, str]):
             padding: 22px 28px;
             margin: 18px 0 12px 0; position: relative; overflow: hidden;
         }}
+        
+        .stSidebar {{
+            background-color: #1e293b;
+        }}
+        .stSidebar [data-testid="stMarkdownContainer"] p, .stSidebar [data-testid="stMarkdownContainer"] h1, .stSidebar [data-testid="stMarkdownContainer"] h2, .stSidebar [data-testid="stMarkdownContainer"] h3, .stSidebar [data-testid="stMarkdownContainer"] h4, .stSidebar [data-testid="stMarkdownContainer"] h5, .stSidebar [data-testid="stMarkdownContainer"] h6 {{
+            color: var(--aso-text) !important;
+        }}
+        
+        /* Input fields, selectboxes, multiselects - ensure dark bg */
+        .stTextInput > div > div > input,
+        .stSelectbox > div > div > div,
+        .stMultiSelect > div > div > div,
+        .stNumberInput > div > div > input {{
+            background-color: var(--aso-card-bg) !important;
+            color: var(--aso-text) !important;
+            border: 1px solid var(--aso-glass-border) !important;
+        }}
+        
+        /* Expander headers in sidebar */
+        .stSidebar .streamlit-expanderHeader {{
+            background-color: var(--aso-card-bg) !important;
+            color: var(--aso-text) !important;
+            border: 1px solid var(--aso-glass-border) !important;
+        }}
+
         .aso-banner h1 {{ font-size: 2.05rem; line-height: 1.1; margin: 0 0 6px 0; }}
         .aso-sub {{ opacity: .95; font-weight: 500; letter-spacing:.2px; }}
 
