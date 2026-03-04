@@ -192,6 +192,11 @@ def table_exists(name: str) -> bool:
 
 # ====================== AE table autodetect ======================
 candidate_ae = [
+    "adverse_events_normalized_v8_validated",
+    "adverse_events_normalized_v8v",
+    "adverse_events_normalized_v8",
+    "adverse_events_normalized_v7v",
+    "adverse_events_normalized_v7",
     "adverse_events_13_11"
 ]
 available_ae = [t for t in candidate_ae if table_exists(t)]
@@ -201,7 +206,7 @@ if not available_ae:
 
 with st.sidebar:
     st.markdown('<div class="aso-card">', unsafe_allow_html=True)
-    AE_TABLE = st.selectbox("AE table to use", available_ae, index=0, key="sel_ae_table")
+    AE_TABLE = st.selectbox("Adverse Events Table", available_ae, index=0, key="sel_ae_table")
     st.caption(f"Using AE table: `{AE_TABLE}`")
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -231,33 +236,33 @@ for col in ("total_treated", "pts_observed_n", "pts_observed_percent"):
 
 NUMERIC_CAST_EXPR: Dict[str, str] = {}
 if col_exists(AE_TABLE, "total_treated"):
-    NUMERIC_CAST_EXPR["Total treated (row)"] = _ae_num_cast("total_treated")
+    NUMERIC_CAST_EXPR["Total Treated (Record)"] = _ae_num_cast("total_treated")
 if col_exists(AE_TABLE, "pts_observed_n"):
-    NUMERIC_CAST_EXPR["Patients with AE (row)"] = _ae_num_cast("pts_observed_n")
+    NUMERIC_CAST_EXPR["Patients with AE (Record)"] = _ae_num_cast("pts_observed_n")
 if col_exists(AE_TABLE, "pts_observed_percent"):
-    NUMERIC_CAST_EXPR["Patients with AE % (row)"] = _ae_num_cast("pts_observed_percent")
+    NUMERIC_CAST_EXPR["Patients with AE % (Record)"] = _ae_num_cast("pts_observed_percent")
 if col_exists("treatments", "chem_length_nt"):
-    NUMERIC_CAST_EXPR["n of nucleotides"] = 'CAST(t."chem_length_nt" AS FLOAT)'
+    NUMERIC_CAST_EXPR["Nucleotide Length"] = 'CAST(t."chem_length_nt" AS FLOAT)'
 
 # ====================== Dimensions ======================
 DIMENSIONS: Dict[str, Dict[str, str]] = {}
 
-DIMENSIONS["Source type"] = {
+DIMENSIONS["Source Type"] = {
     "expr": (
         "CASE ae.source_type "
-        "WHEN 'P' THEN 'Peer review' "
-        "WHEN 'N' THEN 'Nonpeer review' "
-        "WHEN 'G' THEN 'Gray literature' "
-        "WHEN 'F' THEN 'FAERS database' "
+        "WHEN 'P' THEN 'Peer Review' "
+        "WHEN 'N' THEN 'Non-Peer Review' "
+        "WHEN 'G' THEN 'Gray Literature' "
+        "WHEN 'F' THEN 'FAERS Database' "
         "WHEN 'L' THEN 'Labeling' "
         "ELSE ae.source_type END"
     ),
     "table": AE_TABLE,
 }
 if col_exists(AE_TABLE, "ae_term"):
-    DIMENSIONS["Adverse effect"] = {"expr": 'ae."ae_term"', "table": AE_TABLE}
+    DIMENSIONS["Adverse Effect"] = {"expr": 'ae."ae_term"', "table": AE_TABLE}
 if col_exists(AE_TABLE, "ae_group"):
-    DIMENSIONS["Adverse effect group"] = {"expr": 'ae."ae_group"', "table": AE_TABLE}
+    DIMENSIONS["Adverse Effect Group"] = {"expr": 'ae."ae_group"', "table": AE_TABLE}
 if col_exists(AE_TABLE, "severity"):
     DIMENSIONS["Severity"] = {
         "expr": (
@@ -269,48 +274,48 @@ if col_exists(AE_TABLE, "severity"):
         "table": AE_TABLE,
     }
 if col_exists(AE_TABLE, "total_treated"):
-    DIMENSIONS["Total treated (row)"] = {"expr": 'ae."total_treated"', "table": AE_TABLE}
+    DIMENSIONS["Total Treated (Record)"] = {"expr": 'ae."total_treated"', "table": AE_TABLE}
 if col_exists(AE_TABLE, "pts_observed_n"):
-    DIMENSIONS["Patients with AE (row)"] = {"expr": 'ae."pts_observed_n"', "table": AE_TABLE}
+    DIMENSIONS["Patients with AE (Record)"] = {"expr": 'ae."pts_observed_n"', "table": AE_TABLE}
 if col_exists(AE_TABLE, "pts_observed_percent"):
-    DIMENSIONS["Patients with AE % (row)"] = {"expr": 'ae."pts_observed_percent"', "table": AE_TABLE}
+    DIMENSIONS["Patients with AE % (Record)"] = {"expr": 'ae."pts_observed_percent"', "table": AE_TABLE}
 
 # Treatments
 DIMENSIONS.update({
     "Name": {"expr": 't."generic_name"', "table": "treatments"},
-    "Target gene": {"expr": 't."Target gene"', "table": "treatments"},
-    "Mechanism of action": {"expr": 't."mechanism_summary"', "table": "treatments"},
-    "Route of administration": {"expr": 't."route"', "table": "treatments"},
+    "Target Gene": {"expr": 't."Target gene"', "table": "treatments"},
+    "Mechanism of Action": {"expr": 't."mechanism_summary"', "table": "treatments"},
+    "Route of Administration": {"expr": 't."route"', "table": "treatments"},
     "Backbone": {"expr": 't."backbone"', "table": "treatments"},
-    "Sugar modification": {"expr": 't."sugar"', "table": "treatments"},
+    "Sugar Modification": {"expr": 't."sugar"', "table": "treatments"},
     "Structure": {"expr": 't."structure "', "table": "treatments"},  # trailing space in column
-    "Gapmer notes": {"expr": 't."gapmer_notes"', "table": "treatments"},
+    "Gapmer Notes": {"expr": 't."gapmer_notes"', "table": "treatments"},
     "Conjugate": {"expr": 't."conjugate"', "table": "treatments"},
-    "n of nucleotides": {"expr": 't."chem_length_nt"', "table": "treatments"},
-    "Treatment classification": {"expr": 't."treatment_group"', "table": "treatments"},
+    "Nucleotide Length": {"expr": 't."chem_length_nt"', "table": "treatments"},
+    "Treatment Classification": {"expr": 't."treatment_group"', "table": "treatments"},
 })
 
 # Approvals / Trials
 DIMENSIONS.update({
-    "phase": {"expr": 'tr."phase"', "table": "trials"},
-    "Approval date": {"expr": 'ap."decision_date"', "table": "approvals"},
+    "Phase": {"expr": 'tr."phase"', "table": "trials"},
+    "Approval Date": {"expr": 'ap."decision_date"', "table": "approvals"},
 })
 
 def numeric_expr_for(label: str) -> Optional[str]:
     return NUMERIC_CAST_EXPR.get(label)
 
 # ====================== Metrics ======================
-METRICS: Dict[str, Dict[str, str]] = {"Count rows": {"agg": "COUNT", "expr": "*"}}
+METRICS: Dict[str, Dict[str, str]] = {"Row Count": {"agg": "COUNT", "expr": "*"}}
 if "pts_observed_n" in AE_NUM:
-    METRICS["Sum patients with AE"] = {"agg": "SUM", "expr": AE_NUM["pts_observed_n"]}
+    METRICS["Total Patients with AE"] = {"agg": "SUM", "expr": AE_NUM["pts_observed_n"]}
 if "pts_observed_percent" in AE_NUM:
-    METRICS["Avg patients with AE %"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_percent"]}
+    METRICS["Avg. AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_percent"]}
 if "total_treated" in AE_NUM:
-    METRICS["Avg total treated"] = {"agg": "AVG", "expr": AE_NUM["total_treated"]}
+    METRICS["Avg Total Treated"] = {"agg": "AVG", "expr": AE_NUM["total_treated"]}
 if col_exists("trials", "n_treated"):
-    METRICS["Total treated (trials)"] = {"agg": "SUM", "expr": 'tr."n_treated"'}
+    METRICS["Total Treated (Trials)"] = {"agg": "SUM", "expr": 'tr."n_treated"'}
 if col_exists("trials", "N_in_trial"):
-    METRICS["Max N in trial"] = {"agg": "MAX", "expr": 'tr."N_in_trial"'}
+    METRICS["Max Participants (Trial)"] = {"agg": "MAX", "expr": 'tr."N_in_trial"'}
 
 # ====================== SQL builders ======================
 def resolve_tables(fields: List[str], metrics: List[str], filters: Dict[str, dict]) -> List[str]:
@@ -409,16 +414,16 @@ metric_choices = list(METRICS.keys())
 
 c1, c2 = st.columns([2, 1])
 with c1:
-    group_by = st.multiselect("Group by (up to 3)", dim_choices, max_selections=3, key="ms_group_by")
+    group_by = st.multiselect("Group By (Max 3)", dim_choices, max_selections=3, key="ms_group_by")
 with c2:
-    stratify_by = st.selectbox("Stratify by (optional)", ["(none)"] + dim_choices, index=0, key="sel_stratify")
+    stratify_by = st.selectbox("Stratify By", ["(none)"] + dim_choices, index=0, key="sel_stratify")
 
-metric_sel = st.multiselect("Metrics (one or more)", metric_choices, default=["Count rows"], max_selections=4, key="ms_metrics")
+metric_sel = st.multiselect("Select Metrics", metric_choices, default=["Row Count"], max_selections=4, key="ms_metrics")
 
 # -------- Advanced Filters --------
 with st.expander("🎛️ Filters (optional)", expanded=False):
     filter_specs: Dict[str, dict] = {}
-    filter_cols = st.multiselect("Choose filter columns", dim_choices, default=[], key="ms_filter_cols")
+    filter_cols = st.multiselect("Filter Columns", dim_choices, default=[], key="ms_filter_cols")
     for col in filter_cols[:8]:
         info = DIMENSIONS[col]
         expr = info["expr"]
@@ -429,7 +434,7 @@ with st.expander("🎛️ Filters (optional)", expanded=False):
             "Mode", ["Include", "Exclude", "Greater than", "Less than", "Between"],
             key=f"mode_{col}"
         )
-        exclude_null = f3.checkbox("Exclude NULL/blank", value=True, key=f"nonnull_{col}")
+        exclude_null = f3.checkbox("Exclude Empty/Null", value=True, key=f"nonnull_{col}")
 
         spec = {"mode": mode, "exclude_null": exclude_null}
 
@@ -447,8 +452,8 @@ with st.expander("🎛️ Filters (optional)", expanded=False):
                 f2.warning("Numeric comparison not available for this column.")
             else:
                 if mode == "Between":
-                    low = f2.number_input("Min (inclusive)", value=0.0, key=f"min_{col}")
-                    high = f2.number_input("Max (inclusive)", value=0.0, key=f"max_{col}")
+                    low = f2.number_input("Minimum", value=0.0, key=f"min_{col}")
+                    high = f2.number_input("Maximum", value=0.0, key=f"max_{col}")
                     spec["min"] = low; spec["max"] = high
                 elif mode == "Greater than":
                     val = f2.number_input("Value", value=0.0, key=f"gt_{col}")
@@ -492,7 +497,7 @@ for m in metric_sel:
     if expr == "*": select_parts.append(f'{agg}(*) AS "{m}"')
     else:           select_parts.append(f"{agg}({expr}) AS \"{m}\"")
 
-select_sql = "SELECT " + ", ".join(select_parts) if select_parts else "SELECT COUNT(*) AS \"Count rows\""
+select_sql = "SELECT " + ", ".join(select_parts) if select_parts else "SELECT COUNT(*) AS \"Row Count\""
 
 # WHERE
 where_parts: List[str] = []
@@ -627,8 +632,8 @@ else:
         st.stop()
 
     metric_for_chart = cc2.selectbox("Metric", output_metric_cols, index=0)
-    sort_x = cc3.toggle("Sort by metric (desc)", value=True)
-    log_y = cc4.toggle("Log scale (y)", value=False)
+    sort_x = cc3.toggle("Sort Descending", value=True)
+    log_y = cc4.toggle("Log Scale (Y-axis)", value=False)
 
     work = chart_df.copy()
     work[metric_for_chart] = pd.to_numeric(work[metric_for_chart], errors="coerce")
@@ -648,7 +653,7 @@ else:
         else:
             names_col = dims[0]
             names_label = dim_labels.get(names_col, names_col)
-            donut = st.checkbox("Donut (ring) style", value=True)
+            donut = st.checkbox("Donut Chart", value=True)
 
             fig = px.pie(
                 work,
@@ -739,7 +744,7 @@ st.markdown('<div class="aso-spacer-xxl"></div>', unsafe_allow_html=True)
 
 
 # ====================== Reference: row counts ======================
-with st.expander("🗂️ Tables & row counts (reference)"):
+with st.expander("🗂️ Database Statistics"):
     try:
         names = run_sql("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY 1;")
         names = names["name"].tolist()
@@ -768,24 +773,24 @@ with info_tab:
         name_options = []
         st.warning(f"Could not load treatment names: {e}")
 
-    sel_name = st.selectbox("Treatment generic name", name_options, key="sel_treatment")
+    sel_name = st.selectbox("Generic Name", name_options, key="sel_treatment")
 
     if sel_name:
         try:
             q_info = (
                 'SELECT '
-                '  "Target gene"           AS "Target gene", '
-                '  "mechanism_summary"     AS "Mechanism of action", '
-                '  "route"                 AS "Route of administration", '
+                '  "Target gene"           AS "Target Gene", '
+                '  "mechanism_summary"     AS "Mechanism of Action", '
+                '  "route"                 AS "Route of Administration", '
                 '  "conjugate"             AS "Conjugate", '
                 '  "structure "            AS "Structure", '
                 '  "backbone"              AS "Backbone", '
-                '  "sugar"                 AS "Sugar modification", '
-                '  "Nof1"                  AS "Is it n=1?", '
-                '  "treatment_group"       AS "Treatment classification", '
-                '  "gapmer_notes"          AS "Gapmer notes", '
-                '  "chem_length_nt"        AS "Nucleotide length (nt)", '
-                '  "indication_primary"    AS "Primary indication" '
+                '  "sugar"                 AS "Sugar Modification", '
+                '  "Nof1"                  AS "Single Patient Study (N=1)?", '
+                '  "treatment_group"       AS "Treatment Classification", '
+                '  "gapmer_notes"          AS "Gapmer Notes", '
+                '  "chem_length_nt"        AS "Nucleotide Length", '
+                '  "indication_primary"    AS "Primary Indication" '
                 'FROM treatments '
                 'WHERE TRIM(LOWER("generic_name")) = TRIM(LOWER(:n)) '
                 'ORDER BY rowid DESC LIMIT 1;'
@@ -801,34 +806,49 @@ with info_tab:
             row = info_df.iloc[0]
 
             a1, a2, a3, a4 = st.columns(4)
-            a1.metric("Target gene", str(row.get("Target gene", "")))
-            a2.metric("Mechanism of action", str(row.get("Mechanism of action", "")))
-            a3.metric("Route of administration", str(row.get("Route of administration", "")))
-            a4.metric("Conjugate", str(row.get("Conjugate", "")))
+            a1.metric("Target Gene", str(row.get("Target Gene", "")))
+            a2.metric("Mechanism of Action", str(row.get("Mechanism of Action", "")))
+            a3.metric("Route of Administration", str(row.get("Route of Administration", "")))
+            
+            conj_raw = str(row.get("Conjugate", "")).strip()
+            # If the database value is just "N", display "None" or "Unconjugated"
+            # Adjust according to your preference. Here we map "N" -> "None"
+            conj_val = "None" if conj_raw == "N" else conj_raw
+            a4.metric("Conjugate", conj_val)
 
             b1, b2, b3, b4 = st.columns(4)
             b1.metric("Structure", str(row.get("Structure", "")))
             b2.metric("Backbone", str(row.get("Backbone", "")))
-            b3.metric("Sugar modification", str(row.get("Sugar modification", "")))
-            val_raw = str(row.get("Is it n=1?", "")).strip()
-            val = "Yes" if val_raw in ("1", "1.0") else ("No" if val_raw in ("0", "0.0") else val_raw)
-            b4.metric("Is it n=1?", val)
+            
+            sugar_raw = str(row.get("Sugar Modification", "")).strip()
+            sugar_val = "None" if sugar_raw == "N" else sugar_raw
+            b3.metric("Sugar Modification", sugar_val)
+            
+            val_raw = str(row.get("Single Patient Study (N=1)?", "")).strip()
+            # 1/1.0 -> Yes, 0/0.0 -> No
+            if val_raw in ("1", "1.0"):
+                val = "Yes"
+            elif val_raw in ("0", "0.0"):
+                val = "No"
+            else:
+                val = val_raw
+            b4.metric("Single Patient Study (N=1)?", val)
 
 
             c1, c2, c3 = st.columns(3)
-            c1.metric("Treatment classification", str(row.get("Treatment classification", "")))
+            c1.metric("Treatment Classification", str(row.get("Treatment Classification", "")))
 
-            gapmer_notes = str(row.get("Gapmer notes", "") or "").strip()
+            gapmer_notes = str(row.get("Gapmer Notes", "") or "").strip()
             if gapmer_notes:
-                c2.metric("Gapmer notes", gapmer_notes)
+                c2.metric("Gapmer Notes", gapmer_notes)
 
-            nt_len = row.get("Nucleotide length (nt)", None)
+            nt_len = row.get("Nucleotide Length", None)
             nt_len = "" if nt_len is None else str(nt_len).strip()
             if nt_len:
-                c3.metric("Nucleotide length (nt)", nt_len)
+                c3.metric("Nucleotide Length", nt_len)
 
-            prim = str(row.get("Primary indication", "") or "").strip()
-            st.markdown("#### Primary indication")
+            prim = str(row.get("Primary Indication", "") or "").strip()
+            st.markdown("#### Primary Indication")
             if prim:
                 st.markdown(f'<div class="aso-note">{prim}</div>', unsafe_allow_html=True)
             else:
@@ -857,7 +877,7 @@ with info_tab:
         else:
             st.dataframe(refs_df, use_container_width=True)
 
-        st.markdown("#### Adverse effects by source type")
+        st.markdown("#### Adverse Effects by Source")
         try:
             pts_pct_expr = AE_NUM.get("pts_observed_percent", "NULL")
             total_treated_expr = AE_NUM.get("total_treated", 'ae."total_treated"')
@@ -866,15 +886,15 @@ with info_tab:
                 f"""
                 SELECT
                     CASE ae.source_type
-                        WHEN 'P' THEN 'Peer review'
-                        WHEN 'N' THEN 'Nonpeer review'
-                        WHEN 'G' THEN 'Gray literature'
-                        WHEN 'F' THEN 'FAERS database'
+                        WHEN 'P' THEN 'Peer Review'
+                        WHEN 'N' THEN 'Non-Peer Review'
+                        WHEN 'G' THEN 'Gray Literature'
+                        WHEN 'F' THEN 'FAERS Database'
                         WHEN 'L' THEN 'Labeling'
                         ELSE ae.source_type
-                    END AS "Source type",
-                    ae.ae_term AS "Adverse effect",
-                    SUM({total_treated_expr})      AS "Total treated",
+                    END AS "Source Type",
+                    ae.ae_term AS "Adverse Effect",
+                    SUM({total_treated_expr})      AS "Total Treated",
                     SUM({pts_obs_n_expr})          AS "Total with AE",
                     AVG({pts_pct_expr})            AS "Percent with AE"
                 FROM {AE_TABLE} ae
@@ -897,11 +917,11 @@ with info_tab:
         else:
             st.dataframe(ae_by_source_df, use_container_width=True)
 
-        st.markdown("#### Adverse effect groups — distribution (rows)")
+        st.markdown("#### Adverse Effect Group Distribution")
         try:
             q_ae_group_counts = (
                 f"""
-                SELECT ae_group AS "Adverse effect group", COUNT(*) AS rows
+                SELECT ae_group AS "Adverse Effect Group", COUNT(*) AS rows
                 FROM {AE_TABLE}
                 WHERE treatment_id IN (
                     SELECT treatment_id FROM treatments
@@ -921,298 +941,13 @@ with info_tab:
         else:
             pie = px.pie(
                 ae_group_counts_df,
-                names="Adverse effect group",
+                names="Adverse Effect Group",
                 values="rows",
                 hole=0.45,
                 color_discrete_sequence=COLOR_SEQ,
-                title="AE groups share (by row count)"
+                title="AE Group Share"
             )
             render_plotly(pie)
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-# ====================== Add New Treatment tab ======================
-add_tab = st.tabs(["➕ Add New Treatment"])[0]
-
-with add_tab:
-    st.markdown('<div class="aso-card">', unsafe_allow_html=True)
-    st.markdown("## ➕ Add a New Treatment and Associated Data")
-
-    st.markdown("### 🧪 Treatment Details")
-
-    # ---- Load distinct lists for dropdowns ----
-    try:
-        existing_t_ids = run_sql('SELECT treatment_id FROM treatments')['treatment_id'].tolist()
-        existing_names = run_sql('SELECT generic_name FROM treatments')['generic_name'].astype(str).tolist()
-
-        target_genes = run_sql('SELECT DISTINCT "Target gene" AS g FROM treatments ORDER BY 1')['g'].astype(str).tolist()
-        routes = run_sql('SELECT DISTINCT route AS r FROM treatments ORDER BY 1')['r'].astype(str).tolist()
-        backbones = run_sql('SELECT DISTINCT backbone AS b FROM treatments ORDER BY 1')['b'].astype(str).tolist()
-        sugars = run_sql('SELECT DISTINCT sugar AS s FROM treatments ORDER BY 1')['s'].astype(str).tolist()
-        structures = run_sql('SELECT DISTINCT "Structure " AS s FROM treatments ORDER BY 1')['s'].astype(str).tolist()
-        conjugates = run_sql('SELECT DISTINCT "conjugate " AS s FROM treatments ORDER BY 1')['s'].astype(str).tolist()
-        t_groups = run_sql('SELECT DISTINCT treatment_group AS g FROM treatments ORDER BY 1')['g'].astype(str).tolist()
-    except Exception as e:
-        st.error(f"Error loading dropdowns: {e}")
-        st.stop()
-
-    # ---- Treatment fields ----
-    t_id = st.text_input("🔑 Treatment ID (unique)", key="new_t_id")
-    t_name = st.text_input("🧬 Generic name", key="new_t_name")
-
-    c1, c2 = st.columns(2)
-    with c1:
-        t_gene = st.selectbox("Target gene", target_genes + ["(other)"], key="new_t_gene")
-        t_mech = st.text_area("Mechanism of action", key="new_t_mech")
-        t_route = st.selectbox("Route of administration", routes + ["(other)"], key="new_t_route")
-        t_conj = st.selectbox("Conjugate", conjugates + ["(other)"], key="new_t_conj")
-
-    with c2:
-        t_backbone = st.selectbox("Backbone", backbones + ["(other)"], key="new_t_backbone")
-        t_sugar = st.selectbox("Sugar modification", sugars + ["(other)"], key="new_t_sugar")
-        t_nt = st.number_input("Nucleotide length (nt)", min_value=0, max_value=200, value=0, key="new_t_nt")
-        t_group = st.selectbox("Treatment classification", t_groups + ["(other)"], key="new_t_group")
-
-    t_indication = st.text_area("Primary indication", key="new_t_indication")
-    t_gapmer = st.text_area("Gapmer notes", key="new_t_gapmer")
-
-    st.markdown("---")
-    st.markdown("### 📚 References (optional)")
-    st.caption("Add any number of rows. Leave table empty if none.")
-
-    ref_template = pd.DataFrame([{
-        "ref_type": "",
-        "ref_value": "",
-        "year": "",
-        "title_or_note": ""
-    }])
-
-    ref_editor = st.data_editor(
-        ref_template,
-        num_rows="dynamic",
-        key="ref_editor",
-        use_container_width=True,
-    )
-
-    st.markdown("---")
-    st.markdown("### 📜 Approvals (optional)")
-
-    app_template = pd.DataFrame([{
-        "region": "",
-        "pathway": "",
-        "decision_date": "",
-        "decision_date_precision": "",
-        "label_ref": "",
-        "status_note": "",
-        "decision_date_full": ""
-    }])
-
-    app_editor = st.data_editor(
-        app_template,
-        num_rows="dynamic",
-        key="app_editor",
-        use_container_width=True,
-    )
-
-    st.markdown("---")
-    st.markdown("### 📊 FAERS Summary (optional)")
-
-    faers_template = pd.DataFrame([{
-        "data_window": "",
-        "total_reports": "",
-        "serious_reports": "",
-        "top_terms_json": "",
-        "notes": ""
-    }])
-
-    faers_editor = st.data_editor(
-        faers_template,
-        num_rows="dynamic",
-        key="faers_editor",
-        use_container_width=True,
-    )
-
-    # ---- Load allowed AE values ----
-    st.markdown("---")
-    st.markdown("### ⚠️ Adverse Events (bulk entry)")
-
-    try:
-        ae_terms = run_sql('SELECT DISTINCT ae_term FROM adverse_events_13_11 ORDER BY 1')['ae_term'].astype(str).tolist()
-        ae_groups = run_sql('SELECT DISTINCT ae_group FROM adverse_events_13_11 ORDER BY 1')['ae_group'].astype(str).tolist()
-        severities = run_sql('SELECT DISTINCT severity FROM adverse_events_13_11 ORDER BY 1')['severity'].astype(str).tolist()
-        source_types = run_sql('SELECT DISTINCT source_type FROM adverse_events_13_11 ORDER BY 1')['source_type'].astype(str).tolist()
-    except Exception as e:
-        st.error(f"Error loading AE dropdowns: {e}")
-        st.stop()
-
-    ae_template = pd.DataFrame([{
-        "ae_term": "",
-        "ae_group": "",
-        "severity": "",
-        "source_type": "",
-        "source_id": "",
-        "total_treated": "",
-        "pts_observed_n": "",
-        "pts_observed_percent": "",
-        "ae_comments": "",
-        "n_events": "",
-        "time_window": "",
-        "notes": ""
-    }])
-    def suggest_ae_terms(prefix: str, all_terms: list) -> list:
-        prefix = (prefix or "").strip().lower()
-        if not prefix:
-            return all_terms[:50]   # show top 50 terms when nothing typed
-        return [t for t in all_terms if prefix in t.lower()][:50]  # limit to 50 results
-
-
-    ae_editor = st.data_editor(
-        ae_template,
-        num_rows="dynamic",
-        key="ae_editor",
-        use_container_width=True,
-
-        column_config = {
-            "ae_term": st.column_config.TextColumn(
-                "Adverse effect term",
-                help="Type an AE term. Suggestions will appear below.",
-            ),
-            "ae_group": st.column_config.SelectboxColumn(
-                "AE group",
-                options=ae_groups,
-            ),
-            "severity": st.column_config.SelectboxColumn(
-                "Severity",
-                options=severities,
-            ),
-            "source_type": st.column_config.SelectboxColumn(
-                "Source type",
-                options=source_types,
-            ),
-        }
-    )
-
-    st.markdown("### 🔍 AE Term Suggestions")
-
-    invalid_ae_rows = []
-    suggestions = {}
-
-    for idx, row in ae_editor.iterrows():
-        term = str(row.get("ae_term", "")).strip()
-        if term and term not in ae_terms:
-            invalid_ae_rows.append(idx)
-            prefix = term.lower()
-            matches = [t for t in ae_terms if prefix in t.lower()][:10]
-            suggestions[idx] = matches
-
-    if invalid_ae_rows:
-        st.warning(f"Found **{len(invalid_ae_rows)}** AE terms not in database.")
-        for idx in invalid_ae_rows:
-            st.write(f"Row {idx} — `{ae_editor.loc[idx, 'ae_term']}`")
-            if suggestions[idx]:
-                st.write("Suggestions:", ", ".join(suggestions[idx]))
-            else:
-                st.write("No close matches found.")
-    else:
-        st.success("All AE terms match known values.")
-
-    st.markdown("---")
-    submit = st.button("💾 Save All Data", type="primary")
-
-    if submit:
-        if not t_id or not t_name:
-            st.error("Treatment ID and Generic name are required.")
-            st.stop()
-
-        # Check collisions
-        if t_id in existing_t_ids:
-            st.error(f"Treatment ID `{t_id}` already exists.")
-            st.stop()
-
-        if t_name in existing_names:
-            st.error(f"Generic name `{t_name}` already exists.")
-            st.stop()
-
-        # Perform SQL inserts
-        try:
-            with sqlite3.connect(DBP) as con:
-                cur = con.cursor()
-
-                # Insert treatment
-                cur.execute("""
-                    INSERT INTO treatments (
-                        treatment_id, generic_name, "Target gene", mechanism_summary,
-                        route, backbone, sugar, "Structure ", gapmer_notes,
-                        conjugate , chem_length_nt, indication_primary, treatment_group
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """, (
-                    t_id, t_name, t_gene, t_mech,
-                    t_route, t_backbone, t_sugar, None,
-                    t_gapmer, t_conj, t_nt, t_indication, t_group
-                ))
-
-                # Insert refs
-                for _, r in ref_editor.iterrows():
-                    if any(str(v).strip() for v in r):
-                        cur.execute("""
-                            INSERT INTO refs (ref_id, treatment_id, ref_type, ref_value, year, title_or_note)
-                            VALUES (NULL, ?, ?, ?, ?, ?)
-                        """, (t_id, r["ref_type"], r["ref_value"], r["year"], r["title_or_note"]))
-
-                # Insert approvals
-                for _, a in app_editor.iterrows():
-                    if any(str(v).strip() for v in a):
-                        cur.execute("""
-                            INSERT INTO approvals (
-                                approval_id, treatment_id, region, pathway, decision_date,
-                                decision_date_precision, label_ref, status_note, decision_date_full
-                            ) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)
-                        """, (
-                            t_id, a["region"], a["pathway"], a["decision_date"],
-                            a["decision_date_precision"], a["label_ref"], a["status_note"],
-                            a["decision_date_full"]
-                        ))
-
-                # Insert FAERS
-                for _, f in faers_editor.iterrows():
-                    if any(str(v).strip() for v in f):
-                        cur.execute("""
-                            INSERT INTO faers_summary (
-                                faers_id, treatment_id, data_window, total_reports,
-                                serious_reports, top_terms_json, notes
-                            ) VALUES (NULL, ?, ?, ?, ?, ?, ?)
-                        """, (
-                            t_id, f["data_window"], f["total_reports"], f["serious_reports"],
-                            f["top_terms_json"], f["notes"]
-                        ))
-
-                # Insert AE rows
-                for _, ae in ae_editor.iterrows():
-                    if any(str(v).strip() for v in ae):
-                        cur.execute(f"""
-                            INSERT INTO adverse_events_13_11 (
-                                ae_row_id, treatment_id, source_type, source_id, ae_term,
-                                severity, total_treated, pts_observed_n, pts_observed_percent,
-                                ae_comments, n_events, time_window, notes, ae_group
-                            ) VALUES (
-                                NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
-                            )
-                        """, (
-                            t_id,
-                            ae["source_type"], ae["source_id"],
-                            ae["ae_term"], ae["severity"],
-                            ae["total_treated"], ae["pts_observed_n"],
-                            ae["pts_observed_percent"], ae["ae_comments"],
-                            ae["n_events"], ae["time_window"],
-                            ae["notes"], ae["ae_group"]
-                        ))
-
-                con.commit()
-
-            st.success("🎉 All data saved successfully!")
-
-        except Exception as e:
-            st.error(f"Error saving data: {e}")
-            st.stop()
-
-    st.markdown('</div>', unsafe_allow_html=True)
