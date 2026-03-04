@@ -138,16 +138,16 @@ def inject_theme(palette: Dict[str, str]):
         .aso-sub {{ opacity: .95; font-weight: 500; letter-spacing:.2px; }}
 
         /* Dataframe/Table styling */
-        .stDataFrame, .stDataEditor {
+        .stDataFrame, .stDataEditor {{
             background-color: var(--aso-card-bg);
             border: 1px solid var(--aso-glass-border);
             border-radius: 8px;
-        }
+        }}
         
         /* Force dark background on gl-container (the underlying grid) if possible via CSS injection (limited) */
-        [data-testid="stDataFrame"] > div {
+        [data-testid="stDataFrame"] > div {{
             background-color: var(--aso-card-bg) !important;
-        }
+        }}
 
         .aso-card {{
             background: var(--aso-card-bg);
