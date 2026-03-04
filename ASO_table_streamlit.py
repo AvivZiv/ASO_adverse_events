@@ -11,6 +11,17 @@ st.set_page_config(page_title="ASO Analytics", layout="wide", page_icon="🧬")
 
 # ---------- Theme System (colorful + elegant) ----------
 PALETTES = {
+    "Dark Flat": {
+        "bg_grad": "#0f172a",
+        "card_bg": "#1e293b",
+        "glass_border": "rgba(255,255,255,0.08)",
+        "text_primary": "#e2e8f0",
+        "muted": "#94a3b8",
+        "accent": "#facc15",
+        "chip_bg": "#334155",
+        "chip_text": "#e2e8f0",
+        "plot": ["#006A4E", "#FFC72C", "#94a3b8", "#14b8a6", "#3b82f6", "#ef4444"],
+    },
     "Minimal": {
         "bg_grad": "#f8f9fa",
         "card_bg": "#ffffff",
@@ -87,32 +98,32 @@ def inject_theme(palette: Dict[str, str]):
         .block-container {{ padding-top: 0; max-width: 1500px; }}
 
         .aso-banner {{
-            background: var(--aso-bg-grad); color: white; border-radius: 22px;
-            padding: 22px 28px; box-shadow: var(--aso-shadow-1);
+            background: var(--aso-bg-grad); color: var(--aso-text); border-radius: 22px;
+            padding: 22px 28px;
             margin: 18px 0 12px 0; position: relative; overflow: hidden;
         }}
         .aso-banner h1 {{ font-size: 2.05rem; line-height: 1.1; margin: 0 0 6px 0; }}
         .aso-sub {{ opacity: .95; font-weight: 500; letter-spacing:.2px; }}
 
         .aso-card {{
-            background: var(--aso-card-bg); backdrop-filter: blur(10px);
-            border: 1px solid var(--aso-glass-border); border-radius: 18px; box-shadow: var(--aso-shadow-2); padding: 14px 16px;
+            background: var(--aso-card-bg);
+            border: 1px solid var(--aso-glass-border); border-radius: 12px; padding: 14px 16px;
         }}
         .aso-chip {{
             display:inline-block; padding:.25rem .6rem; border-radius:9999px; font-size:.78rem; font-weight:600;
             letter-spacing:.2px; background: var(--aso-chip-bg); color: var(--aso-chip-text);
         }}
         .aso-note {{
-            border-radius: 14px; padding: 10px 12px; background: white;
-            border: 1px solid var(--aso-glass-border); box-shadow: var(--aso-shadow-2); color: var(--aso-text);
+            border-radius: 8px; padding: 10px 12px; background: var(--aso-card-bg);
+            border: 1px solid var(--aso-glass-border); color: var(--aso-text);
             line-height: 1.35; white-space: pre-wrap;
         }}
         [data-testid="stMetric"] {{
-            border-radius: 12px; background: var(--aso-card-bg); border: 1px solid var(--aso-glass-border);
-            padding: 10px 12px; box-shadow: var(--aso-shadow-2); color: var(--aso-text);
+            border-radius: 8px; background: var(--aso-card-bg); border: 1px solid var(--aso-glass-border);
+            padding: 10px 12px; color: var(--aso-text);
         }}
-        [data-testid="stDataFrame"] {{ border: 1px solid var(--aso-glass-border); border-radius: 14px; box-shadow: var(--aso-shadow-2); }}
-        [data-testid="stExpander"] > details {{ border: 1px solid var(--aso-glass-border); border-radius: 14px; background: var(--aso-card-bg); }}
+        [data-testid="stDataFrame"] {{ border: 1px solid var(--aso-glass-border); border-radius: 8px; }}
+        [data-testid="stExpander"] > details {{ border: 1px solid var(--aso-glass-border); border-radius: 8px; background: var(--aso-card-bg); color: var(--aso-text); }}
         .aso-section-title {{ margin: 0 0 6px 0; color: var(--aso-text); letter-spacing:.2px; }}
         .aso-muted {{ color: var(--aso-muted); }}
 
