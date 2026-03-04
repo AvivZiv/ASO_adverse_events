@@ -1051,11 +1051,12 @@ with info_tab:
                     {pts_obs_sev_n_expr}           AS "Severe AE Incidence",
                     {pts_obs_sev_pct_expr}         AS "Severe AE Rate"
                 FROM {AE_TABLE} ae
-                WHERE (ae.treatment_id COLLATE NOCASE IN (
+                WHERE ((ae.treatment_id COLLATE NOCASE IN (
                     SELECT treatment_id FROM treatments
                     WHERE TRIM(LOWER("generic_name")) = TRIM(LOWER(:n))
                 ))
-                OR (TRIM(ae.treatment_id) COLLATE NOCASE = TRIM(:n) COLLATE NOCASE)
+                OR (TRIM(ae.treatment_id) COLLATE NOCASE = TRIM(:n) COLLATE NOCASE))
+                AND {pts_obs_n_expr} > 0
                 ORDER BY 3 DESC;
                 """
             )
