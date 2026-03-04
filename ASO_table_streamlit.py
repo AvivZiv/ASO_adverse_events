@@ -1011,7 +1011,7 @@ with info_tab:
         else:
             st.dataframe(refs_df, use_container_width=True)
 
-        st.markdown("#### Adverse Effects by Source")
+        st.markdown("#### Adverse Effects")
         try:
             pts_pct_expr = AE_NUM.get("pts_observed_percent", "NULL")
             total_treated_expr = AE_NUM.get("total_treated", 'ae."total_treated"')
@@ -1019,32 +1019,26 @@ with info_tab:
             q_ae_src = (
                 f"""
                 SELECT
-                    CASE ae.source_type
-                        WHEN 'P' THEN 'Peer Review'
-                        WHEN 'N' THEN 'Non-Peer Review'
-                        WHEN 'G' THEN 'Gray Literature'
-                        WHEN 'F' THEN 'FAERS Database'
-                        WHEN 'L' THEN 'Labeling'
-                        ELSE ae.source_type
-                    END AS "Source Type",
                     ae.ae_term AS "Adverse Effect",
                     SUM({total_treated_expr})      AS "Total Treated",
-                    SUM({pts_obs_n_expr})          AS "Total with AE",
-                    AVG({pts_pct_expr})            AS "Percent with AE"
+                    SUM({pts_obs_n_expr})          AS "AE Incidence",
+                    AVG({pts_pct_expr})            AS "AE Rate",
+                    SUM(CASE WHEN CAST(ae."severity" AS INTEGER) = 1 THEN {pts_obs_n_expr} ELSE 0 END) AS "Severe AE Incidence",
+                    COALESCE(AVG(CASE WHEN CAST(ae."severity" AS INTEGER) = 1 THEN {pts_pct_expr} ELSE NULL END), 0) AS "Severe AE Rate"
                 FROM {AE_TABLE} ae
                 WHERE ae.treatment_id IN (
                     SELECT treatment_id FROM treatments
                     WHERE TRIM(LOWER("generic_name")) = TRIM(LOWER(:n))
                 )
-                GROUP BY 1, 2
-                ORDER BY 1, 3 DESC;
+                GROUP BY 1
+                ORDER BY 3 DESC;
                 """
             )
             ae_by_source_df = run_sql(q_ae_src, {"n": sel_name})
 
         except Exception as e:
             ae_by_source_df = pd.DataFrame()
-            st.warning(f"Could not load adverse effects by source type: {e}")
+            st.warning(f"Could not load adverse effects: {e}")
 
         if ae_by_source_df.empty:
             st.info("No adverse effects found for this treatment.")
