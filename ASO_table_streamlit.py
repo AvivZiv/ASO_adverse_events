@@ -137,6 +137,18 @@ def inject_theme(palette: Dict[str, str]):
         .aso-banner h1 {{ font-size: 2.05rem; line-height: 1.1; margin: 0 0 6px 0; }}
         .aso-sub {{ opacity: .95; font-weight: 500; letter-spacing:.2px; }}
 
+        /* Dataframe/Table styling */
+        .stDataFrame, .stDataEditor {
+            background-color: var(--aso-card-bg);
+            border: 1px solid var(--aso-glass-border);
+            border-radius: 8px;
+        }
+        
+        /* Force dark background on gl-container (the underlying grid) if possible via CSS injection (limited) */
+        [data-testid="stDataFrame"] > div {
+            background-color: var(--aso-card-bg) !important;
+        }
+
         .aso-card {{
             background: var(--aso-card-bg);
             border: 1px solid var(--aso-glass-border); border-radius: 12px; padding: 14px 16px;
