@@ -95,7 +95,14 @@ def inject_theme(palette: Dict[str, str]):
             --aso-shadow-1: 0 8px 30px rgba(2,6,23,.20);
             --aso-shadow-2: 0 6px 22px rgba(2,6,23,.12);
         }}
-        .block-container {{ padding-top: 0; max-width: 1500px; }}
+        .stApp {{
+            background: var(--aso-bg-grad);
+        }}
+        .block-container {{ padding-top: 3rem; max-width: 1500px; }}
+
+        h1, h2, h3, h4, h5, h6, p, label, .stMarkdown, .stText, .stCaption {{
+            color: var(--aso-text) !important;
+        }}
 
         .aso-banner {{
             background: var(--aso-bg-grad); color: var(--aso-text); border-radius: 22px;
