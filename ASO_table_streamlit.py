@@ -1031,17 +1031,17 @@ with info_tab:
                 f"""
                 SELECT
                     ae.ae_term AS "Adverse Effect",
-                    SUM({total_treated_expr})      AS "Total Treated",
-                    SUM({pts_obs_n_expr})          AS "AE Incidence",
-                    AVG({pts_pct_expr})            AS "AE Rate",
-                    SUM({pts_obs_sev_n_expr})      AS "Severe AE Incidence",
-                    AVG({pts_obs_sev_pct_expr})    AS "Severe AE Rate"
+                    {total_treated_expr}           AS "Total Treated",
+                    {pts_obs_n_expr}               AS "AE Incidence",
+                    {pts_pct_expr}                 AS "AE Rate",
+                    {pts_obs_sev_n_expr}           AS "Severe AE Incidence",
+                    {pts_obs_sev_pct_expr}         AS "Severe AE Rate"
                 FROM {AE_TABLE} ae
-                WHERE ae.treatment_id IN (
+                WHERE (ae.treatment_id COLLATE NOCASE IN (
                     SELECT treatment_id FROM treatments
                     WHERE TRIM(LOWER("generic_name")) = TRIM(LOWER(:n))
-                )
-                GROUP BY 1
+                ))
+                OR (TRIM(ae.treatment_id) COLLATE NOCASE = TRIM(:n) COLLATE NOCASE)
                 ORDER BY 3 DESC;
                 """
             )
@@ -1062,10 +1062,11 @@ with info_tab:
                 f"""
                 SELECT ae_group AS "Adverse Effect Group", COUNT(*) AS rows
                 FROM {AE_TABLE}
-                WHERE treatment_id IN (
+                WHERE (treatment_id COLLATE NOCASE IN (
                     SELECT treatment_id FROM treatments
                     WHERE TRIM(LOWER("generic_name")) = TRIM(LOWER(:n))
-                )
+                ))
+                OR (TRIM(treatment_id) COLLATE NOCASE = TRIM(:n) COLLATE NOCASE)
                 GROUP BY 1
                 ORDER BY 2 DESC;
                 """
