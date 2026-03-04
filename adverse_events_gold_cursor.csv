@@ -1,0 +1,1735 @@
+treatment_id,ae_term,ae_group,treated,observed,percent,observed_severe,percent_severe
+AZD8701,Anemia,Hematologic,63,35,55.5556,8,12.6984
+AZD8701,Anorexia,General,63,10,15.873,0,0.0
+AZD8701,Constipation,Gastrointestinal,63,13,20.6349,0,0.0
+AZD8701,Dehydration,Other,63,5,7.9365,0,0.0
+AZD8701,Diarrhoea,Gastrointestinal,63,20,31.746,0,0.0
+AZD8701,Dizziness,Neurologic,63,5,7.9365,0,0.0
+AZD8701,Fatigue,General,63,36,57.1429,0,0.0
+AZD8701,Fever,General,63,18,28.5714,0,0.0
+AZD8701,GI symptoms,Gastrointestinal,63,11,17.4603,0,0.0
+AZD8701,Headache,Neurologic,63,11,17.4603,0,0.0
+AZD8701,Hyperbilirubinemia,Gastrointestinal,63,3,4.7619,1,1.5873
+AZD8701,Hypokalemia,Metabolic,63,2,3.1746,0,0.0
+AZD8701,Lower Respiratory Tract Infection or symptoms,Respiratory,63,16,25.3968,1,1.5873
+AZD8701,Lymphopenia,Hematologic,63,2,3.1746,0,0.0
+AZD8701,Musculoskeletal disorser,Musculoskeletal,63,9,14.2857,0,0.0
+AZD8701,Nausea And Vomiting,Gastrointestinal,63,25,39.6825,0,0.0
+AZD8701,Pain,General,63,6,9.5238,0,0.0
+AZD8701,Pleural Effusion,Respiratory,63,2,3.1746,0,0.0
+AZD8701,Pulmonary Embolism,Cardiovascular,63,3,4.7619,3,4.7619
+AZD8701,Rash,Mucocutaneous,63,14,22.2222,0,0.0
+AZD8701,Renal Injury,Renal,63,13,20.6349,0,0.0
+AZD8701,Thrombocytopenia,Hematologic,63,4,6.3492,0,0.0
+AZD8701,Transaminase Increase,Gastrointestinal,63,33,52.381,10,15.873
+AZD8701,Upper Respiratory Tract Infection or symptoms,Respiratory,63,13,20.6349,0,0.0
+AZD8701,Urinary Tract Infection,Genitourinary,63,3,4.7619,1,1.5873
+aeg35156,Acidosis,Metabolic,188,1,0.5319,1,0.5319
+aeg35156,Anaphylaxis,Inflammatory,188,1,0.5319,1,0.5319
+aeg35156,Anemia,Hematologic,188,3,1.5957,0,0.0
+aeg35156,Arrhythmias,Cardiovascular,188,1,0.5319,0,0.0
+aeg35156,Ascites,General,188,2,1.0638,0,0.0
+aeg35156,Constipation,Gastrointestinal,188,1,0.5319,0,0.0
+aeg35156,Diarrhoea,Gastrointestinal,188,20,10.6383,0,0.0
+aeg35156,Fatigue,General,188,17,9.0426,0,0.0
+aeg35156,Fever,General,188,22,11.7021,0,0.0
+aeg35156,GI Bleeding,Gastrointestinal,188,1,0.5319,0,0.0
+aeg35156,GI Obstruction,Gastrointestinal,188,1,0.5319,0,0.0
+aeg35156,GI symptoms,Gastrointestinal,188,15,7.9787,0,0.0
+aeg35156,Headache,Neurologic,188,7,3.7234,0,0.0
+aeg35156,Hyperbilirubinemia,Gastrointestinal,188,5,2.6596,0,0.0
+aeg35156,Hyperglycemia,Metabolic,188,7,3.7234,2,1.0638
+aeg35156,Hypertension,Cardiovascular,188,1,0.5319,1,0.5319
+aeg35156,Hypophosphatemia,Metabolic,188,6,3.1915,6,3.1915
+aeg35156,Hypotension,Cardiovascular,188,20,10.6383,1,0.5319
+aeg35156,Leukopenia,Hematologic,188,13,6.9149,0,0.0
+aeg35156,Lower Respiratory Tract Infection or symptoms,Respiratory,188,4,2.1277,2,1.0638
+aeg35156,Lymphopenia,Hematologic,188,4,2.1277,0,0.0
+aeg35156,Mortality,Mortality,188,5,2.6596,5,2.6596
+aeg35156,Nausea And Vomiting,Gastrointestinal,188,28,14.8936,0,0.0
+aeg35156,Neuropathy,Neurologic,188,4,2.1277,2,1.0638
+aeg35156,Neutropenia,Hematologic,188,7,3.7234,6,3.1915
+aeg35156,Palmar-plantar erythrodysesthesia syndrom,Mucocutaneous,188,8,4.2553,0,0.0
+aeg35156,Pancreatitis,Gastrointestinal,188,1,0.5319,1,0.5319
+aeg35156,Petechiae,Hematologic,188,6,3.1915,0,0.0
+aeg35156,Pulmonary Embolism,Cardiovascular,188,1,0.5319,1,0.5319
+aeg35156,Rash,Mucocutaneous,188,9,4.7872,0,0.0
+aeg35156,Tachycardia,Cardiovascular,188,6,3.1915,0,0.0
+aeg35156,Thrombocytopenia,Hematologic,188,20,10.6383,0,0.0
+aeg35156,Transaminase Increase,Gastrointestinal,188,23,12.234,3,1.5957
+afinersen,No AE,No AE,1,0,0.0,0,0.0
+aganirsen,Conjectival hyperemia,Ocular,178,1,0.5618,0,0.0
+aganirsen,Eye Pruritus,Ocular,178,6,3.3708,0,0.0
+aganirsen,Flu-like,General,178,1,0.5618,0,0.0
+aganirsen,Headache,Neurologic,178,1,0.5618,0,0.0
+aganirsen,Hordeolum,Ocular,178,2,1.1236,0,0.0
+aganirsen,Increased Intraocular Pressure,Ocular,178,2,1.1236,0,0.0
+aganirsen,Keratitis,Ocular,178,2,1.1236,0,0.0
+aganirsen,Musculoskeletal disorser,Musculoskeletal,178,1,0.5618,0,0.0
+aganirsen,corneal degeneration,Ocular,178,1,0.5618,1,0.5618
+alg-020572,Drug-Induced Liver Injury,Cardiovascular,32,2,6.25,2,6.25
+alg-020572,Nausea And Vomiting,Gastrointestinal,32,0,0.0,0,0.0
+alg-020572,Transaminase Increase,Gastrointestinal,32,6,18.75,0,0.0
+alicaforsen-isis-2302,Angioedema,Inflammatory,982,1,0.1018,1,0.1018
+alicaforsen-isis-2302,C3/4 Increased,Inflammatory,982,0,0.0,0,0.0
+alicaforsen-isis-2302,Chills,General,982,76,7.7393,0,0.0
+alicaforsen-isis-2302,Coagulation abnormalities,Musculoskeletal,982,0,0.0,0,0.0
+alicaforsen-isis-2302,Dizziness,Neurologic,982,20,2.0367,0,0.0
+alicaforsen-isis-2302,Dyspepsia,Gastrointestinal,982,2,0.2037,0,0.0
+alicaforsen-isis-2302,Fatigue,General,982,120,12.22,0,0.0
+alicaforsen-isis-2302,Fever,General,982,125,12.7291,0,0.0
+alicaforsen-isis-2302,Flu-like,General,982,4,0.4073,0,0.0
+alicaforsen-isis-2302,GI symptoms,Gastrointestinal,982,56,5.7026,0,0.0
+alicaforsen-isis-2302,Headache,Neurologic,982,108,10.998,0,0.0
+alicaforsen-isis-2302,Injection site reaction,Procedure related,982,17,1.7312,0,0.0
+alicaforsen-isis-2302,Lymphoma,Other,982,1,0.1018,1,0.1018
+alicaforsen-isis-2302,Nausea And Vomiting,Gastrointestinal,982,77,7.8411,1,0.1018
+alicaforsen-isis-2302,Pain,General,982,4,0.4073,0,0.0
+alicaforsen-isis-2302,Pre Existing Condition Exacerbation,Other,982,15,1.5275,15,1.5275
+alicaforsen-isis-2302,Rash,Mucocutaneous,982,33,3.3605,0,0.0
+alicaforsen-isis-2302,Thrombocytopenia,Hematologic,982,3,0.3055,0,0.0
+alicaforsen-isis-2302,Upper Respiratory Tract Infection or symptoms,Respiratory,982,2,0.2037,0,0.0
+apatorsen-ogx-427,Alopecia,Mucocutaneous,500,27,5.4,0,0.0
+apatorsen-ogx-427,Anaphylaxis,Inflammatory,500,5,1.0,5,1.0
+apatorsen-ogx-427,Anemia,Hematologic,500,355,71.0,66,13.2
+apatorsen-ogx-427,Angina Pectoris,Cardiovascular,500,5,1.0,0,0.0
+apatorsen-ogx-427,Anorexia,General,500,132,26.4,0,0.0
+apatorsen-ogx-427,Arrhythmias,Cardiovascular,500,1,0.2,1,0.2
+apatorsen-ogx-427,Cerebral hemorrhage,Neurologic,500,2,0.4,2,0.4
+apatorsen-ogx-427,Chills,General,500,22,4.4,0,0.0
+apatorsen-ogx-427,Chronic Inflammatory Demyelinating Polyradiculoneuropathy,Neurologic,500,1,0.2,1,0.2
+apatorsen-ogx-427,Coagulation abnormalities,Hematologic,500,2,0.4,0,0.0
+apatorsen-ogx-427,Constipation,Gastrointestinal,500,131,26.2,0,0.0
+apatorsen-ogx-427,Deep Vein Thrombosis,Cardiovascular,500,3,0.6,0,0.0
+apatorsen-ogx-427,Dehydration,Other,500,5,1.0,0,0.0
+apatorsen-ogx-427,Diarrhoea,Gastrointestinal,500,186,37.2,0,0.0
+apatorsen-ogx-427,Dizziness,Neurologic,500,14,2.8,0,0.0
+apatorsen-ogx-427,Dry Mouth,Mucocutaneous,500,1,0.2,0,0.0
+apatorsen-ogx-427,Edema,General,500,71,14.2,0,0.0
+apatorsen-ogx-427,Fall,Neurologic,500,5,1.0,0,0.0
+apatorsen-ogx-427,Fatigue,General,500,199,39.8,0,0.0
+apatorsen-ogx-427,Fever,General,500,118,23.6,0,0.0
+apatorsen-ogx-427,Flu-like,General,500,3,0.6,0,0.0
+apatorsen-ogx-427,GI symptoms,Gastrointestinal,500,29,5.8,0,0.0
+apatorsen-ogx-427,Gastroesophageal Reflux Disease,Gastrointestinal,500,1,0.2,0,0.0
+apatorsen-ogx-427,Glomerulonephritis,Renal,500,1,0.2,1,0.2
+apatorsen-ogx-427,Headache,Neurologic,500,20,4.0,0,0.0
+apatorsen-ogx-427,Hematuria,Genitourinary,500,45,9.0,4,0.8
+apatorsen-ogx-427,Hemolytic Uremic Syndrome,Hematologic,500,1,0.2,1,0.2
+apatorsen-ogx-427,Hyperbilirubinemia,Gastrointestinal,500,18,3.6,3,0.6
+apatorsen-ogx-427,Hypercalcemia,Metabolic,500,35,7.0,0,0.0
+apatorsen-ogx-427,Hyperglycemia,Metabolic,500,24,4.8,5,1.0
+apatorsen-ogx-427,Hyperhidrosis,General,500,3,0.6,0,0.0
+apatorsen-ogx-427,Hyperkalemia,Metabolic,500,3,0.6,0,0.0
+apatorsen-ogx-427,Hypermagnesemia,Metabolic,500,13,2.6,0,0.0
+apatorsen-ogx-427,Hypernatremia,Metabolic,500,3,0.6,0,0.0
+apatorsen-ogx-427,Hypertension,Cardiovascular,500,66,13.2,0,0.0
+apatorsen-ogx-427,Hypoalbuminemia,Metabolic,500,80,16.0,4,0.8
+apatorsen-ogx-427,Hypoglycemia,Metabolic,500,5,1.0,0,0.0
+apatorsen-ogx-427,Hypokalemia,Metabolic,500,81,16.2,21,4.2
+apatorsen-ogx-427,Hypomagnesemia,Metabolic,500,77,15.4,4,0.8
+apatorsen-ogx-427,Hyponatremia,Metabolic,500,171,34.2,23,4.6
+apatorsen-ogx-427,Hypophosphatemia,Metabolic,500,8,1.6,8,1.6
+apatorsen-ogx-427,Hypoxia,Respiratory,500,1,0.2,1,0.2
+apatorsen-ogx-427,Inflammatory response,Inflammatory,500,6,1.2,6,1.2
+apatorsen-ogx-427,Injection site reaction,Procedure related,500,63,12.6,0,0.0
+apatorsen-ogx-427,Insomnia,General,500,5,1.0,0,0.0
+apatorsen-ogx-427,Leukopenia,Hematologic,500,5,1.0,0,0.0
+apatorsen-ogx-427,Lower Respiratory Tract Infection or symptoms,Respiratory,500,74,14.8,5,1.0
+apatorsen-ogx-427,Lymphopenia,Hematologic,500,151,30.2,44,8.8
+apatorsen-ogx-427,Mortality,Mortality,500,2,0.4,2,0.4
+apatorsen-ogx-427,Mucositis,Gastrointestinal,500,39,7.8,0,0.0
+apatorsen-ogx-427,Multi-organ failure,General,500,1,0.2,1,0.2
+apatorsen-ogx-427,Musculoskeletal disorser,Musculoskeletal,500,104,20.8,0,0.0
+apatorsen-ogx-427,Nausea And Vomiting,Gastrointestinal,500,234,46.8,0,0.0
+apatorsen-ogx-427,Neuropathy,Neurologic,500,58,11.6,0,0.0
+apatorsen-ogx-427,Neutropenia,Hematologic,500,237,47.4,102,20.4
+apatorsen-ogx-427,Neutropenic Fever,Hematologic,500,10,2.0,10,2.0
+apatorsen-ogx-427,Paresthesia,Neurologic,500,8,1.6,0,0.0
+apatorsen-ogx-427,Pneumonia,Respiratory,500,3,0.6,0,0.0
+apatorsen-ogx-427,Proteinuria,Renal,500,80,16.0,0,0.0
+apatorsen-ogx-427,Pulmonary Embolism,Cardiovascular,500,12,2.4,12,2.4
+apatorsen-ogx-427,Rash,Mucocutaneous,500,28,5.6,0,0.0
+apatorsen-ogx-427,Renal Injury,Renal,500,167,33.4,6,1.2
+apatorsen-ogx-427,Sepsis,Infection,500,14,2.8,14,2.8
+apatorsen-ogx-427,Stomatitis,Gastrointestinal,500,17,3.4,0,0.0
+apatorsen-ogx-427,Tachycardia,Cardiovascular,500,5,1.0,0,0.0
+apatorsen-ogx-427,Thrombocytopenia,Hematologic,500,237,47.4,59,11.8
+apatorsen-ogx-427,Thrombosis,Cardiovascular,500,14,2.8,0,0.0
+apatorsen-ogx-427,Transaminase Increase,Gastrointestinal,500,92,18.4,0,0.0
+apatorsen-ogx-427,Upper Respiratory Tract Infection or symptoms,Respiratory,500,24,4.8,0,0.0
+apatorsen-ogx-427,Ureteric obstruction,Genitourinary,500,1,0.2,1,0.2
+apatorsen-ogx-427,Urinary Tract Infection,Genitourinary,500,67,13.4,1,0.2
+apatorsen-ogx-427,Urosepsis,Genitourinary,500,3,0.6,0,0.0
+apatorsen-ogx-427,Vascular purpura,Inflammatory,500,1,0.2,1,0.2
+aprinocarsen,Alopecia,Mucocutaneous,596,0,0.0,0,0.0
+aprinocarsen,Anemia,Hematologic,596,115,19.2953,83,13.9262
+aprinocarsen,Angina Pectoris,Cardiovascular,596,5,0.8389,5,0.8389
+aprinocarsen,Anorexia,General,596,17,2.8523,11,1.8456
+aprinocarsen,C3/4 Increased,Inflammatory,596,3,0.5034,0,0.0
+aprinocarsen,Chills,General,596,11,1.8456,0,0.0
+aprinocarsen,Coagulation abnormalities,Hematologic,596,14,2.349,14,2.349
+aprinocarsen,Dehydration,Other,596,5,0.8389,5,0.8389
+aprinocarsen,Diarrhoea,Gastrointestinal,596,12,2.0134,0,0.0
+aprinocarsen,Endocarditis,Cardiovascular,596,1,0.1678,1,0.1678
+aprinocarsen,Epistaxis,Hematologic,596,25,4.1946,25,4.1946
+aprinocarsen,Fatigue,General,596,75,12.5839,5,0.8389
+aprinocarsen,Fever,General,596,32,5.3691,0,0.0
+aprinocarsen,GI Bleeding,Gastrointestinal,596,4,0.6711,4,0.6711
+aprinocarsen,GI symptoms,Gastrointestinal,596,4,0.6711,0,0.0
+aprinocarsen,Headache,Neurologic,596,14,2.349,0,0.0
+aprinocarsen,Hematuria,Genitourinary,596,1,0.1678,0,0.0
+aprinocarsen,Hemothorax,Respiratory,596,1,0.1678,1,0.1678
+aprinocarsen,Hyperbilirubinemia,Gastrointestinal,596,2,0.3356,0,0.0
+aprinocarsen,Hyperhidrosis,General,596,2,0.3356,0,0.0
+aprinocarsen,Hypertension,Cardiovascular,596,11,1.8456,11,1.8456
+aprinocarsen,Hypokalemia,Metabolic,596,15,2.5168,15,2.5168
+aprinocarsen,Hyponatremia,Metabolic,596,2,0.3356,2,0.3356
+aprinocarsen,Hypotension,Cardiovascular,596,0,0.0,0,0.0
+aprinocarsen,Injection site reaction,Procedure related,596,9,1.5101,1,0.1678
+aprinocarsen,Leukopenia,Hematologic,596,124,20.8054,117,19.6309
+aprinocarsen,Lower Respiratory Tract Infection or symptoms,Respiratory,596,7,1.1745,7,1.1745
+aprinocarsen,Lymphopenia,Hematologic,596,12,2.0134,12,2.0134
+aprinocarsen,Mortality,Mortality,596,3,0.5034,3,0.5034
+aprinocarsen,Mucositis,Gastrointestinal,596,1,0.1678,1,0.1678
+aprinocarsen,Musculoskeletal disorser,Musculoskeletal,596,17,2.8523,5,0.8389
+aprinocarsen,Nausea And Vomiting,Gastrointestinal,596,102,17.1141,0,0.0
+aprinocarsen,Neutropenia,Hematologic,596,40,6.7114,35,5.8725
+aprinocarsen,Neutropenic Fever,Hematologic,596,18,3.0201,18,3.0201
+aprinocarsen,Pain,General,596,9,1.5101,0,0.0
+aprinocarsen,Pancreatitis,Gastrointestinal,596,1,0.1678,1,0.1678
+aprinocarsen,Pleural Effusion,Respiratory,596,2,0.3356,2,0.3356
+aprinocarsen,Proteinuria,Renal,596,1,0.1678,0,0.0
+aprinocarsen,Pulmonary Embolism,Cardiovascular,596,2,0.3356,2,0.3356
+aprinocarsen,Rash,Mucocutaneous,596,6,1.0067,1,0.1678
+aprinocarsen,Renal Injury,Renal,596,4,0.6711,0,0.0
+aprinocarsen,Sepsis,Infection,596,1,0.1678,1,0.1678
+aprinocarsen,Thrombocytopenia,Hematologic,596,310,52.0134,265,44.4631
+aprinocarsen,Transaminase Increase,Gastrointestinal,596,17,2.8523,7,1.1745
+aprinocarsen,Urinary Tract Infection,Genitourinary,596,2,0.3356,2,0.3356
+atipeksen,No AE,No AE,1,0,0.0,0,0.0
+atl1103-atesidorsen,Carpal tunnel syndrome,Musculoskeletal,26,4,15.3846,0,0.0
+atl1103-atesidorsen,Cholecystitis,Gastrointestinal,26,1,3.8462,1,3.8462
+atl1103-atesidorsen,Diarrhoea,Gastrointestinal,26,4,15.3846,0,0.0
+atl1103-atesidorsen,Dizziness,Neurologic,26,3,11.5385,0,0.0
+atl1103-atesidorsen,Fatigue,General,26,4,15.3846,0,0.0
+atl1103-atesidorsen,GI symptoms,Gastrointestinal,26,4,15.3846,0,0.0
+atl1103-atesidorsen,Headache,Neurologic,26,8,30.7692,0,0.0
+atl1103-atesidorsen,Hematuria,Genitourinary,26,4,15.3846,0,0.0
+atl1103-atesidorsen,Hyperhidrosis,General,26,3,11.5385,0,0.0
+atl1103-atesidorsen,Injection site reaction,Procedure related,26,22,84.6154,0,0.0
+atl1103-atesidorsen,Lipohypertrophy,General,26,4,15.3846,0,0.0
+atl1103-atesidorsen,Rash,Mucocutaneous,26,3,11.5385,0,0.0
+atl1103-atesidorsen,Thrombocytopenia,Hematologic,26,1,3.8462,0,0.0
+atl1103-atesidorsen,Tracheitis,Respiratory,26,4,15.3846,0,0.0
+atl1103-atesidorsen,Transaminase Increase,Gastrointestinal,26,2,7.6923,0,0.0
+atl1103-atesidorsen,Upper Respiratory Tract Infection or symptoms,Respiratory,26,4,15.3846,0,0.0
+atl1103-atesidorsen,Urinary Tract Infection,Genitourinary,26,4,15.3846,0,0.0
+avi-7288,Dizziness,Neurologic,40,0,0.0,0,0.0
+avi-7288,Dysgeusia,Other,40,0,0.0,0,0.0
+avi-7288,Edema,General,40,0,0.0,0,0.0
+avi-7288,Fatigue,General,40,0,0.0,0,0.0
+avi-7288,Headache,Neurologic,40,11,27.5,0,0.0
+avi-7288,Injection site reaction,Procedure related,40,0,0.0,0,0.0
+avi-7288,Nausea And Vomiting,Gastrointestinal,40,0,0.0,0,0.0
+avi-7288,Rash,Mucocutaneous,40,0,0.0,0,0.0
+avicursen-atl-1102-isis107248,Fever,General,86,19,22.093,0,0.0
+avicursen-atl-1102-isis107248,GI symptoms,Gastrointestinal,86,19,22.093,0,0.0
+avicursen-atl-1102-isis107248,Headache,Neurologic,86,19,22.093,0,0.0
+avicursen-atl-1102-isis107248,Injection site reaction,Procedure related,86,54,62.7907,0,0.0
+avicursen-atl-1102-isis107248,Lower Respiratory Tract Infection or symptoms,Respiratory,86,19,22.093,0,0.0
+avicursen-atl-1102-isis107248,Nausea And Vomiting,Gastrointestinal,86,19,22.093,0,0.0
+avicursen-atl-1102-isis107248,Pre Existing Condition Exacerbation,Other,86,14,16.2791,14,16.2791
+avicursen-atl-1102-isis107248,Thrombocytopenia,Hematologic,86,19,22.093,0,0.0
+avicursen-atl-1102-isis107248,Transaminase Increase,Gastrointestinal,86,16,18.6047,0,0.0
+avicursen-atl-1102-isis107248,Upper Respiratory Tract Infection or symptoms,Respiratory,86,19,22.093,0,0.0
+azd8233-ion449,Transaminase Increase,Gastrointestinal,530,0,0.0,0,0.0
+baliforsen-isis-598769,Appendicitis,Gastrointestinal,48,1,2.0833,1,2.0833
+baliforsen-isis-598769,Fall,Neurologic,48,6,12.5,0,0.0
+baliforsen-isis-598769,Headache,Neurologic,48,12,25.0,0,0.0
+baliforsen-isis-598769,Ileus,Gastrointestinal,48,1,2.0833,1,2.0833
+baliforsen-isis-598769,Injection site reaction,Procedure related,48,8,16.6667,0,0.0
+baliforsen-isis-598769,Lower Respiratory Tract Infection or symptoms,Respiratory,48,1,2.0833,1,2.0833
+baliforsen-isis-598769,Musculoskeletal disorser,Musculoskeletal,48,6,12.5,0,0.0
+baliforsen-isis-598769,Nausea And Vomiting,Gastrointestinal,48,5,10.4167,0,0.0
+baliforsen-isis-598769,Thrombocytopenia,Hematologic,48,1,2.0833,1,2.0833
+baliforsen-isis-598769,Upper Respiratory Tract Infection or symptoms,Respiratory,48,5,10.4167,0,0.0
+bepirovirsen,Anemia,Hematologic,516,5,0.969,0,0.0
+bepirovirsen,Angina Pectoris,Cardiovascular,516,3,0.5814,0,0.0
+bepirovirsen,Atrial fibrilation/flutter,Cardiovascular,516,1,0.1938,0,0.0
+bepirovirsen,C3/4 decreased,Inflammatory,516,292,56.5891,292,56.5891
+bepirovirsen,CPK increase,Metabolic,516,178,34.4961,0,0.0
+bepirovirsen,CRP increase,Inflammatory,516,15,2.907,0,0.0
+bepirovirsen,Fatigue,General,516,2,0.3876,0,0.0
+bepirovirsen,Fever,General,516,49,9.4961,0,0.0
+bepirovirsen,GI symptoms,Gastrointestinal,516,10,1.938,0,0.0
+bepirovirsen,Headache,Neurologic,516,73,14.1473,0,0.0
+bepirovirsen,Injection site reaction,Procedure related,516,256,49.6124,0,0.0
+bepirovirsen,Musculoskeletal disorser,Musculoskeletal,516,73,14.1473,0,0.0
+bepirovirsen,Nausea And Vomiting,Gastrointestinal,516,0,0.0,0,0.0
+bepirovirsen,Oral herpes,Mucocutaneous,516,1,0.1938,0,0.0
+bepirovirsen,Rash,Mucocutaneous,516,5,0.969,0,0.0
+bepirovirsen,Renal Injury,Renal,516,59,11.4341,0,0.0
+bepirovirsen,Thrombocytopenia,Hematologic,516,137,26.5504,0,0.0
+bepirovirsen,Transaminase Increase,Gastrointestinal,516,96,18.6047,96,18.6047
+bepirovirsen,Upper Respiratory Tract Infection or symptoms,Respiratory,516,7,1.3566,0,0.0
+biib080-maptrx-isis-814907-diranersen,CSF Pleocytosis,Neurologic,46,1,2.1739,1,2.1739
+biib080-maptrx-isis-814907-diranersen,Delirium,Psychiatric,46,1,2.1739,1,2.1739
+biib080-maptrx-isis-814907-diranersen,Diarrhoea,Gastrointestinal,46,3,6.5217,0,0.0
+biib080-maptrx-isis-814907-diranersen,Dizziness,Neurologic,46,4,8.6957,0,0.0
+biib080-maptrx-isis-814907-diranersen,Fatigue,General,46,4,8.6957,0,0.0
+biib080-maptrx-isis-814907-diranersen,Injection site reaction,Procedure related,46,6,13.0435,0,0.0
+biib080-maptrx-isis-814907-diranersen,Musculoskeletal disorser,Musculoskeletal,46,4,8.6957,0,0.0
+biib080-maptrx-isis-814907-diranersen,Nausea And Vomiting,Gastrointestinal,46,6,13.0435,0,0.0
+biib080-maptrx-isis-814907-diranersen,Neurologic disorder,Neurologic,46,1,2.1739,0,0.0
+biib080-maptrx-isis-814907-diranersen,Post Lumbar Puncture Syndrome,Procedure related,46,17,36.9565,0,0.0
+biib132,Fall,Neurologic,8,4,50.0,0,0.0
+biib132,Headache,Neurologic,8,4,50.0,0,0.0
+biib132,Muscular Weakness,Musculoskeletal,8,8,100.0,0,0.0
+casimersen-amondys45,Adrenocortical Insufficiency,Metabolic,858,1,0.1166,1,0.1166
+casimersen-amondys45,Agitation,Psychiatric,858,2,0.2331,0,0.0
+casimersen-amondys45,Anaphylaxis,Inflammatory,858,1,0.1166,1,0.1166
+casimersen-amondys45,Anemia,Hematologic,858,2,0.2331,0,0.0
+casimersen-amondys45,Angina Pectoris,Cardiovascular,858,4,0.4662,0,0.0
+casimersen-amondys45,Anorexia,General,858,10,1.1655,0,0.0
+casimersen-amondys45,Aphasia,Neurologic,858,1,0.1166,1,0.1166
+casimersen-amondys45,Bronchospasm,Respiratory,858,1,0.1166,1,0.1166
+casimersen-amondys45,CPK increase,Metabolic,858,1,0.1166,1,0.1166
+casimersen-amondys45,Cardiac Arrest,Cardiovascular,858,2,0.2331,2,0.2331
+casimersen-amondys45,Cardiomyopathy,Cardiovascular,858,2,0.2331,2,0.2331
+casimersen-amondys45,Cellulitis,Infection,858,1,0.1166,0,0.0
+casimersen-amondys45,Cholecystitis,Gastrointestinal,858,1,0.1166,0,0.0
+casimersen-amondys45,Diarrhoea,Gastrointestinal,858,6,0.6993,0,0.0
+casimersen-amondys45,Dizziness,Neurologic,858,13,1.5152,0,0.0
+casimersen-amondys45,Ear Infection,Infection,858,4,0.4662,0,0.0
+casimersen-amondys45,Edema,General,858,10,1.1655,0,0.0
+casimersen-amondys45,Fall,Neurologic,858,13,1.5152,13,1.5152
+casimersen-amondys45,Fatigue,General,858,47,5.4779,0,0.0
+casimersen-amondys45,Fever,General,858,73,8.5082,0,0.0
+casimersen-amondys45,Fracture,Musculoskeletal,858,3,0.3497,3,0.3497
+casimersen-amondys45,GI Bleeding,Gastrointestinal,858,1,0.1166,0,0.0
+casimersen-amondys45,GI symptoms,Gastrointestinal,858,18,2.0979,0,0.0
+casimersen-amondys45,Gait Disturbance,Neurologic,858,1,0.1166,0,0.0
+casimersen-amondys45,Gastroesophageal Reflux Disease,Gastrointestinal,858,3,0.3497,0,0.0
+casimersen-amondys45,Haematemesis,Gastrointestinal,858,1,0.1166,0,0.0
+casimersen-amondys45,Headache,Neurologic,858,16,1.8648,0,0.0
+casimersen-amondys45,Heart Failure,Cardiovascular,858,3,0.3497,3,0.3497
+casimersen-amondys45,Hematuria,Genitourinary,858,5,0.5828,0,0.0
+casimersen-amondys45,Hyperkalemia,Metabolic,858,3,0.3497,0,0.0
+casimersen-amondys45,Hypotension,Cardiovascular,858,20,2.331,5,0.5828
+casimersen-amondys45,Infection,Infection,858,70,8.1585,0,0.0
+casimersen-amondys45,Injection site reaction,Procedure related,858,166,19.3473,0,0.0
+casimersen-amondys45,Insomnia,General,858,5,0.5828,0,0.0
+casimersen-amondys45,Leukocytosis,Hematologic,858,1,0.1166,0,0.0
+casimersen-amondys45,Lower Respiratory Tract Infection or symptoms,Respiratory,858,12,1.3986,12,1.3986
+casimersen-amondys45,Mortality,Mortality,858,3,0.3497,3,0.3497
+casimersen-amondys45,Mucositis,Gastrointestinal,858,1,0.1166,0,0.0
+casimersen-amondys45,Musculoskeletal disorser,Musculoskeletal,858,19,2.2145,0,0.0
+casimersen-amondys45,Nausea And Vomiting,Gastrointestinal,858,4,0.4662,0,0.0
+casimersen-amondys45,Nephrolithiasis,Genitourinary,858,5,0.5828,0,0.0
+casimersen-amondys45,Neurologic disorder,Neurologic,858,1,0.1166,0,0.0
+casimersen-amondys45,Pneumothorax,Respiratory,858,2,0.2331,2,0.2331
+casimersen-amondys45,Proteinuria,Renal,858,7,0.8159,0,0.0
+casimersen-amondys45,Psychiatric disorder,Psychiatric,858,1,0.1166,1,0.1166
+casimersen-amondys45,Rash,Mucocutaneous,858,19,2.2145,0,0.0
+casimersen-amondys45,Renal Injury,Renal,858,8,0.9324,8,0.9324
+casimersen-amondys45,Respiratory Failure,Respiratory,858,8,0.9324,8,0.9324
+casimersen-amondys45,Seizure,Neurologic,858,3,0.3497,3,0.3497
+casimersen-amondys45,Sepsis,Infection,858,9,1.049,9,1.049
+casimersen-amondys45,Staphylococcal/Streptococcal Infection,Infection,858,1,0.1166,0,0.0
+casimersen-amondys45,Syncope,Neurologic,858,1,0.1166,0,0.0
+casimersen-amondys45,Tachycardia,Cardiovascular,858,12,1.3986,0,0.0
+casimersen-amondys45,Transaminase Increase,Gastrointestinal,858,4,0.4662,0,0.0
+casimersen-amondys45,Upper Respiratory Tract Infection or symptoms,Respiratory,858,99,11.5385,0,0.0
+casimersen-amondys45,Urinary Retention,Genitourinary,858,1,0.1166,0,0.0
+casimersen-amondys45,myocarditis,Inflammatory,858,2,0.2331,2,0.2331
+cdr132l,Diarrhoea,Gastrointestinal,28,22,78.5714,0,0.0
+cdr132l,Dizziness,Neurologic,28,22,78.5714,0,0.0
+ct102,Anaphylaxis,Inflammatory,17,1,5.8824,0,0.0
+ct102,Arrhythmias,Cardiovascular,17,2,11.7647,0,0.0
+ct102,Constipation,Gastrointestinal,17,2,11.7647,0,0.0
+ct102,Dizziness,Neurologic,17,1,5.8824,0,0.0
+ct102,Fever,General,17,7,41.1765,0,0.0
+ct102,GI symptoms,Gastrointestinal,17,4,23.5294,0,0.0
+ct102,Headache,Neurologic,17,1,5.8824,0,0.0
+ct102,Hypertension,Cardiovascular,17,3,17.6471,0,0.0
+ct102,Hypotension,Cardiovascular,17,1,5.8824,0,0.0
+ct102,Insomnia,General,17,2,11.7647,0,0.0
+ct102,Musculoskeletal disorser,Musculoskeletal,17,2,11.7647,0,0.0
+ct102,Nausea And Vomiting,Gastrointestinal,17,2,11.7647,0,0.0
+ct102,Upper Respiratory Tract Infection or symptoms,Respiratory,17,2,11.7647,0,0.0
+ct102,flatulence,Gastrointestinal,17,3,17.6471,0,0.0
+custirsen-ogx-011,Abdominal Abscess,Gastrointestinal,1092,3,0.2747,1,0.0916
+custirsen-ogx-011,Abnormal vision,Ocular,1092,9,0.8242,0,0.0
+custirsen-ogx-011,Acidosis,Metabolic,1092,3,0.2747,1,0.0916
+custirsen-ogx-011,Alopecia,Mucocutaneous,1092,226,20.696,0,0.0
+custirsen-ogx-011,Anaphylaxis,Inflammatory,1092,7,0.641,1,0.0916
+custirsen-ogx-011,Anemia,Hematologic,1092,422,38.6447,36,3.2967
+custirsen-ogx-011,Angina Pectoris,Cardiovascular,1092,15,1.3736,0,0.0
+custirsen-ogx-011,Anorexia,General,1092,327,29.9451,0,0.0
+custirsen-ogx-011,Anxiety,Psychiatric,1092,32,2.9304,0,0.0
+custirsen-ogx-011,Aphonia,Neurologic,1092,2,0.1832,0,0.0
+custirsen-ogx-011,Arrhythmias,Cardiovascular,1092,2,0.1832,0,0.0
+custirsen-ogx-011,Ataxia,Neurologic,1092,2,0.1832,2,0.1832
+custirsen-ogx-011,Atrial fibrilation/flutter,Cardiovascular,1092,32,2.9304,1,0.0916
+custirsen-ogx-011,Back Pain,Musculoskeletal,1092,60,5.4945,0,0.0
+custirsen-ogx-011,Bladder cancer,Other,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,Blister,Mucocutaneous,1092,3,0.2747,0,0.0
+custirsen-ogx-011,Bradycardia,Cardiovascular,1092,3,0.2747,0,0.0
+custirsen-ogx-011,Bruise,Other,1092,1,0.0916,0,0.0
+custirsen-ogx-011,CRP increase,Inflammatory,1092,2,0.1832,0,0.0
+custirsen-ogx-011,Capillary Leak syndrome,General,1092,2,0.1832,0,0.0
+custirsen-ogx-011,Cardiac Arrest,Cardiovascular,1092,2,0.1832,2,0.1832
+custirsen-ogx-011,Cataract,Ocular,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Catheter Thrombosis,Procedure related,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Cauda Equina syndrome,Neurologic,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Cellulitis,Infection,1092,7,0.641,0,0.0
+custirsen-ogx-011,Cerebrovascular Accident,Neurologic,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,Chills,General,1092,137,12.5458,0,0.0
+custirsen-ogx-011,Cholecystitis,Gastrointestinal,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Clostridium Difficile Colitis,Gastrointestinal,1092,2,0.1832,2,0.1832
+custirsen-ogx-011,Coagulation abnormalities,Hematologic,1092,22,2.0147,0,0.0
+custirsen-ogx-011,Colon Cancer,Other,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,Confusion,Neurologic,1092,19,1.7399,0,0.0
+custirsen-ogx-011,Constipation,Gastrointestinal,1092,91,8.3333,0,0.0
+custirsen-ogx-011,Coronary Artery Disease,Cardiovascular,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,Cytopenia,Hematologic,1092,3,0.2747,3,0.2747
+custirsen-ogx-011,Deep Vein Thrombosis,Cardiovascular,1092,6,0.5495,1,0.0916
+custirsen-ogx-011,Dehydration,Other,1092,77,7.0513,3,0.2747
+custirsen-ogx-011,Depression,Psychiatric,1092,34,3.1136,0,0.0
+custirsen-ogx-011,Device occlusion,Procedure related,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Diabetes mellitus,Metabolic,1092,38,3.4799,0,0.0
+custirsen-ogx-011,Diarrhoea,Gastrointestinal,1092,469,42.9487,3,0.2747
+custirsen-ogx-011,Disseminated Intravascular Coagulation,General,1092,3,0.2747,3,0.2747
+custirsen-ogx-011,Dizziness,Neurologic,1092,132,12.0879,0,0.0
+custirsen-ogx-011,Dysgeusia,Other,1092,210,19.2308,0,0.0
+custirsen-ogx-011,Dysphagia,Neurologic,1092,6,0.5495,0,0.0
+custirsen-ogx-011,Edema,General,1092,192,17.5824,1,0.0916
+custirsen-ogx-011,Embolism,Cardiovascular,1092,2,0.1832,2,0.1832
+custirsen-ogx-011,Encephalopathy,Neurologic,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,Endocarditis,Cardiovascular,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Enterocolitis,Gastrointestinal,1092,2,0.1832,0,0.0
+custirsen-ogx-011,Epiduritis,Neurologic,1092,4,0.3663,0,0.0
+custirsen-ogx-011,Epistaxis,Hematologic,1092,51,4.6703,0,0.0
+custirsen-ogx-011,Exophthalmos,Ocular,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Fall,Neurologic,1092,28,2.5641,0,0.0
+custirsen-ogx-011,Fat Embolism,Cardiovascular,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,Fatigue,General,1092,510,46.7033,1,0.0916
+custirsen-ogx-011,Fever,General,1092,337,30.8608,0,0.0
+custirsen-ogx-011,Flu-like,General,1092,59,5.4029,0,0.0
+custirsen-ogx-011,Folliculitis,Mucocutaneous,1092,3,0.2747,0,0.0
+custirsen-ogx-011,Fracture,Musculoskeletal,1092,13,1.1905,2,0.1832
+custirsen-ogx-011,GI Bleeding,Gastrointestinal,1092,24,2.1978,4,0.3663
+custirsen-ogx-011,GI Obstruction,Gastrointestinal,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,GI candidiasis,Gastrointestinal,1092,22,2.0147,0,0.0
+custirsen-ogx-011,GI symptoms,Gastrointestinal,1092,210,19.2308,0,0.0
+custirsen-ogx-011,Gastroenteritis,Gastrointestinal,1092,4,0.3663,0,0.0
+custirsen-ogx-011,Gastroesophageal Reflux Disease,Gastrointestinal,1092,2,0.1832,0,0.0
+custirsen-ogx-011,General physical health deterioration,Other,1092,14,1.2821,2,0.1832
+custirsen-ogx-011,Genitourinary symptoms,Genitourinary,1092,5,0.4579,0,0.0
+custirsen-ogx-011,Glomerulonephritis,Renal,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Headache,Neurologic,1092,105,9.6154,0,0.0
+custirsen-ogx-011,Heart Failure,Cardiovascular,1092,5,0.4579,5,0.4579
+custirsen-ogx-011,Hematuria,Genitourinary,1092,100,9.1575,1,0.0916
+custirsen-ogx-011,Hemorrhagic Shock,Hematologic,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,Hepatic Failure,Gastrointestinal,1092,3,0.2747,3,0.2747
+custirsen-ogx-011,Herpes Zoster,Infection,1092,5,0.4579,0,0.0
+custirsen-ogx-011,Hydrocephalous,Neurologic,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,Hydronephrosis,Genitourinary,1092,6,0.5495,0,0.0
+custirsen-ogx-011,Hyperbilirubinemia,Gastrointestinal,1092,2,0.1832,0,0.0
+custirsen-ogx-011,Hypercalcemia,Metabolic,1092,4,0.3663,0,0.0
+custirsen-ogx-011,Hyperglycemia,Metabolic,1092,12,1.0989,2,0.1832
+custirsen-ogx-011,Hyperhidrosis,General,1092,29,2.6557,0,0.0
+custirsen-ogx-011,Hyperkalemia,Metabolic,1092,16,1.4652,0,0.0
+custirsen-ogx-011,Hypertension,Cardiovascular,1092,51,4.6703,0,0.0
+custirsen-ogx-011,Hyperthyroidism,Metabolic,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Hyperuricemia,Metabolic,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,Hypoalbuminemia,Metabolic,1092,15,1.3736,0,0.0
+custirsen-ogx-011,Hypocalcemia,Metabolic,1092,47,4.304,4,0.3663
+custirsen-ogx-011,Hypoglycemia,Metabolic,1092,6,0.5495,1,0.0916
+custirsen-ogx-011,Hypokalemia,Metabolic,1092,78,7.1429,11,1.0073
+custirsen-ogx-011,Hyponatremia,Metabolic,1092,46,4.2125,27,2.4725
+custirsen-ogx-011,Hypophosphatemia,Metabolic,1092,33,3.022,5,0.4579
+custirsen-ogx-011,Hypotension,Cardiovascular,1092,90,8.2418,3,0.2747
+custirsen-ogx-011,Hypovolaemic Shock,General,1092,2,0.1832,2,0.1832
+custirsen-ogx-011,Hypovolemia,General,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Hypoxia,Respiratory,1092,8,0.7326,4,0.3663
+custirsen-ogx-011,Hypoxic encephalopathy,Neurologic,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Ileus,Gastrointestinal,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Infection,Infection,1092,2,0.1832,0,0.0
+custirsen-ogx-011,Inflammatory response,Inflammatory,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,Infusion Reaction,Procedure related,1092,11,1.0073,1,0.0916
+custirsen-ogx-011,Inguinal hernia,Other,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Injection site reaction,Procedure related,1092,5,0.4579,1,0.0916
+custirsen-ogx-011,Insomnia,General,1092,84,7.6923,0,0.0
+custirsen-ogx-011,Interstitial lung disease,Respiratory,1092,6,0.5495,1,0.0916
+custirsen-ogx-011,Iron overload,Metabolic,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Lacrimation increased,Ocular,1092,55,5.0366,0,0.0
+custirsen-ogx-011,Leiomyosarcoma,Other,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Leukocytosis,Hematologic,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Leukopenia,Hematologic,1092,103,9.4322,29,2.6557
+custirsen-ogx-011,Lipase increased,Gastrointestinal,1092,2,0.1832,2,0.1832
+custirsen-ogx-011,Lower Respiratory Tract Infection or symptoms,Respiratory,1092,88,8.0586,24,2.1978
+custirsen-ogx-011,Lung abscess,Respiratory,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Lymphadenitis,Inflammatory,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Lymphopenia,Hematologic,1092,115,10.5311,65,5.9524
+custirsen-ogx-011,Malaise,General,1092,10,0.9158,0,0.0
+custirsen-ogx-011,Mastoiditis,Infection,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Meningitis,Neurologic,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,Mesenteric Vein Thrombosis,Cardiovascular,1092,2,0.1832,1,0.0916
+custirsen-ogx-011,Metastases to meninges,Other,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Metastases to spine,Other,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Mortality,Mortality,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,Mucositis,Gastrointestinal,1092,113,10.348,0,0.0
+custirsen-ogx-011,Multi-organ failure,General,1092,2,0.1832,2,0.1832
+custirsen-ogx-011,Muscular Weakness,Musculoskeletal,1092,17,1.5568,0,0.0
+custirsen-ogx-011,Musculoskeletal disorser,Musculoskeletal,1092,563,51.5568,0,0.0
+custirsen-ogx-011,Myasthenia gravis,Neurologic,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Myocardial Infarction,Cardiovascular,1092,3,0.2747,3,0.2747
+custirsen-ogx-011,Nail disorder,Mucocutaneous,1092,77,7.0513,0,0.0
+custirsen-ogx-011,Nausea And Vomiting,Gastrointestinal,1092,432,39.5604,0,0.0
+custirsen-ogx-011,Nephrolithiasis,Genitourinary,1092,2,0.1832,0,0.0
+custirsen-ogx-011,Neuropathy,Neurologic,1092,221,20.2381,5,0.4579
+custirsen-ogx-011,Neutropenia,Hematologic,1092,370,33.8828,244,22.3443
+custirsen-ogx-011,Neutropenic Fever,Hematologic,1092,84,7.6923,16,1.4652
+custirsen-ogx-011,Nocturia,Genitourinary,1092,5,0.4579,0,0.0
+custirsen-ogx-011,Oliguria,Renal,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Oropharyngeal pain,Other,1092,34,3.1136,0,0.0
+custirsen-ogx-011,Osteoarthritis,Musculoskeletal,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Osteomyelitis,Infection,1092,2,0.1832,0,0.0
+custirsen-ogx-011,Osteonecrosis,Musculoskeletal,1092,7,0.641,0,0.0
+custirsen-ogx-011,Otitis externa,Infection,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Pain,General,1092,108,9.8901,0,0.0
+custirsen-ogx-011,Palmar-plantar erythrodysesthesia syndrom,Mucocutaneous,1092,14,1.2821,0,0.0
+custirsen-ogx-011,Palpitation,Cardiovascular,1092,10,0.9158,0,0.0
+custirsen-ogx-011,Pancreatitis,Gastrointestinal,1092,4,0.3663,2,0.1832
+custirsen-ogx-011,Paraparesis,Neurologic,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Paraplegia,Neurologic,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,Paresthesia,Neurologic,1092,55,5.0366,0,0.0
+custirsen-ogx-011,Peptic Ulcer Disease,Gastrointestinal,1092,73,6.685,0,0.0
+custirsen-ogx-011,Pleural Effusion,Respiratory,1092,17,1.5568,7,0.641
+custirsen-ogx-011,Pleurisy,Respiratory,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Pneumatosis,Respiratory,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,Pneumonia,Respiratory,1092,55,5.0366,5,0.4579
+custirsen-ogx-011,Pneumonitis,Respiratory,1092,3,0.2747,0,0.0
+custirsen-ogx-011,Postoperative Wound Infection,Other,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Procedure related,Procedure related,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Prostatitis,Genitourinary,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Proteinuria,Renal,1092,6,0.5495,0,0.0
+custirsen-ogx-011,Psoriasis,Mucocutaneous,1092,2,0.1832,0,0.0
+custirsen-ogx-011,Pulmonary Edema,Respiratory,1092,5,0.4579,2,0.1832
+custirsen-ogx-011,Pulmonary Embolism,Cardiovascular,1092,37,3.3883,33,3.022
+custirsen-ogx-011,Rash,Mucocutaneous,1092,113,10.348,0,0.0
+custirsen-ogx-011,Renal Injury,Renal,1092,71,6.5018,0,0.0
+custirsen-ogx-011,Renal failure,Renal,1092,6,0.5495,6,0.5495
+custirsen-ogx-011,Respiratory Failure,Respiratory,1092,5,0.4579,5,0.4579
+custirsen-ogx-011,Retinal Detachment,Ocular,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,Sepsis,Infection,1092,42,3.8462,28,2.5641
+custirsen-ogx-011,Septic Emboli,Infection,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Skin infection,Infection,1092,15,1.3736,0,0.0
+custirsen-ogx-011,Spinal Cord Compression,Neurologic,1092,4,0.3663,4,0.3663
+custirsen-ogx-011,Stomatitis,Gastrointestinal,1092,5,0.4579,1,0.0916
+custirsen-ogx-011,Subdural hematoma,Neurologic,1092,2,0.1832,2,0.1832
+custirsen-ogx-011,Suicide,Psychiatric,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,Syncope,Neurologic,1092,34,3.1136,2,0.1832
+custirsen-ogx-011,Tachycardia,Cardiovascular,1092,9,0.8242,0,0.0
+custirsen-ogx-011,Thrombocytopenia,Hematologic,1092,156,14.2857,33,3.022
+custirsen-ogx-011,Thrombosis,Cardiovascular,1092,5,0.4579,2,0.1832
+custirsen-ogx-011,Transaminase Increase,Gastrointestinal,1092,99,9.0659,8,0.7326
+custirsen-ogx-011,Transient Ischaemic Attack,Neurologic,1092,1,0.0916,0,0.0
+custirsen-ogx-011,Troponin increase,Cardiovascular,1092,1,0.0916,1,0.0916
+custirsen-ogx-011,Upper Respiratory Tract Infection or symptoms,Respiratory,1092,175,16.0256,0,0.0
+custirsen-ogx-011,Ureteric obstruction,Genitourinary,1092,6,0.5495,0,0.0
+custirsen-ogx-011,Urinary Incontinence,Genitourinary,1092,22,2.0147,0,0.0
+custirsen-ogx-011,Urinary Retention,Genitourinary,1092,41,3.7546,0,0.0
+custirsen-ogx-011,Urinary Tract Infection,Genitourinary,1092,112,10.2564,1,0.0916
+custirsen-ogx-011,Urosepsis,Genitourinary,1092,4,0.3663,3,0.2747
+custirsen-ogx-011,Urticaria,Mucocutaneous,1092,3,0.2747,0,0.0
+custirsen-ogx-011,Vertigo,Neurologic,1092,10,0.9158,0,0.0
+custirsen-ogx-011,Weight Increased,General,1092,9,0.8242,0,0.0
+danvatirsen,Anemia,Hematologic,140,14,10.0,1,0.7143
+danvatirsen,Anorexia,General,140,4,2.8571,0,0.0
+danvatirsen,Cellulitis,Infection,140,2,1.4286,0,0.0
+danvatirsen,Constipation,Gastrointestinal,140,3,2.1429,0,0.0
+danvatirsen,Dehydration,Other,140,2,1.4286,0,0.0
+danvatirsen,Diarrhoea,Gastrointestinal,140,9,6.4286,0,0.0
+danvatirsen,Dry Skin,Mucocutaneous,140,1,0.7143,0,0.0
+danvatirsen,Dysphagia,Neurologic,140,4,2.8571,1,0.7143
+danvatirsen,Edema,General,140,7,5.0,0,0.0
+danvatirsen,Epistaxis,Hematologic,140,4,2.8571,0,0.0
+danvatirsen,Fall,Neurologic,140,2,1.4286,0,0.0
+danvatirsen,Fatigue,General,140,37,26.4286,0,0.0
+danvatirsen,Fever,General,140,5,3.5714,0,0.0
+danvatirsen,GI symptoms,Gastrointestinal,140,3,2.1429,0,0.0
+danvatirsen,Gastroesophageal Reflux Disease,Gastrointestinal,140,2,1.4286,0,0.0
+danvatirsen,Haptoglobin increased,Inflammatory,140,2,1.4286,0,0.0
+danvatirsen,Headache,Neurologic,140,2,1.4286,0,0.0
+danvatirsen,Hematuria,Genitourinary,140,2,1.4286,0,0.0
+danvatirsen,Hyperbilirubinemia,Gastrointestinal,140,9,6.4286,1,0.7143
+danvatirsen,Hypercalcemia,Metabolic,140,4,2.8571,1,0.7143
+danvatirsen,Hypoalbuminemia,Metabolic,140,3,2.1429,1,0.7143
+danvatirsen,Hypokalemia,Metabolic,140,8,5.7143,2,1.4286
+danvatirsen,Hypomagnesemia,Metabolic,140,5,3.5714,0,0.0
+danvatirsen,Hyponatremia,Metabolic,140,4,2.8571,1,0.7143
+danvatirsen,Hypotension,Cardiovascular,140,3,2.1429,0,0.0
+danvatirsen,Hypoxia,Respiratory,140,3,2.1429,1,0.7143
+danvatirsen,Injection site reaction,Procedure related,140,5,3.5714,0,0.0
+danvatirsen,LDH increase,Inflammatory,140,1,0.7143,0,0.0
+danvatirsen,Lower Respiratory Tract Infection or symptoms,Respiratory,140,11,7.8571,0,0.0
+danvatirsen,Mucositis,Gastrointestinal,140,2,1.4286,0,0.0
+danvatirsen,Musculoskeletal disorser,Musculoskeletal,140,5,3.5714,0,0.0
+danvatirsen,Nausea And Vomiting,Gastrointestinal,140,20,14.2857,0,0.0
+danvatirsen,Neutropenia,Hematologic,140,22,15.7143,10,7.1429
+danvatirsen,Paresthesia,Neurologic,140,2,1.4286,0,0.0
+danvatirsen,Rash,Mucocutaneous,140,6,4.2857,0,0.0
+danvatirsen,Renal Injury,Renal,140,7,5.0,0,0.0
+danvatirsen,Thrombocytopenia,Hematologic,140,48,34.2857,14,10.0
+danvatirsen,Transaminase Increase,Gastrointestinal,140,50,35.7143,5,3.5714
+danvatirsen,Upper Respiratory Tract Infection or symptoms,Respiratory,140,7,5.0,0,0.0
+danvatirsen,Urinary Tract Infection,Genitourinary,140,3,2.1429,0,0.0
+dgat2rx-isis-484137,Cardiac Arrest,Cardiovascular,88,1,1.1364,1,1.1364
+dgat2rx-isis-484137,Cerebrovascular Accident,Neurologic,88,1,1.1364,1,1.1364
+dgat2rx-isis-484137,Deep Vein Thrombosis,Cardiovascular,88,1,1.1364,1,1.1364
+dgat2rx-isis-484137,Diarrhoea,Gastrointestinal,88,6,6.8182,0,0.0
+dgat2rx-isis-484137,Hypoglycemia,Metabolic,88,9,10.2273,0,0.0
+dgat2rx-isis-484137,Injection site reaction,Procedure related,88,30,34.0909,0,0.0
+dgat2rx-isis-484137,Metabolic disorder,Metabolic,88,1,1.1364,1,1.1364
+dgat2rx-isis-484137,Musculoskeletal disorser,Musculoskeletal,88,0,0.0,0,0.0
+dgat2rx-isis-484137,Pancreatitis,Gastrointestinal,88,1,1.1364,1,1.1364
+dgat2rx-isis-484137,Pre Existing Condition Exacerbation,Other,88,1,1.1364,1,1.1364
+dgat2rx-isis-484137,Pruritis,Mucocutaneous,88,12,13.6364,0,0.0
+dgat2rx-isis-484137,Upper Respiratory Tract Infection or symptoms,Respiratory,88,0,0.0,0,0.0
+donidalorsen,Anaphylaxis,Inflammatory,534,0,0.0,0,0.0
+donidalorsen,Fatigue,General,534,14,2.6217,0,0.0
+donidalorsen,GI symptoms,Gastrointestinal,534,24,4.4944,0,0.0
+donidalorsen,Headache,Neurologic,534,12,2.2472,0,0.0
+donidalorsen,Injection site reaction,Procedure related,534,75,14.0449,0,0.0
+donidalorsen,Injury,Other,534,1,0.1873,0,0.0
+donidalorsen,Musculoskeletal disorser,Musculoskeletal,534,7,1.3109,0,0.0
+donidalorsen,Nausea And Vomiting,Gastrointestinal,534,16,2.9963,0,0.0
+donidalorsen,Thrombocytopenia,Hematologic,534,0,0.0,0,0.0
+donidalorsen,Transaminase Increase,Gastrointestinal,534,30,5.618,0,0.0
+donidalorsen,Upper Respiratory Tract Infection or symptoms,Respiratory,534,97,18.1648,0,0.0
+donidalorsen,Urinary Tract Infection,Genitourinary,534,19,3.5581,0,0.0
+drisapersen,Alopecia,Mucocutaneous,334,2,0.5988,0,0.0
+drisapersen,Anemia,Hematologic,334,2,0.5988,0,0.0
+drisapersen,C3/4 decreased,Inflammatory,334,4,1.1976,0,0.0
+drisapersen,CRP increase,Inflammatory,334,6,1.7964,0,0.0
+drisapersen,Coagulation abnormalities,Hematologic,334,1,0.2994,1,0.2994
+drisapersen,Diarrhoea,Gastrointestinal,334,36,10.7784,0,0.0
+drisapersen,Dry Skin,Mucocutaneous,334,2,0.5988,0,0.0
+drisapersen,Epistaxis,Hematologic,334,17,5.0898,0,0.0
+drisapersen,Fall,Neurologic,334,41,12.2754,0,0.0
+drisapersen,Fever,General,334,76,22.7545,0,0.0
+drisapersen,Flu-like,General,334,2,0.5988,0,0.0
+drisapersen,GI symptoms,Gastrointestinal,334,21,6.2874,0,0.0
+drisapersen,Gastroenteritis,Gastrointestinal,334,24,7.1856,0,0.0
+drisapersen,Glomerulonephritis,Renal,334,1,0.2994,1,0.2994
+drisapersen,Haptoglobin increased,Inflammatory,334,3,0.8982,0,0.0
+drisapersen,Headache,Neurologic,334,52,15.5689,0,0.0
+drisapersen,Hematuria,Genitourinary,334,47,14.0719,0,0.0
+drisapersen,Hepatomegaly,Gastrointestinal,334,1,0.2994,0,0.0
+drisapersen,Inflammatory response,Inflammatory,334,28,8.3832,0,0.0
+drisapersen,Injection site reaction,Procedure related,334,233,69.7605,0,0.0
+drisapersen,Leukopenia,Hematologic,334,2,0.5988,2,0.5988
+drisapersen,Microglubulin in urine,Renal,334,23,6.8862,0,0.0
+drisapersen,Musculoskeletal disorser,Musculoskeletal,334,4,1.1976,0,0.0
+drisapersen,Nausea And Vomiting,Gastrointestinal,334,44,13.1737,0,0.0
+drisapersen,Pain,General,334,3,0.8982,0,0.0
+drisapersen,Proteinuria,Renal,334,125,37.4251,0,0.0
+drisapersen,Rash,Mucocutaneous,334,2,0.5988,0,0.0
+drisapersen,Renal Injury,Renal,334,81,24.2515,0,0.0
+drisapersen,Thrombocytopenia,Hematologic,334,5,1.497,0,0.0
+drisapersen,Transaminase Increase,Gastrointestinal,334,23,6.8862,6,1.7964
+drisapersen,Troponin increase,Cardiovascular,334,2,0.5988,2,0.5988
+drisapersen,Upper Respiratory Tract Infection or symptoms,Respiratory,334,6,1.7964,0,0.0
+drisapersen,Urinary Casts,Renal,334,4,1.1976,0,0.0
+ds-5141b-renadirsen,No AE,No AE,8,0,0.0,0,0.0
+eluforsen-qr-010,Diarrhoea,Gastrointestinal,70,6,8.5714,0,0.0
+eluforsen-qr-010,Epistaxis,Hematologic,70,8,11.4286,0,0.0
+eluforsen-qr-010,Fatigue,General,70,15,21.4286,0,0.0
+eluforsen-qr-010,Fever,General,70,15,21.4286,0,0.0
+eluforsen-qr-010,Headache,Neurologic,70,1,1.4286,0,0.0
+eluforsen-qr-010,Increase sputum,Respiratory,70,11,15.7143,0,0.0
+eluforsen-qr-010,Infection,Infection,70,1,1.4286,1,1.4286
+eluforsen-qr-010,Musculoskeletal disorser,Musculoskeletal,70,8,11.4286,0,0.0
+eluforsen-qr-010,Nausea And Vomiting,Gastrointestinal,70,11,15.7143,0,0.0
+eluforsen-qr-010,Oral candidiasis,Mucocutaneous,70,6,8.5714,0,0.0
+eluforsen-qr-010,Oropharyngeal Pain,Other,70,6,8.5714,0,0.0
+eluforsen-qr-010,Respiratory Failure,Respiratory,70,19,27.1429,0,0.0
+eluforsen-qr-010,Upper Respiratory Tract Infection or symptoms,Respiratory,70,19,27.1429,0,0.0
+eplontersen-wainua,Anemia,Hematologic,475,1,0.2105,0,0.0
+eplontersen-wainua,Angina Pectoris,Cardiovascular,475,6,1.2632,0,0.0
+eplontersen-wainua,Anorexia,General,475,3,0.6316,0,0.0
+eplontersen-wainua,Arrhythmias,Cardiovascular,475,6,1.2632,5,1.0526
+eplontersen-wainua,Atrial fibrilation/flutter,Cardiovascular,475,5,1.0526,0,0.0
+eplontersen-wainua,Blindness,Ocular,475,1,0.2105,1,0.2105
+eplontersen-wainua,CPK increase,Metabolic,475,4,0.8421,0,0.0
+eplontersen-wainua,Cataract,Ocular,475,13,2.7368,0,0.0
+eplontersen-wainua,Cerebral hemorrhage,Neurologic,475,1,0.2105,1,0.2105
+eplontersen-wainua,Cerebrovascular Accident,Neurologic,475,4,0.8421,4,0.8421
+eplontersen-wainua,Constipation,Gastrointestinal,475,3,0.6316,0,0.0
+eplontersen-wainua,Diarrhoea,Gastrointestinal,475,17,3.5789,0,0.0
+eplontersen-wainua,Diverticulitis,Gastrointestinal,475,1,0.2105,0,0.0
+eplontersen-wainua,Dry Mouth,Mucocutaneous,475,8,1.6842,0,0.0
+eplontersen-wainua,Edema,General,475,9,1.8947,0,0.0
+eplontersen-wainua,Eosinophilia,Hematologic,475,8,1.6842,0,0.0
+eplontersen-wainua,Fall,Neurologic,475,3,0.6316,3,0.6316
+eplontersen-wainua,Fatigue,General,475,13,2.7368,0,0.0
+eplontersen-wainua,Flu-like,General,475,15,3.1579,0,0.0
+eplontersen-wainua,Fracture,Musculoskeletal,475,1,0.2105,1,0.2105
+eplontersen-wainua,GI Bleeding,Gastrointestinal,475,1,0.2105,1,0.2105
+eplontersen-wainua,GI symptoms,Gastrointestinal,475,8,1.6842,0,0.0
+eplontersen-wainua,Gait Disturbance,Neurologic,475,3,0.6316,0,0.0
+eplontersen-wainua,Glaucoma,Ocular,475,4,0.8421,4,0.8421
+eplontersen-wainua,Gout,Metabolic,475,1,0.2105,0,0.0
+eplontersen-wainua,Haemorrhage,Hematologic,475,3,0.6316,3,0.6316
+eplontersen-wainua,Head injury,Neurologic,475,1,0.2105,1,0.2105
+eplontersen-wainua,Headache,Neurologic,475,4,0.8421,0,0.0
+eplontersen-wainua,Heart Failure,Cardiovascular,475,5,1.0526,5,1.0526
+eplontersen-wainua,Hematologic abnormality,Hematologic,475,6,1.2632,6,1.2632
+eplontersen-wainua,Hyperhidrosis,General,475,2,0.4211,0,0.0
+eplontersen-wainua,Hypertension,Cardiovascular,475,7,1.4737,0,0.0
+eplontersen-wainua,Hypokalemia,Metabolic,475,1,0.2105,0,0.0
+eplontersen-wainua,Hypotension,Cardiovascular,475,2,0.4211,0,0.0
+eplontersen-wainua,Infection,Infection,475,24,5.0526,0,0.0
+eplontersen-wainua,Injection site reaction,Procedure related,475,24,5.0526,0,0.0
+eplontersen-wainua,Irritability,General,475,1,0.2105,0,0.0
+eplontersen-wainua,Lower Respiratory Tract Infection or symptoms,Respiratory,475,36,7.5789,21,4.4211
+eplontersen-wainua,Lung Neoplasm,Other,475,1,0.2105,1,0.2105
+eplontersen-wainua,Mortality,Mortality,475,17,3.5789,17,3.5789
+eplontersen-wainua,Musculoskeletal disorser,Musculoskeletal,475,13,2.7368,0,0.0
+eplontersen-wainua,Myocardial Infarction,Cardiovascular,475,1,0.2105,1,0.2105
+eplontersen-wainua,Nausea And Vomiting,Gastrointestinal,475,9,1.8947,0,0.0
+eplontersen-wainua,Nephrolithiasis,Genitourinary,475,2,0.4211,0,0.0
+eplontersen-wainua,Neuralgia,Neurologic,475,1,0.2105,0,0.0
+eplontersen-wainua,Neutropenia,Hematologic,475,1,0.2105,1,0.2105
+eplontersen-wainua,Ocular disorder,Ocular,475,40,8.4211,0,0.0
+eplontersen-wainua,Optic Nerve Injury,Ocular,475,1,0.2105,1,0.2105
+eplontersen-wainua,Pericardial Effusion,Cardiovascular,475,2,0.4211,2,0.4211
+eplontersen-wainua,Pericarditis,Cardiovascular,475,1,0.2105,1,0.2105
+eplontersen-wainua,Pleural Effusion,Respiratory,475,1,0.2105,1,0.2105
+eplontersen-wainua,Proteinuria,Renal,475,14,2.9474,0,0.0
+eplontersen-wainua,Rash,Mucocutaneous,475,2,0.4211,0,0.0
+eplontersen-wainua,Renal Injury,Renal,475,5,1.0526,5,1.0526
+eplontersen-wainua,Renal cyst,Renal,475,1,0.2105,0,0.0
+eplontersen-wainua,Sepsis,Infection,475,1,0.2105,1,0.2105
+eplontersen-wainua,Syncope,Neurologic,475,1,0.2105,0,0.0
+eplontersen-wainua,Thrombocytopenia,Hematologic,475,4,0.8421,0,0.0
+eplontersen-wainua,Transaminase Increase,Gastrointestinal,475,29,6.1053,0,0.0
+eplontersen-wainua,Upper Respiratory Tract Infection or symptoms,Respiratory,475,5,1.0526,0,0.0
+eplontersen-wainua,Urinary Incontinence,Genitourinary,475,1,0.2105,0,0.0
+eplontersen-wainua,Urinary Tract Infection,Genitourinary,475,3,0.6316,0,0.0
+eplontersen-wainua,Vitamin A Deficiency,Metabolic,475,52,10.9474,0,0.0
+eplontersen-wainua,Weight Increased,General,475,3,0.6316,0,0.0
+eteplirsen-exon-dys51,Anaphylaxis,Inflammatory,2434,7,0.2876,7,0.2876
+eteplirsen-exon-dys51,Angina Pectoris,Cardiovascular,2434,24,0.986,0,0.0
+eteplirsen-exon-dys51,Anorexia,General,2434,11,0.4519,0,0.0
+eteplirsen-exon-dys51,Arrhythmias,Cardiovascular,2434,7,0.2876,0,0.0
+eteplirsen-exon-dys51,Aspiration,Respiratory,2434,5,0.2054,5,0.2054
+eteplirsen-exon-dys51,Back Pain,Musculoskeletal,2434,9,0.3698,0,0.0
+eteplirsen-exon-dys51,Balance Disorder,Neurologic,2434,72,2.9581,0,0.0
+eteplirsen-exon-dys51,Bronchospasm,Respiratory,2434,0,0.0,0,0.0
+eteplirsen-exon-dys51,CRP increase,Inflammatory,2434,4,0.1643,0,0.0
+eteplirsen-exon-dys51,Cardiac Arrest,Cardiovascular,2434,9,0.3698,9,0.3698
+eteplirsen-exon-dys51,Cardiomyopathy,Cardiovascular,2434,6,0.2465,6,0.2465
+eteplirsen-exon-dys51,Cellulitis,Infection,2434,5,0.2054,0,0.0
+eteplirsen-exon-dys51,Chills,General,2434,25,1.0271,0,0.0
+eteplirsen-exon-dys51,Cholecystitis,Gastrointestinal,2434,3,0.1233,0,0.0
+eteplirsen-exon-dys51,Diarrhoea,Gastrointestinal,2434,10,0.4108,0,0.0
+eteplirsen-exon-dys51,Dizziness,Neurologic,2434,10,0.4108,0,0.0
+eteplirsen-exon-dys51,Edema,General,2434,11,0.4519,0,0.0
+eteplirsen-exon-dys51,Fall,Neurologic,2434,54,2.2186,54,2.2186
+eteplirsen-exon-dys51,Fatigue,General,2434,74,3.0403,0,0.0
+eteplirsen-exon-dys51,Fever,General,2434,95,3.903,0,0.0
+eteplirsen-exon-dys51,Flu-like,General,2434,42,1.7256,0,0.0
+eteplirsen-exon-dys51,Fracture,Musculoskeletal,2434,1,0.0411,1,0.0411
+eteplirsen-exon-dys51,GI symptoms,Gastrointestinal,2434,72,2.9581,0,0.0
+eteplirsen-exon-dys51,Gait Disturbance,Neurologic,2434,3,0.1233,0,0.0
+eteplirsen-exon-dys51,Gastroesophageal Reflux Disease,Gastrointestinal,2434,6,0.2465,0,0.0
+eteplirsen-exon-dys51,Headache,Neurologic,2434,50,2.0542,0,0.0
+eteplirsen-exon-dys51,Heart Failure,Cardiovascular,2434,19,0.7806,19,0.7806
+eteplirsen-exon-dys51,Hyperkalemia,Metabolic,2434,3,0.1233,3,0.1233
+eteplirsen-exon-dys51,Hypertension,Cardiovascular,2434,11,0.4519,0,0.0
+eteplirsen-exon-dys51,Hypokalemia,Metabolic,2434,7,0.2876,0,0.0
+eteplirsen-exon-dys51,Hyponatremia,Metabolic,2434,3,0.1233,0,0.0
+eteplirsen-exon-dys51,Hypotension,Cardiovascular,2434,20,0.8217,20,0.8217
+eteplirsen-exon-dys51,Hypoxia,Respiratory,2434,11,0.4519,11,0.4519
+eteplirsen-exon-dys51,Injection site reaction,Procedure related,2434,110,4.5193,0,0.0
+eteplirsen-exon-dys51,Lower Respiratory Tract Infection or symptoms,Respiratory,2434,84,3.4511,84,3.4511
+eteplirsen-exon-dys51,Malaise,General,2434,0,0.0,0,0.0
+eteplirsen-exon-dys51,Mortality,Mortality,2434,18,0.7395,18,0.7395
+eteplirsen-exon-dys51,Musculoskeletal disorser,Musculoskeletal,2434,23,0.9449,1,0.0411
+eteplirsen-exon-dys51,Nausea And Vomiting,Gastrointestinal,2434,77,3.1635,0,0.0
+eteplirsen-exon-dys51,Nephrolithiasis,Genitourinary,2434,13,0.5341,0,0.0
+eteplirsen-exon-dys51,Pleural Effusion,Respiratory,2434,3,0.1233,3,0.1233
+eteplirsen-exon-dys51,Pneumothorax,Respiratory,2434,9,0.3698,9,0.3698
+eteplirsen-exon-dys51,Proteinuria,Renal,2434,20,0.8217,3,0.1233
+eteplirsen-exon-dys51,Rash,Mucocutaneous,2434,74,3.0403,0,0.0
+eteplirsen-exon-dys51,Renal Injury,Renal,2434,5,0.2054,5,0.2054
+eteplirsen-exon-dys51,Respiratory Failure,Respiratory,2434,15,0.6163,15,0.6163
+eteplirsen-exon-dys51,Scoliosis,Musculoskeletal,2434,10,0.4108,0,0.0
+eteplirsen-exon-dys51,Seizure,Neurologic,2434,8,0.3287,8,0.3287
+eteplirsen-exon-dys51,Sepsis,Infection,2434,18,0.7395,18,0.7395
+eteplirsen-exon-dys51,Syncope,Neurologic,2434,6,0.2465,0,0.0
+eteplirsen-exon-dys51,Transaminase Increase,Gastrointestinal,2434,6,0.2465,0,0.0
+eteplirsen-exon-dys51,Upper Respiratory Tract Infection or symptoms,Respiratory,2434,152,6.2449,0,0.0
+ezn-4176,Anorexia,General,22,4,18.1818,0,0.0
+ezn-4176,Chills,General,22,8,36.3636,0,0.0
+ezn-4176,Constipation,Gastrointestinal,22,4,18.1818,0,0.0
+ezn-4176,Fatigue,General,22,13,59.0909,0,0.0
+ezn-4176,Fever,General,22,3,13.6364,0,0.0
+ezn-4176,Nausea And Vomiting,Gastrointestinal,22,8,36.3636,0,0.0
+ezn-4176,Peptic Ulcer Disease,Gastrointestinal,22,4,18.1818,0,0.0
+ezn-4176,Transaminase Increase,Gastrointestinal,22,14,63.6364,5,22.7273
+fomivirsen,Abnormal vision,Ocular,478,14,2.9289,0,0.0
+fomivirsen,Anaphylaxis,Inflammatory,478,4,0.8368,4,0.8368
+fomivirsen,Anemia,Hematologic,478,20,4.1841,0,0.0
+fomivirsen,Angina Pectoris,Cardiovascular,478,4,0.8368,0,0.0
+fomivirsen,Anorexia,General,478,15,3.1381,0,0.0
+fomivirsen,Blepharitis,Ocular,478,2,0.4184,0,0.0
+fomivirsen,Cataract,Ocular,478,22,4.6025,0,0.0
+fomivirsen,Cellulitis,Infection,478,1,0.2092,1,0.2092
+fomivirsen,Conjectival hyperemia,Ocular,478,3,0.6276,0,0.0
+fomivirsen,Conjunctival Haemorrhage,Ocular,478,46,9.6234,0,0.0
+fomivirsen,Conjunctivitis,Ocular,478,15,3.1381,0,0.0
+fomivirsen,Corneal Edema,Ocular,478,5,1.046,0,0.0
+fomivirsen,Depression,Psychiatric,478,4,0.8368,0,0.0
+fomivirsen,Diarrhoea,Gastrointestinal,478,12,2.5105,0,0.0
+fomivirsen,Dizziness,Neurologic,478,4,0.8368,0,0.0
+fomivirsen,Dry eye,Ocular,478,3,0.6276,0,0.0
+fomivirsen,Eye Pain,Ocular,478,26,5.4393,0,0.0
+fomivirsen,Eye irritation,Ocular,478,7,1.4644,0,0.0
+fomivirsen,Fatigue,General,478,26,5.4393,0,0.0
+fomivirsen,Fever,General,478,12,2.5105,0,0.0
+fomivirsen,GI symptoms,Gastrointestinal,478,9,1.8828,0,0.0
+fomivirsen,Glaucoma,Ocular,478,3,0.6276,3,0.6276
+fomivirsen,Headache,Neurologic,478,6,1.2552,0,0.0
+fomivirsen,Hyperhidrosis,General,478,4,0.8368,0,0.0
+fomivirsen,Hypotension,Cardiovascular,478,4,0.8368,0,0.0
+fomivirsen,Hypotony of eye,Ocular,478,6,1.2552,0,0.0
+fomivirsen,Increased Intraocular Pressure,Ocular,478,56,11.7155,0,0.0
+fomivirsen,Infection,Infection,478,9,1.8828,9,1.8828
+fomivirsen,Keratitis,Ocular,478,1,0.2092,0,0.0
+fomivirsen,Lower Respiratory Tract Infection or symptoms,Respiratory,478,4,0.8368,4,0.8368
+fomivirsen,Macular degeneration,Ocular,478,2,0.4184,2,0.4184
+fomivirsen,Musculoskeletal disorser,Musculoskeletal,478,4,0.8368,0,0.0
+fomivirsen,Nausea And Vomiting,Gastrointestinal,478,0,0.0,0,0.0
+fomivirsen,Neutropenia,Hematologic,478,8,1.6736,8,1.6736
+fomivirsen,Ocular Inflammation,Ocular,478,127,26.569,115,24.0586
+fomivirsen,Ocular Opacity,Ocular,478,58,12.1339,0,0.0
+fomivirsen,Ocular disorder,Ocular,478,110,23.0126,0,0.0
+fomivirsen,Optic Neuritis,Ocular,478,7,1.4644,7,1.4644
+fomivirsen,Pain,General,478,2,0.4184,0,0.0
+fomivirsen,Pancreatitis,Gastrointestinal,478,4,0.8368,4,0.8368
+fomivirsen,Photophobia,Ocular,478,39,8.159,0,0.0
+fomivirsen,Pneumonia,Respiratory,478,1,0.2092,1,0.2092
+fomivirsen,Rash,Mucocutaneous,478,14,2.9289,0,0.0
+fomivirsen,Renal Injury,Renal,478,4,0.8368,4,0.8368
+fomivirsen,Retinal Detachment,Ocular,478,61,12.7615,61,12.7615
+fomivirsen,Retinal Disease,Ocular,478,6,1.2552,0,0.0
+fomivirsen,Retinal Edema,Ocular,478,59,12.3431,0,0.0
+fomivirsen,Retinal haemorrhage,Ocular,478,51,10.6695,0,0.0
+fomivirsen,Retinal vascular disease,Ocular,478,2,0.4184,2,0.4184
+fomivirsen,Sepsis,Infection,478,6,1.2552,6,1.2552
+fomivirsen,Thrombocytopenia,Hematologic,478,13,2.7197,0,0.0
+fomivirsen,Transaminase Increase,Gastrointestinal,478,4,0.8368,0,0.0
+fomivirsen,Upper Respiratory Tract Infection or symptoms,Respiratory,478,9,1.8828,0,0.0
+fomivirsen,Vitreous Haemorrhage,Ocular,478,12,2.5105,0,0.0
+gataparsen-ly2181308,Anemia,Hematologic,592,28,4.7297,3,0.5068
+gataparsen-ly2181308,Anorexia,General,592,5,0.8446,0,0.0
+gataparsen-ly2181308,CRP increase,Inflammatory,592,8,1.3514,0,0.0
+gataparsen-ly2181308,Cerebrovascular Accident,Neurologic,592,1,0.1689,1,0.1689
+gataparsen-ly2181308,Clostridium Difficile Colitis,Gastrointestinal,592,1,0.1689,1,0.1689
+gataparsen-ly2181308,Coagulation abnormalities,Hematologic,592,41,6.9257,0,0.0
+gataparsen-ly2181308,Diarrhoea,Gastrointestinal,592,21,3.5473,0,0.0
+gataparsen-ly2181308,Esophagitis,Gastrointestinal,592,1,0.1689,0,0.0
+gataparsen-ly2181308,Fatigue,General,592,50,8.4459,0,0.0
+gataparsen-ly2181308,Fever,General,592,25,4.223,0,0.0
+gataparsen-ly2181308,Flu-like,General,592,3,0.5068,0,0.0
+gataparsen-ly2181308,Headache,Neurologic,592,7,1.1824,0,0.0
+gataparsen-ly2181308,Hyperbilirubinemia,Gastrointestinal,592,3,0.5068,0,0.0
+gataparsen-ly2181308,Hyperglycemia,Metabolic,592,3,0.5068,0,0.0
+gataparsen-ly2181308,Hyperhidrosis,General,592,13,2.1959,0,0.0
+gataparsen-ly2181308,Hypoalbuminemia,Metabolic,592,4,0.6757,0,0.0
+gataparsen-ly2181308,Hypokalemia,Metabolic,592,4,0.6757,0,0.0
+gataparsen-ly2181308,Hyponatremia,Metabolic,592,2,0.3378,0,0.0
+gataparsen-ly2181308,Hypophosphatemia,Metabolic,592,4,0.6757,0,0.0
+gataparsen-ly2181308,Hypotension,Cardiovascular,592,3,0.5068,1,0.1689
+gataparsen-ly2181308,Hypothermia,General,592,3,0.5068,0,0.0
+gataparsen-ly2181308,Increased blood triglycerides,Metabolic,592,3,0.5068,0,0.0
+gataparsen-ly2181308,Injection site reaction,Procedure related,592,4,0.6757,0,0.0
+gataparsen-ly2181308,Insomnia,General,592,1,0.1689,0,0.0
+gataparsen-ly2181308,Lymphopenia,Hematologic,592,9,1.5203,1,0.1689
+gataparsen-ly2181308,Microglubulin in urine,Renal,592,2,0.3378,0,0.0
+gataparsen-ly2181308,Mortality,Mortality,592,2,0.3378,2,0.3378
+gataparsen-ly2181308,Musculoskeletal disorser,Musculoskeletal,592,2,0.3378,0,0.0
+gataparsen-ly2181308,Nausea And Vomiting,Gastrointestinal,592,20,3.3784,0,0.0
+gataparsen-ly2181308,Neuropathy,Neurologic,592,7,1.1824,1,0.1689
+gataparsen-ly2181308,Neutropenia,Hematologic,592,90,15.2027,25,4.223
+gataparsen-ly2181308,Neutropenic Fever,Hematologic,592,19,3.2095,19,3.2095
+gataparsen-ly2181308,Peptic Ulcer Disease,Gastrointestinal,592,1,0.1689,0,0.0
+gataparsen-ly2181308,Pneumonia,Respiratory,592,7,1.1824,1,0.1689
+gataparsen-ly2181308,Renal Injury,Renal,592,1,0.1689,1,0.1689
+gataparsen-ly2181308,Respiratory Failure,Respiratory,592,2,0.3378,2,0.3378
+gataparsen-ly2181308,Sepsis,Infection,592,5,0.8446,5,0.8446
+gataparsen-ly2181308,Thrombocytopenia,Hematologic,592,35,5.9122,4,0.6757
+gataparsen-ly2181308,Transaminase Increase,Gastrointestinal,592,12,2.027,0,0.0
+gataparsen-ly2181308,Tumor lysis syndrome,Metabolic,592,1,0.1689,0,0.0
+golodirsen-vyondys53,Agitation,Psychiatric,490,2,0.4082,0,0.0
+golodirsen-vyondys53,Anaphylaxis,Inflammatory,490,5,1.0204,5,1.0204
+golodirsen-vyondys53,Anemia,Hematologic,490,1,0.2041,0,0.0
+golodirsen-vyondys53,Angina Pectoris,Cardiovascular,490,3,0.6122,0,0.0
+golodirsen-vyondys53,Anorexia,General,490,6,1.2245,0,0.0
+golodirsen-vyondys53,Anxiety,Psychiatric,490,1,0.2041,0,0.0
+golodirsen-vyondys53,Aspiration,Respiratory,490,3,0.6122,3,0.6122
+golodirsen-vyondys53,Cardiac Arrest,Cardiovascular,490,2,0.4082,2,0.4082
+golodirsen-vyondys53,Cardiogenic Shock,Cardiovascular,490,2,0.4082,2,0.4082
+golodirsen-vyondys53,Cardiomyopathy,Cardiovascular,490,1,0.2041,1,0.2041
+golodirsen-vyondys53,Cataract,Ocular,490,1,0.2041,0,0.0
+golodirsen-vyondys53,Cholelithiasis,Gastrointestinal,490,2,0.4082,0,0.0
+golodirsen-vyondys53,Constipation,Gastrointestinal,490,3,0.6122,0,0.0
+golodirsen-vyondys53,Depression,Psychiatric,490,3,0.6122,0,0.0
+golodirsen-vyondys53,Diarrhoea,Gastrointestinal,490,18,3.6735,0,0.0
+golodirsen-vyondys53,Dizziness,Neurologic,490,7,1.4286,0,0.0
+golodirsen-vyondys53,Dry Skin,Mucocutaneous,490,1,0.2041,0,0.0
+golodirsen-vyondys53,Ear Infection,Infection,490,3,0.6122,0,0.0
+golodirsen-vyondys53,Edema,General,490,5,1.0204,0,0.0
+golodirsen-vyondys53,Fall,Neurologic,490,42,8.5714,25,5.102
+golodirsen-vyondys53,Fatigue,General,490,23,4.6939,0,0.0
+golodirsen-vyondys53,Fever,General,490,32,6.5306,0,0.0
+golodirsen-vyondys53,Flu-like,General,490,3,0.6122,0,0.0
+golodirsen-vyondys53,Fracture,Musculoskeletal,490,8,1.6327,8,1.6327
+golodirsen-vyondys53,GI Bleeding,Gastrointestinal,490,1,0.2041,0,0.0
+golodirsen-vyondys53,GI symptoms,Gastrointestinal,490,35,7.1429,0,0.0
+golodirsen-vyondys53,Gait Disturbance,Neurologic,490,3,0.6122,0,0.0
+golodirsen-vyondys53,Haematemesis,Gastrointestinal,490,1,0.2041,0,0.0
+golodirsen-vyondys53,Headache,Neurologic,490,14,2.8571,0,0.0
+golodirsen-vyondys53,Hyperglycemia,Metabolic,490,1,0.2041,0,0.0
+golodirsen-vyondys53,Hypocalcemia,Metabolic,490,1,0.2041,1,0.2041
+golodirsen-vyondys53,Hypotension,Cardiovascular,490,16,3.2653,6,1.2245
+golodirsen-vyondys53,Infection,Infection,490,34,6.9388,0,0.0
+golodirsen-vyondys53,Influenza,Infection,490,8,1.6327,0,0.0
+golodirsen-vyondys53,Injection site reaction,Procedure related,490,36,7.3469,0,0.0
+golodirsen-vyondys53,Mortality,Mortality,490,2,0.4082,2,0.4082
+golodirsen-vyondys53,Musculoskeletal disorser,Musculoskeletal,490,8,1.6327,0,0.0
+golodirsen-vyondys53,Nausea And Vomiting,Gastrointestinal,490,15,3.0612,0,0.0
+golodirsen-vyondys53,Oropharyngeal Pain,Other,490,5,1.0204,0,0.0
+golodirsen-vyondys53,Pleural Effusion,Respiratory,490,2,0.4082,2,0.4082
+golodirsen-vyondys53,Pneumonia,Respiratory,490,11,2.2449,11,2.2449
+golodirsen-vyondys53,Proteinuria,Renal,490,4,0.8163,0,0.0
+golodirsen-vyondys53,Rash,Mucocutaneous,490,16,3.2653,0,0.0
+golodirsen-vyondys53,Respiratory Failure,Respiratory,490,9,1.8367,9,1.8367
+golodirsen-vyondys53,Seasonal allergy,Inflammatory,490,3,0.6122,0,0.0
+golodirsen-vyondys53,Seizure,Neurologic,490,4,0.8163,4,0.8163
+golodirsen-vyondys53,Syncope,Neurologic,490,1,0.2041,0,0.0
+golodirsen-vyondys53,Tachycardia,Cardiovascular,490,9,1.8367,0,0.0
+golodirsen-vyondys53,Upper Respiratory Tract Infection or symptoms,Respiratory,490,37,7.551,0,0.0
+gsk3389404,CRP increase,Inflammatory,266,1,0.3759,0,0.0
+gsk3389404,Cerebral hemorrhage,Neurologic,266,1,0.3759,1,0.3759
+gsk3389404,Coagulation abnormalities,Hematologic,266,4,1.5038,0,0.0
+gsk3389404,Flu-like,General,266,4,1.5038,0,0.0
+gsk3389404,Headache,Neurologic,266,6,2.2556,0,0.0
+gsk3389404,Injection site reaction,Procedure related,266,0,0.0,0,0.0
+gsk3389404,Lymphopenia,Hematologic,266,1,0.3759,1,0.3759
+gsk3389404,Malaise,General,266,9,3.3835,0,0.0
+gsk3389404,Musculoskeletal disorser,Musculoskeletal,266,1,0.3759,0,0.0
+gsk3389404,Neutropenia,Hematologic,266,1,0.3759,1,0.3759
+gsk3389404,Prinzmetal Angina,Cardiovascular,266,1,0.3759,1,0.3759
+gsk3389404,Rash,Mucocutaneous,266,1,0.3759,0,0.0
+gsk3389404,Renal colic,Genitourinary,266,1,0.3759,1,0.3759
+gsk3389404,Transaminase Increase,Gastrointestinal,266,0,0.0,0,0.0
+gsk3389404,Upper Respiratory Tract Infection or symptoms,Respiratory,266,27,10.1504,0,0.0
+gti2040,Acidosis,Metabolic,213,3,1.4085,1,0.4695
+gti2040,Alopecia,Mucocutaneous,213,32,15.0235,0,0.0
+gti2040,Anemia,Hematologic,213,71,33.3333,31,14.554
+gti2040,Angina Pectoris,Cardiovascular,213,1,0.4695,1,0.4695
+gti2040,Anorexia,General,213,38,17.8404,0,0.0
+gti2040,Anxiety,Psychiatric,213,1,0.4695,0,0.0
+gti2040,Ataxia,Neurologic,213,3,1.4085,3,1.4085
+gti2040,Atrial fibrilation/flutter,Cardiovascular,213,3,1.4085,0,0.0
+gti2040,Coagulation abnormalities,Hematologic,213,17,7.9812,8,3.7559
+gti2040,Confusion,Neurologic,213,1,0.4695,1,0.4695
+gti2040,Constipation,Gastrointestinal,213,15,7.0423,0,0.0
+gti2040,Depression,Psychiatric,213,5,2.3474,0,0.0
+gti2040,Diarrhoea,Gastrointestinal,213,22,10.3286,0,0.0
+gti2040,Dysarthria,Neurologic,213,3,1.4085,3,1.4085
+gti2040,Dysphagia,Neurologic,213,1,0.4695,0,0.0
+gti2040,Edema,General,213,17,7.9812,0,0.0
+gti2040,Esophagitis,Gastrointestinal,213,1,0.4695,0,0.0
+gti2040,Fatigue,General,213,114,53.5211,0,0.0
+gti2040,Fever,General,213,14,6.5728,0,0.0
+gti2040,GI Bleeding,Gastrointestinal,213,1,0.4695,0,0.0
+gti2040,GI Obstruction,Gastrointestinal,213,1,0.4695,0,0.0
+gti2040,Headache,Neurologic,213,7,3.2864,0,0.0
+gti2040,Hyperbilirubinemia,Gastrointestinal,213,2,0.939,2,0.939
+gti2040,Hyperglycemia,Metabolic,213,29,13.615,0,0.0
+gti2040,Hypoalbuminemia,Metabolic,213,3,1.4085,0,0.0
+gti2040,Hypocalcemia,Metabolic,213,9,4.2254,0,0.0
+gti2040,Hypophosphatemia,Metabolic,213,11,5.1643,0,0.0
+gti2040,Hypotension,Cardiovascular,213,5,2.3474,1,0.4695
+gti2040,Hypoxia,Respiratory,213,1,0.4695,1,0.4695
+gti2040,Infection,Infection,213,34,15.9624,21,9.8592
+gti2040,Injection site reaction,Procedure related,213,7,3.2864,0,0.0
+gti2040,Insomnia,General,213,5,2.3474,0,0.0
+gti2040,Leukopenia,Hematologic,213,28,13.1455,1,0.4695
+gti2040,Lower Respiratory Tract Infection or symptoms,Respiratory,213,22,10.3286,1,0.4695
+gti2040,Lymphopenia,Hematologic,213,30,14.0845,9,4.2254
+gti2040,Mortality,Mortality,213,11,5.1643,11,5.1643
+gti2040,Mucositis,Gastrointestinal,213,5,2.3474,0,0.0
+gti2040,Musculoskeletal disorser,Musculoskeletal,213,18,8.4507,0,0.0
+gti2040,Myocardial Infarction,Cardiovascular,213,1,0.4695,1,0.4695
+gti2040,Myositis,Musculoskeletal,213,1,0.4695,0,0.0
+gti2040,Nausea And Vomiting,Gastrointestinal,213,61,28.6385,0,0.0
+gti2040,Neuropathy,Neurologic,213,12,5.6338,1,0.4695
+gti2040,Neutropenia,Hematologic,213,38,17.8404,33,15.493
+gti2040,Neutropenic Fever,Hematologic,213,26,12.2066,26,12.2066
+gti2040,Pain,General,213,2,0.939,0,0.0
+gti2040,Pneumonia,Respiratory,213,6,2.8169,6,2.8169
+gti2040,Pulmonary Embolism,Cardiovascular,213,1,0.4695,1,0.4695
+gti2040,Rash,Mucocutaneous,213,18,8.4507,0,0.0
+gti2040,Renal Injury,Renal,213,7,3.2864,0,0.0
+gti2040,Sepsis,Infection,213,7,3.2864,7,3.2864
+gti2040,Syncope,Neurologic,213,1,0.4695,0,0.0
+gti2040,Thrombocytopenia,Hematologic,213,64,30.0469,47,22.0657
+gti2040,Transaminase Increase,Gastrointestinal,213,30,14.0845,6,2.8169
+gti2040,Upper Respiratory Tract Infection or symptoms,Respiratory,213,7,3.2864,0,0.0
+gtx-102-apazunersen,Aseptic Meningitis,Neurologic,5,5,100.0,5,100.0
+gtx-102-apazunersen,Ataxia,Neurologic,5,5,100.0,5,100.0
+gtx-102-apazunersen,CSF protein increase,Neurologic,5,5,100.0,0,0.0
+gtx-102-apazunersen,Fatigue,General,5,0,0.0,0,0.0
+gtx-102-apazunersen,Headache,Neurologic,5,0,0.0,0,0.0
+gtx-102-apazunersen,Infection,Infection,5,0,0.0,0,0.0
+gtx-102-apazunersen,Lower Extremity Weakness,Neurologic,5,5,100.0,5,100.0
+gtx-102-apazunersen,Radiculitis,Neurologic,5,5,100.0,5,100.0
+gtx-102-apazunersen,Urinary Tract Infection,Genitourinary,5,0,0.0,0,0.0
+inotersen,Anaphylaxis,Inflammatory,1978,35,1.7695,35,1.7695
+inotersen,Anemia,Hematologic,1978,185,9.3529,0,0.0
+inotersen,Angina Pectoris,Cardiovascular,1978,33,1.6684,0,0.0
+inotersen,Anorexia,General,1978,11,0.5561,0,0.0
+inotersen,Atrial fibrilation/flutter,Cardiovascular,1978,13,0.6572,0,0.0
+inotersen,CSF Pleocytosis,Neurologic,1978,1,0.0506,1,0.0506
+inotersen,Cardiac Arrest,Cardiovascular,1978,1,0.0506,1,0.0506
+inotersen,Cerebrovascular Accident,Neurologic,1978,16,0.8089,16,0.8089
+inotersen,Constipation,Gastrointestinal,1978,8,0.4044,0,0.0
+inotersen,Deep Vein Thrombosis,Cardiovascular,1978,10,0.5056,10,0.5056
+inotersen,Delirium,Psychiatric,1978,18,0.91,18,0.91
+inotersen,Diarrhoea,Gastrointestinal,1978,18,0.91,0,0.0
+inotersen,Dizziness,Neurologic,1978,62,3.1345,0,0.0
+inotersen,Dry Mouth,Mucocutaneous,1978,16,0.8089,0,0.0
+inotersen,ECG Abnormalities,Cardiovascular,1978,29,1.4661,14,0.7078
+inotersen,Edema,General,1978,166,8.3923,0,0.0
+inotersen,Eosinophilia,Hematologic,1978,6,0.3033,0,0.0
+inotersen,Fall,Neurologic,1978,80,4.0445,65,3.2861
+inotersen,Fatigue,General,1978,285,14.4085,0,0.0
+inotersen,Fever,General,1978,148,7.4823,0,0.0
+inotersen,Flu-like,General,1978,54,2.73,0,0.0
+inotersen,GI symptoms,Gastrointestinal,1978,195,9.8584,0,0.0
+inotersen,Gait Disturbance,Neurologic,1978,80,4.0445,0,0.0
+inotersen,Glomerulonephritis,Renal,1978,42,2.1234,42,2.1234
+inotersen,Head injury,Neurologic,1978,11,0.5561,11,0.5561
+inotersen,Headache,Neurologic,1978,99,5.0051,0,0.0
+inotersen,Heart Failure,Cardiovascular,1978,50,2.5278,50,2.5278
+inotersen,Hepatic Injury,Gastrointestinal,1978,2,0.1011,2,0.1011
+inotersen,Hyperbilirubinemia,Gastrointestinal,1978,21,1.0617,21,1.0617
+inotersen,Hypertension,Cardiovascular,1978,20,1.0111,0,0.0
+inotersen,Hypoalbuminemia,Metabolic,1978,10,0.5056,0,0.0
+inotersen,Hypotension,Cardiovascular,1978,44,2.2245,0,0.0
+inotersen,Infection,Infection,1978,8,0.4044,0,0.0
+inotersen,Inflammatory response,Inflammatory,1978,0,0.0,0,0.0
+inotersen,Injection site reaction,Procedure related,1978,276,13.9535,0,0.0
+inotersen,Insomnia,General,1978,20,1.0111,0,0.0
+inotersen,Lower Respiratory Tract Infection or symptoms,Respiratory,1978,121,6.1173,103,5.2073
+inotersen,Lymphopenia,Hematologic,1978,32,1.6178,0,0.0
+inotersen,Mortality,Mortality,1978,35,1.7695,35,1.7695
+inotersen,Musculoskeletal disorser,Musculoskeletal,1978,91,4.6006,0,0.0
+inotersen,Myelopathy,Neurologic,1978,3,0.1517,3,0.1517
+inotersen,Nausea And Vomiting,Gastrointestinal,1978,256,12.9424,0,0.0
+inotersen,Neurologic disorder,Neurologic,1978,16,0.8089,0,0.0
+inotersen,Ocular disorder,Ocular,1978,31,1.5672,0,0.0
+inotersen,Paresthesia,Neurologic,1978,11,0.5561,0,0.0
+inotersen,Pleural Effusion,Respiratory,1978,11,0.5561,11,0.5561
+inotersen,Proteinuria,Renal,1978,237,11.9818,0,0.0
+inotersen,Pulmonary Embolism,Cardiovascular,1978,3,0.1517,3,0.1517
+inotersen,Rash,Mucocutaneous,1978,51,2.5784,0,0.0
+inotersen,Renal Injury,Renal,1978,221,11.1729,209,10.5662
+inotersen,Sepsis,Infection,1978,12,0.6067,12,0.6067
+inotersen,Syncope,Neurologic,1978,46,2.3256,0,0.0
+inotersen,Tachycardia,Cardiovascular,1978,10,0.5056,0,0.0
+inotersen,Thrombocytopenia,Hematologic,1978,523,26.4408,342,17.2902
+inotersen,Transaminase Increase,Gastrointestinal,1978,157,7.9373,0,0.0
+inotersen,Tremor,Neurologic,1978,39,1.9717,0,0.0
+inotersen,Upper Respiratory Tract Infection or symptoms,Respiratory,1978,36,1.82,0,0.0
+inotersen,Urinary Casts,Renal,1978,96,4.8534,0,0.0
+inotersen,Urinary Incontinence,Genitourinary,1978,10,0.5056,0,0.0
+inotersen,Urinary Tract Infection,Genitourinary,1978,186,9.4034,0,0.0
+inotersen,Vitamin A Deficiency,Metabolic,1978,28,1.4156,0,0.0
+inotersen,Vitamin D deficiency,Metabolic,1978,0,0.0,0,0.0
+ion363-jacifusen-ulefnersen,Back Pain,Musculoskeletal,12,6,50.0,0,0.0
+ion363-jacifusen-ulefnersen,Fall,Neurologic,12,1,8.3333,1,8.3333
+ion363-jacifusen-ulefnersen,Headache,Neurologic,12,4,33.3333,0,0.0
+ion363-jacifusen-ulefnersen,Injection site reaction,Procedure related,12,0,0.0,0,0.0
+ion363-jacifusen-ulefnersen,Nausea And Vomiting,Gastrointestinal,12,3,25.0,0,0.0
+ion363-jacifusen-ulefnersen,Paresthesia,Neurologic,12,0,0.0,0,0.0
+ion363-jacifusen-ulefnersen,Proteinuria,Renal,12,0,0.0,0,0.0
+ion363-jacifusen-ulefnersen,Respiratory Failure,Respiratory,12,1,8.3333,1,8.3333
+ion464-biib101,Fall,Neurologic,40,25,62.5,0,0.0
+ion464-biib101,Headache,Neurologic,40,6,15.0,0,0.0
+ion464-biib101,Injection site reaction,Procedure related,40,5,12.5,0,0.0
+ion464-biib101,Musculoskeletal disorser,Musculoskeletal,40,3,7.5,0,0.0
+ion464-biib101,Urinary Tract Infection,Genitourinary,40,12,30.0,0,0.0
+ion541-biib105,Fall,Neurologic,99,0,0.0,0,0.0
+ion541-biib105,Headache,Neurologic,99,0,0.0,0,0.0
+ion541-biib105,Injection site reaction,Procedure related,99,0,0.0,0,0.0
+ion582-obudanersen,No AE,No AE,51,0,0.0,0,0.0
+ion859-biib-094,CSF Pleocytosis,Neurologic,82,1,1.2195,1,1.2195
+ion859-biib-094,Fall,Neurologic,82,5,6.0976,0,0.0
+ion859-biib-094,Fatigue,General,82,1,1.2195,0,0.0
+ion859-biib-094,Headache,Neurologic,82,3,3.6585,0,0.0
+ion859-biib-094,Injection site reaction,Procedure related,82,9,10.9756,0,0.0
+ion859-biib-094,Musculoskeletal disorser,Musculoskeletal,82,2,2.439,0,0.0
+ion859-biib-094,Paresthesia,Neurologic,82,1,1.2195,0,0.0
+ion859-biib-094,Post Lumbar Puncture Syndrome,Procedure related,82,6,7.3171,0,0.0
+ion859-biib-094,Renal Injury,Renal,82,1,1.2195,0,0.0
+ion859-biib-094,Tachycardia,Cardiovascular,82,1,1.2195,0,0.0
+ionis-agt-lrx-evazarsen-sodium,Hyperkalemia,Metabolic,35,1,2.8571,0,0.0
+ionis-dgat2-rx-ion224-cs-2,Aortic stenosis,Cardiovascular,160,1,0.625,1,0.625
+ionis-dgat2-rx-ion224-cs-2,Cellulitis,Infection,160,6,3.75,0,0.0
+ionis-dgat2-rx-ion224-cs-2,Diabetes mellitus,Metabolic,160,10,6.25,0,0.0
+ionis-dgat2-rx-ion224-cs-2,Diarrhoea,Gastrointestinal,160,18,11.25,0,0.0
+ionis-dgat2-rx-ion224-cs-2,GI symptoms,Gastrointestinal,160,11,6.875,0,0.0
+ionis-dgat2-rx-ion224-cs-2,Headache,Neurologic,160,18,11.25,0,0.0
+ionis-dgat2-rx-ion224-cs-2,Hemoptysis,Hematologic,160,1,0.625,0,0.0
+ionis-dgat2-rx-ion224-cs-2,Infection,Infection,160,38,23.75,0,0.0
+ionis-dgat2-rx-ion224-cs-2,Injection site reaction,Procedure related,160,0,0.0,0,0.0
+ionis-dgat2-rx-ion224-cs-2,Musculoskeletal disorser,Musculoskeletal,160,18,11.25,0,0.0
+ionis-dgat2-rx-ion224-cs-2,Myocardial Infarction,Cardiovascular,160,1,0.625,1,0.625
+ionis-dgat2-rx-ion224-cs-2,Nausea And Vomiting,Gastrointestinal,160,26,16.25,0,0.0
+ionis-dgat2-rx-ion224-cs-2,Nephrolithiasis,Genitourinary,160,1,0.625,0,0.0
+ionis-dgat2-rx-ion224-cs-2,Psychiatric disorder,Psychiatric,160,1,0.625,1,0.625
+ionis-dgat2-rx-ion224-cs-2,Upper Respiratory Tract Infection or symptoms,Respiratory,160,21,13.125,0,0.0
+ionis-dgat2-rx-ion224-cs-2,Urinary Tract Infection,Genitourinary,160,29,18.125,0,0.0
+ionis-fgfr4rx-isis-463588,No AE,No AE,13,0,0.0,0,0.0
+ionis-fxirx-isis-416858,Anaphylaxis,Inflammatory,340,1,0.2941,1,0.2941
+ionis-fxirx-isis-416858,Injection site reaction,Procedure related,340,109,32.0588,0,0.0
+ionis-fxirx-isis-416858,Transaminase Increase,Gastrointestinal,340,2,0.5882,0,0.0
+ionis-gccrrx-isis-426115,No AE,No AE,38,0,0.0,0,0.0
+ionis-gcgrrx-isis-449884,Hyperbilirubinemia,Gastrointestinal,124,1,0.8065,1,0.8065
+ionis-gcgrrx-isis-449884,Hypoglycemia,Metabolic,124,21,16.9355,0,0.0
+ionis-gcgrrx-isis-449884,Injection site reaction,Procedure related,124,26,20.9677,0,0.0
+ionis-gcgrrx-isis-449884,Transaminase Increase,Gastrointestinal,124,1,0.8065,1,0.8065
+ionis-ghr-lrx-cimdelirsen,Headache,Neurologic,41,0,0.0,0,0.0
+ionis-ghr-lrx-cimdelirsen,Infection,Infection,41,5,12.1951,0,0.0
+ionis-ghr-lrx-cimdelirsen,Urinary Tract Infection,Genitourinary,41,7,17.0732,0,0.0
+ionis-pkkrx-isis-546254,Headache,Neurologic,12,2,16.6667,0,0.0
+ionis-pkkrx-isis-546254,Injection site reaction,Procedure related,12,12,100.0,0,0.0
+ionis-pkkrx-isis-546254,Urinary Tract Infection,Genitourinary,12,4,33.3333,0,0.0
+isis-104838,Coagulation abnormalities,Hematologic,160,0,0.0,0,0.0
+isis-104838,Injection site reaction,Procedure related,160,0,0.0,0,0.0
+isis-104838,Rash,Mucocutaneous,160,2,1.25,0,0.0
+isis-104838,Thrombocytopenia,Hematologic,160,1,0.625,0,0.0
+isis-113715,Injection site reaction,Procedure related,96,0,0.0,0,0.0
+isis-353512,CRP increase,Inflammatory,103,103,100.0,0,0.0
+isis-353512,IL Level Increased,Inflammatory,103,103,100.0,103,100.0
+isis-404173,Gastritis,Gastrointestinal,92,6,6.5217,0,0.0
+isis-404173,Headache,Neurologic,92,0,0.0,0,0.0
+isis-404173,Hypoglycemia,Metabolic,92,7,7.6087,0,0.0
+isis-404173,Injection site reaction,Procedure related,92,0,0.0,0,0.0
+isis-404173,Upper Respiratory Tract Infection or symptoms,Respiratory,92,10,10.8696,0,0.0
+isis-apo-a-rx-isis-494372,Angina Pectoris,Cardiovascular,64,2,3.125,2,3.125
+isis-apo-a-rx-isis-494372,Fatigue,General,64,32,50.0,0,0.0
+isis-apo-a-rx-isis-494372,Headache,Neurologic,64,21,32.8125,0,0.0
+isis-apo-a-rx-isis-494372,Injection site reaction,Procedure related,64,12,18.75,0,0.0
+isis-crprx-isis-329993,Contact Dermatitis,Mucocutaneous,81,0,0.0,0,0.0
+isis-crprx-isis-329993,Foot infection,Infection,81,1,1.2346,0,0.0
+isis-crprx-isis-329993,Headache,Neurologic,81,4,4.9383,0,0.0
+isis-crprx-isis-329993,Injection site reaction,Procedure related,81,13,16.0494,0,0.0
+isis-crprx-isis-329993,Renal Injury,Renal,81,0,0.0,0,0.0
+isis-crprx-isis-329993,Upper Respiratory Tract Infection or symptoms,Respiratory,81,0,0.0,0,0.0
+isis-crprx-isis-329993,Urinary Tract Infection,Genitourinary,81,0,0.0,0,0.0
+isis333611,Dizziness,Neurologic,24,2,8.3333,0,0.0
+isis333611,Fall,Neurologic,24,2,8.3333,0,0.0
+isis333611,Headache,Neurologic,24,2,8.3333,0,0.0
+isis333611,Musculoskeletal disorser,Musculoskeletal,24,4,16.6667,0,0.0
+isis333611,Nausea And Vomiting,Gastrointestinal,24,5,20.8333,0,0.0
+isis333611,Post Lumbar Puncture Syndrome,Procedure related,24,8,33.3333,0,0.0
+isis5132-cgp69846a,Acute hemolytic anemia,Hematologic,93,1,1.0753,1,1.0753
+isis5132-cgp69846a,Anaphylaxis,Inflammatory,93,1,1.0753,0,0.0
+isis5132-cgp69846a,Anasarca,General,93,1,1.0753,1,1.0753
+isis5132-cgp69846a,Anemia,Hematologic,93,5,5.3763,0,0.0
+isis5132-cgp69846a,Anorexia,General,93,4,4.3011,0,0.0
+isis5132-cgp69846a,Coagulation abnormalities,Hematologic,93,1,1.0753,0,0.0
+isis5132-cgp69846a,Constipation,Gastrointestinal,93,3,3.2258,0,0.0
+isis5132-cgp69846a,Diarrhoea,Gastrointestinal,93,2,2.1505,0,0.0
+isis5132-cgp69846a,Dizziness,Neurologic,93,1,1.0753,0,0.0
+isis5132-cgp69846a,Dry Mouth,Mucocutaneous,93,1,1.0753,0,0.0
+isis5132-cgp69846a,Edema,General,93,1,1.0753,0,0.0
+isis5132-cgp69846a,Fatigue,General,93,29,31.1828,0,0.0
+isis5132-cgp69846a,Fever,General,93,2,2.1505,0,0.0
+isis5132-cgp69846a,Flu-like,General,93,1,1.0753,0,0.0
+isis5132-cgp69846a,GI symptoms,Gastrointestinal,93,5,5.3763,0,0.0
+isis5132-cgp69846a,Gastroesophageal Reflux Disease,Gastrointestinal,93,1,1.0753,0,0.0
+isis5132-cgp69846a,Headache,Neurologic,93,2,2.1505,0,0.0
+isis5132-cgp69846a,Hemoptysis,Hematologic,93,1,1.0753,0,0.0
+isis5132-cgp69846a,Hyponatremia,Metabolic,93,1,1.0753,0,0.0
+isis5132-cgp69846a,Infection,Infection,93,1,1.0753,0,0.0
+isis5132-cgp69846a,Injection site reaction,Procedure related,93,1,1.0753,0,0.0
+isis5132-cgp69846a,Insomnia,General,93,1,1.0753,0,0.0
+isis5132-cgp69846a,Leukopenia,Hematologic,93,3,3.2258,0,0.0
+isis5132-cgp69846a,Mortality,Mortality,93,5,5.3763,5,5.3763
+isis5132-cgp69846a,Musculoskeletal disorser,Musculoskeletal,93,7,7.5269,0,0.0
+isis5132-cgp69846a,Nausea And Vomiting,Gastrointestinal,93,20,21.5054,0,0.0
+isis5132-cgp69846a,Neutropenia,Hematologic,93,8,8.6022,1,1.0753
+isis5132-cgp69846a,Neutropenic Fever,Hematologic,93,1,1.0753,0,0.0
+isis5132-cgp69846a,Pain,General,93,1,1.0753,0,0.0
+isis5132-cgp69846a,Pneumonia,Respiratory,93,1,1.0753,0,0.0
+isis5132-cgp69846a,Rash,Mucocutaneous,93,1,1.0753,0,0.0
+isis5132-cgp69846a,Renal Injury,Renal,93,1,1.0753,0,0.0
+isis5132-cgp69846a,Renal failure,Renal,93,1,1.0753,1,1.0753
+isis5132-cgp69846a,Respiratory Failure,Respiratory,93,1,1.0753,1,1.0753
+isis5132-cgp69846a,Stomatitis,Gastrointestinal,93,2,2.1505,0,0.0
+isis5132-cgp69846a,Thrombocytopenia,Hematologic,93,5,5.3763,0,0.0
+isis5132-cgp69846a,Transaminase Increase,Gastrointestinal,93,3,3.2258,0,0.0
+isth0036,Choroidal effusion,Ocular,12,1,8.3333,1,8.3333
+isth0036,Conjectival hyperemia,Ocular,12,0,0.0,0,0.0
+isth0036,Conjunctival Haemorrhage,Ocular,12,0,0.0,0,0.0
+isth0036,Corneal Edema,Ocular,12,0,0.0,0,0.0
+isth0036,Corneal erosion/Epithelium defect,Ocular,12,0,0.0,0,0.0
+isth0036,Dry eye,Ocular,12,0,0.0,0,0.0
+isth0036,Eyelid eczema,Ocular,12,0,0.0,0,0.0
+isth0036,Gingivitis,Mucocutaneous,12,0,0.0,0,0.0
+isth0036,Gout,Metabolic,12,0,0.0,0,0.0
+isth0036,Hypertension,Cardiovascular,12,0,0.0,0,0.0
+isth0036,Increased Intraocular Pressure,Ocular,12,1,8.3333,1,8.3333
+isth0036,Musculoskeletal disorser,Musculoskeletal,12,0,0.0,0,0.0
+isth0036,Ocular disorder,Ocular,12,0,0.0,0,0.0
+isth0036,Upper Respiratory Tract Infection or symptoms,Respiratory,12,0,0.0,0,0.0
+isth0036,Urinary Tract Infection,Genitourinary,12,0,0.0,0,0.0
+kif1a,CSF Leak,Procedure related,2,1,50.0,0,0.0
+kif1a,Fever,General,2,1,50.0,0,0.0
+ly2275796,Anaphylaxis,Inflammatory,54,2,3.7037,0,0.0
+ly2275796,Anemia,Hematologic,54,7,12.963,4,7.4074
+ly2275796,Anorexia,General,54,6,11.1111,0,0.0
+ly2275796,Chills,General,54,4,7.4074,0,0.0
+ly2275796,Coagulation abnormalities,Hematologic,54,20,37.037,0,0.0
+ly2275796,Dehydration,Other,54,4,7.4074,0,0.0
+ly2275796,Diarrhoea,Gastrointestinal,54,5,9.2593,0,0.0
+ly2275796,Fatigue,General,54,38,70.3704,0,0.0
+ly2275796,Fever,General,54,8,14.8148,0,0.0
+ly2275796,Hypoalbuminemia,Metabolic,54,6,11.1111,6,11.1111
+ly2275796,Hypokalemia,Metabolic,54,2,3.7037,0,0.0
+ly2275796,Hyponatremia,Metabolic,54,2,3.7037,0,0.0
+ly2275796,Hypophosphatemia,Metabolic,54,2,3.7037,0,0.0
+ly2275796,Lymphopenia,Hematologic,54,6,11.1111,5,9.2593
+ly2275796,Nausea And Vomiting,Gastrointestinal,54,12,22.2222,0,0.0
+ly2275796,Neuropathy,Neurologic,54,3,5.5556,0,0.0
+ly2275796,Neutropenia,Hematologic,54,8,14.8148,8,14.8148
+ly2275796,Rash,Mucocutaneous,54,2,3.7037,0,0.0
+ly2275796,Renal Injury,Renal,54,2,3.7037,0,0.0
+ly2275796,Thrombocytopenia,Hematologic,54,7,12.963,0,0.0
+ly2275796,Transaminase Increase,Gastrointestinal,54,4,7.4074,0,0.0
+milasen,No AE,No AE,1,0,0.0,0,0.0
+mipomersen-kynamro,Anaphylaxis,Inflammatory,3766,4,0.1062,4,0.1062
+mipomersen-kynamro,Angina Pectoris,Cardiovascular,3766,62,1.6463,54,1.4339
+mipomersen-kynamro,Anorexia,General,3766,2,0.0531,0,0.0
+mipomersen-kynamro,Arrhythmias,Cardiovascular,3766,5,0.1328,0,0.0
+mipomersen-kynamro,CRP increase,Inflammatory,3766,32,0.8497,0,0.0
+mipomersen-kynamro,Chills,General,3766,47,1.248,0,0.0
+mipomersen-kynamro,Deep Vein Thrombosis,Cardiovascular,3766,2,0.0531,2,0.0531
+mipomersen-kynamro,Dizziness,Neurologic,3766,11,0.2921,0,0.0
+mipomersen-kynamro,Edema,General,3766,28,0.7435,0,0.0
+mipomersen-kynamro,Encephalitis,Neurologic,3766,1,0.0266,1,0.0266
+mipomersen-kynamro,Fall,Neurologic,3766,3,0.0797,0,0.0
+mipomersen-kynamro,Fatigue,General,3766,65,1.726,0,0.0
+mipomersen-kynamro,Fever,General,3766,73,1.9384,0,0.0
+mipomersen-kynamro,Flu-like,General,3766,1100,29.2087,0,0.0
+mipomersen-kynamro,GI symptoms,Gastrointestinal,3766,168,4.461,0,0.0
+mipomersen-kynamro,Headache,Neurologic,3766,72,1.9118,0,0.0
+mipomersen-kynamro,Hepatic Steatosis,Gastrointestinal,3766,139,3.6909,139,3.6909
+mipomersen-kynamro,Hepatomegaly,Gastrointestinal,3766,1,0.0266,1,0.0266
+mipomersen-kynamro,Hypertension,Cardiovascular,3766,22,0.5842,0,0.0
+mipomersen-kynamro,Immune Thrombocytopenic Purpura,Hematologic,3766,0,0.0,0,0.0
+mipomersen-kynamro,Injection site reaction,Procedure related,3766,2115,56.1604,0,0.0
+mipomersen-kynamro,Insomnia,General,3766,19,0.5045,0,0.0
+mipomersen-kynamro,Lower Respiratory Tract Infection or symptoms,Respiratory,3766,8,0.2124,0,0.0
+mipomersen-kynamro,Musculoskeletal disorser,Musculoskeletal,3766,138,3.6644,0,0.0
+mipomersen-kynamro,Myocardial Infarction,Cardiovascular,3766,11,0.2921,11,0.2921
+mipomersen-kynamro,Nausea And Vomiting,Gastrointestinal,3766,54,1.4339,0,0.0
+mipomersen-kynamro,Petechiae,Hematologic,3766,3,0.0797,0,0.0
+mipomersen-kynamro,Psychiatric disorder,Psychiatric,3766,5,0.1328,5,0.1328
+mipomersen-kynamro,Rash,Mucocutaneous,3766,25,0.6638,0,0.0
+mipomersen-kynamro,Respiratory Failure,Respiratory,3766,1,0.0266,1,0.0266
+mipomersen-kynamro,Thrombocytopenia,Hematologic,3766,0,0.0,0,0.0
+mipomersen-kynamro,Transaminase Increase,Gastrointestinal,3766,1110,29.4742,0,0.0
+mipomersen-kynamro,Tremor,Neurologic,3766,4,0.1062,0,0.0
+mipomersen-kynamro,Upper Respiratory Tract Infection or symptoms,Respiratory,3766,52,1.3808,0,0.0
+mipomersen-kynamro,Urinary Tract Infection,Genitourinary,3766,9,0.239,0,0.0
+mongersen-ged-0301,Allergic rhinitis,Inflammatory,1764,1,0.0567,0,0.0
+mongersen-ged-0301,CRP increase,Inflammatory,1764,15,0.8503,0,0.0
+mongersen-ged-0301,Diarrhoea,Gastrointestinal,1764,12,0.6803,0,0.0
+mongersen-ged-0301,ECG Abnormalities,Cardiovascular,1764,1,0.0567,0,0.0
+mongersen-ged-0301,Fatigue,General,1764,8,0.4535,0,0.0
+mongersen-ged-0301,Fever,General,1764,12,0.6803,0,0.0
+mongersen-ged-0301,Flu-like,General,1764,12,0.6803,0,0.0
+mongersen-ged-0301,GI symptoms,Gastrointestinal,1764,14,0.7937,0,0.0
+mongersen-ged-0301,Haemorrhoid surgery,Other,1764,1,0.0567,0,0.0
+mongersen-ged-0301,Headache,Neurologic,1764,3,0.1701,0,0.0
+mongersen-ged-0301,Hypertension,Cardiovascular,1764,1,0.0567,0,0.0
+mongersen-ged-0301,Intestinal fibrosis,Gastrointestinal,1764,0,0.0,0,0.0
+mongersen-ged-0301,Metabolic disorder,Metabolic,1764,1,0.0567,0,0.0
+mongersen-ged-0301,Mortality,Mortality,1764,2,0.1134,2,0.1134
+mongersen-ged-0301,Musculoskeletal disorser,Musculoskeletal,1764,8,0.4535,0,0.0
+mongersen-ged-0301,Nausea And Vomiting,Gastrointestinal,1764,1,0.0567,0,0.0
+mongersen-ged-0301,Pre Existing Condition Exacerbation,Other,1764,21,1.1905,20,1.1338
+mongersen-ged-0301,Procedure related,Procedure related,1764,1,0.0567,0,0.0
+mongersen-ged-0301,Transaminase Increase,Gastrointestinal,1764,8,0.4535,0,0.0
+mongersen-ged-0301,Urinary Tract Infection,Genitourinary,1764,25,1.4172,0,0.0
+n-l-asxl3,No AE,No AE,1,0,0.0,0,0.0
+n-l-atn1,No AE,No AE,1,0,0.0,0,0.0
+n-l-chchd10,No AE,No AE,9,0,0.0,0,0.0
+n-l-elp1,No AE,No AE,1,0,0.0,0,0.0
+n-l-flvcr1,No AE,No AE,1,0,0.0,0,0.0
+n-l-h3f3a,No AE,No AE,1,0,0.0,0,0.0
+n-l-hnrnph2,No AE,No AE,3,0,0.0,0,0.0
+n-l-lmnb1,No AE,No AE,1,0,0.0,0,0.0
+n-l-saa1,No AE,No AE,1,0,0.0,0,0.0
+n-l-scn2a-de,No AE,No AE,2,0,0.0,0,0.0
+n-l-serpini1,No AE,No AE,1,0,0.0,0,0.0
+n-l-tardbp,No AE,No AE,1,0,0.0,0,0.0
+n-l-tubb4a,No AE,No AE,1,0,0.0,0,0.0
+n-l-ubtf,No AE,No AE,1,0,0.0,0,0.0
+nio752,Abnormal vision,Ocular,59,3,5.0847,0,0.0
+nio752,Agitation,Psychiatric,59,2,3.3898,0,0.0
+nio752,Anaphylaxis,Inflammatory,59,1,1.6949,0,0.0
+nio752,Anemia,Hematologic,59,1,1.6949,0,0.0
+nio752,Anorexia,General,59,1,1.6949,0,0.0
+nio752,Anxiety,Psychiatric,59,1,1.6949,0,0.0
+nio752,Aphasia,Neurologic,59,2,3.3898,0,0.0
+nio752,Apnea,Respiratory,59,1,1.6949,0,0.0
+nio752,Appendicitis,Gastrointestinal,59,1,1.6949,1,1.6949
+nio752,Areflexia,Neurologic,59,2,3.3898,0,0.0
+nio752,Arrhythmias,Cardiovascular,59,4,6.7797,0,0.0
+nio752,Ascites,General,59,1,1.6949,0,0.0
+nio752,Aspiration,Respiratory,59,1,1.6949,1,1.6949
+nio752,Ataxia,Neurologic,59,3,5.0847,3,5.0847
+nio752,Balance Disorder,Neurologic,59,8,13.5593,0,0.0
+nio752,CSF Pleocytosis,Neurologic,59,2,3.3898,1,1.6949
+nio752,CSF protein increase,Neurologic,59,3,5.0847,0,0.0
+nio752,Cataract,Ocular,59,1,1.6949,0,0.0
+nio752,Choroidal hemorrhage,Ocular,59,1,1.6949,0,0.0
+nio752,Confusion,Neurologic,59,1,1.6949,1,1.6949
+nio752,Covid,Infection,59,1,1.6949,1,1.6949
+nio752,Dehydration,Other,59,1,1.6949,0,0.0
+nio752,Diarrhoea,Gastrointestinal,59,2,3.3898,0,0.0
+nio752,Dizziness,Neurologic,59,3,5.0847,0,0.0
+nio752,Dry eye,Ocular,59,3,5.0847,0,0.0
+nio752,Dysarthria,Neurologic,59,1,1.6949,0,0.0
+nio752,Dysphagia,Neurologic,59,2,3.3898,0,0.0
+nio752,Dystonia,Neurologic,59,1,1.6949,0,0.0
+nio752,Encephalopathy,Neurologic,59,2,3.3898,2,3.3898
+nio752,Epistaxis,Hematologic,59,3,5.0847,0,0.0
+nio752,Eye Pruritus,Ocular,59,1,1.6949,0,0.0
+nio752,Fall,Neurologic,59,19,32.2034,0,0.0
+nio752,Fatigue,General,59,6,10.1695,0,0.0
+nio752,Fecaloma,Gastrointestinal,59,1,1.6949,0,0.0
+nio752,Fever,General,59,2,3.3898,0,0.0
+nio752,Fracture,Musculoskeletal,59,6,10.1695,6,10.1695
+nio752,GI Bleeding,Gastrointestinal,59,1,1.6949,1,1.6949
+nio752,GI symptoms,Gastrointestinal,59,4,6.7797,0,0.0
+nio752,Gait Disturbance,Neurologic,59,8,13.5593,0,0.0
+nio752,Gastroesophageal Reflux Disease,Gastrointestinal,59,2,3.3898,0,0.0
+nio752,Gingivitis,Mucocutaneous,59,1,1.6949,0,0.0
+nio752,Glaucoma,Ocular,59,1,1.6949,0,0.0
+nio752,Headache,Neurologic,59,5,8.4746,0,0.0
+nio752,Hyperglycemia,Metabolic,59,2,3.3898,0,0.0
+nio752,Hypoesthesia,Neurologic,59,2,3.3898,0,0.0
+nio752,Hypotension,Cardiovascular,59,3,5.0847,0,0.0
+nio752,Hypoxia,Respiratory,59,1,1.6949,1,1.6949
+nio752,Insomnia,General,59,3,5.0847,0,0.0
+nio752,Mortality,Mortality,59,2,3.3898,2,3.3898
+nio752,Musculoskeletal disorser,Musculoskeletal,59,30,50.8475,0,0.0
+nio752,Nausea And Vomiting,Gastrointestinal,59,5,8.4746,0,0.0
+nio752,Peptic Ulcer Disease,Gastrointestinal,59,1,1.6949,0,0.0
+nio752,Peritonitis,Gastrointestinal,59,1,1.6949,0,0.0
+nio752,Photophobia,Ocular,59,2,3.3898,0,0.0
+nio752,Pleural Effusion,Respiratory,59,1,1.6949,0,0.0
+nio752,Post Lumbar Puncture Syndrome,Procedure related,59,6,10.1695,0,0.0
+nio752,Pyelonephritis,Renal,59,1,1.6949,1,1.6949
+nio752,Rash,Mucocutaneous,59,5,8.4746,0,0.0
+nio752,Renal Injury,Renal,59,2,3.3898,0,0.0
+nio752,Renal failure,Renal,59,1,1.6949,1,1.6949
+nio752,Rhabdomyolysis,Musculoskeletal,59,1,1.6949,0,0.0
+nio752,Salivation,Other,59,1,1.6949,0,0.0
+nio752,Stridor,Respiratory,59,1,1.6949,0,0.0
+nio752,Syncope,Neurologic,59,2,3.3898,0,0.0
+nio752,Tachypnea,Respiratory,59,1,1.6949,0,0.0
+nio752,Transaminase Increase,Gastrointestinal,59,2,3.3898,0,0.0
+nio752,Upper Respiratory Tract Infection or symptoms,Respiratory,59,10,16.9492,0,0.0
+nio752,Urinary Incontinence,Genitourinary,59,1,1.6949,0,0.0
+nio752,Urinary Retention,Genitourinary,59,2,3.3898,0,0.0
+nio752,Urinary Tract Infection,Genitourinary,59,7,11.8644,0,0.0
+nio752,Vertigo,Neurologic,59,2,3.3898,0,0.0
+nio752,Vitamin b12 decrease,Metabolic,59,12,20.339,0,0.0
+nio752,hypothyroidism,Metabolic,59,1,1.6949,0,0.0
+ns-089-ncnp-02-brogidirsen,Arrhythmias,Cardiovascular,6,1,16.6667,0,0.0
+ns-089-ncnp-02-brogidirsen,Blood fibrinogen decreased,Hematologic,6,1,16.6667,0,0.0
+ns-089-ncnp-02-brogidirsen,Chemokine increased,Inflammatory,6,1,16.6667,0,0.0
+ns-089-ncnp-02-brogidirsen,Coagulation abnormalities,Hematologic,6,1,16.6667,0,0.0
+ns-089-ncnp-02-brogidirsen,Diabetes mellitus,Metabolic,6,1,16.6667,0,0.0
+ns-089-ncnp-02-brogidirsen,Headache,Neurologic,6,1,16.6667,0,0.0
+ns-089-ncnp-02-brogidirsen,Hematuria,Genitourinary,6,1,16.6667,0,0.0
+ns-089-ncnp-02-brogidirsen,Hordeolum,Ocular,6,1,16.6667,0,0.0
+ns-089-ncnp-02-brogidirsen,Metabolic disorder,Metabolic,6,1,16.6667,0,0.0
+ns-089-ncnp-02-brogidirsen,Microglubulin in urine,Renal,6,3,50.0,0,0.0
+ns-089-ncnp-02-brogidirsen,Proteinuria,Renal,6,1,16.6667,0,0.0
+ns-089-ncnp-02-brogidirsen,Rash,Mucocutaneous,6,1,16.6667,0,0.0
+ns-089-ncnp-02-brogidirsen,Renal Injury,Renal,6,4,66.6667,0,0.0
+nusinersen,Anaphylaxis,Inflammatory,13250,0,0.0,0,0.0
+nusinersen,Anemia,Hematologic,13250,26,0.1962,0,0.0
+nusinersen,Anorexia,General,13250,33,0.2491,0,0.0
+nusinersen,Anti-drug antibodies,Inflammatory,13250,21,0.1585,0,0.0
+nusinersen,Anxiety,Psychiatric,13250,15,0.1132,0,0.0
+nusinersen,Aseptic Meningitis,Neurologic,13250,22,0.166,22,0.166
+nusinersen,Balance Disorder,Neurologic,13250,22,0.166,0,0.0
+nusinersen,Bradycardia,Cardiovascular,13250,15,0.1132,0,0.0
+nusinersen,CSF Leak,Procedure related,13250,16,0.1208,0,0.0
+nusinersen,Cachexia,General,13250,17,0.1283,0,0.0
+nusinersen,Clonus,Neurologic,13250,1,0.0075,1,0.0075
+nusinersen,Constipation,Gastrointestinal,13250,10,0.0755,0,0.0
+nusinersen,Dehydration,Cardiovascular,13250,6,0.0453,0,0.0
+nusinersen,Diarrhoea,Gastrointestinal,13250,6,0.0453,0,0.0
+nusinersen,Dizziness,Neurologic,13250,21,0.1585,0,0.0
+nusinersen,Dysphagia,Neurologic,13250,43,0.3245,0,0.0
+nusinersen,Ear Infection,Infection,13250,8,0.0604,0,0.0
+nusinersen,Epistaxis,Hematologic,13250,24,0.1811,0,0.0
+nusinersen,Fall,Neurologic,13250,105,0.7925,78,0.5887
+nusinersen,Fatigue,General,13250,65,0.4906,0,0.0
+nusinersen,Feeding difficulty,General,13250,176,1.3283,0,0.0
+nusinersen,Fever,General,13250,366,2.7623,0,0.0
+nusinersen,Fracture,Musculoskeletal,13250,51,0.3849,51,0.3849
+nusinersen,GI symptoms,Gastrointestinal,13250,30,0.2264,0,0.0
+nusinersen,Gastroenteritis,Gastrointestinal,13250,6,0.0453,0,0.0
+nusinersen,Headache,Neurologic,13250,161,1.2151,0,0.0
+nusinersen,Heart Failure,Cardiovascular,13250,85,0.6415,85,0.6415
+nusinersen,Hydrocephalous,Neurologic,13250,59,0.4453,59,0.4453
+nusinersen,Hyperreflexia,Neurologic,13250,1,0.0075,0,0.0
+nusinersen,Hypertension,Cardiovascular,13250,29,0.2189,0,0.0
+nusinersen,Hypokalemia,Metabolic,13250,17,0.1283,0,0.0
+nusinersen,Hypotension,Cardiovascular,13250,50,0.3774,0,0.0
+nusinersen,Injection site reaction,Procedure related,13250,138,1.0415,0,0.0
+nusinersen,Lower Respiratory Tract Infection or symptoms,Respiratory,13250,417,3.1472,410,3.0943
+nusinersen,Meningitis,Neurologic,13250,0,0.0,0,0.0
+nusinersen,Mortality,Mortality,13250,325,2.4528,325,2.4528
+nusinersen,Muscular Weakness,Musculoskeletal,13250,11,0.083,0,0.0
+nusinersen,Musculoskeletal disorser,Musculoskeletal,13250,5,0.0377,0,0.0
+nusinersen,Nausea And Vomiting,Gastrointestinal,13250,15,0.1132,0,0.0
+nusinersen,Neutropenia,Hematologic,13250,1,0.0075,0,0.0
+nusinersen,Post Lumbar Puncture Syndrome,Procedure related,13250,72,0.5434,0,0.0
+nusinersen,Proteinuria,Renal,13250,202,1.5245,0,0.0
+nusinersen,Rash,Mucocutaneous,13250,2,0.0151,0,0.0
+nusinersen,Salivation,Other,13250,68,0.5132,0,0.0
+nusinersen,Seasonal allergy,Inflammatory,13250,7,0.0528,0,0.0
+nusinersen,Seizure,Neurologic,13250,80,0.6038,80,0.6038
+nusinersen,Sepsis,Infection,13250,55,0.4151,55,0.4151
+nusinersen,Tachycardia,Cardiovascular,13250,31,0.234,0,0.0
+nusinersen,Thrombocytopenia,Hematologic,13250,55,0.4151,0,0.0
+nusinersen,Thrombocytosis,Hematologic,13250,1,0.0075,0,0.0
+nusinersen,Transaminase Increase,Gastrointestinal,13250,18,0.1358,0,0.0
+nusinersen,Tremor,Neurologic,13250,8,0.0604,0,0.0
+nusinersen,Upper Respiratory Tract Infection or symptoms,Respiratory,13250,49,0.3698,0,0.0
+nusinersen,Urinary Tract Infection,Genitourinary,13250,57,0.4302,0,0.0
+olezarsen-tryngolza,Alopecia,Mucocutaneous,3183,3,0.0943,0,0.0
+olezarsen-tryngolza,Anaphylaxis,Inflammatory,3183,18,0.5655,18,0.5655
+olezarsen-tryngolza,Angina Pectoris,Cardiovascular,3183,3,0.0943,0,0.0
+olezarsen-tryngolza,Chills,General,3183,5,0.1571,0,0.0
+olezarsen-tryngolza,Coagulation abnormalities,Hematologic,3183,6,0.1885,0,0.0
+olezarsen-tryngolza,Diarrhoea,Gastrointestinal,3183,5,0.1571,0,0.0
+olezarsen-tryngolza,Flu-like,General,3183,3,0.0943,0,0.0
+olezarsen-tryngolza,GI symptoms,Gastrointestinal,3183,0,0.0,0,0.0
+olezarsen-tryngolza,Headache,Neurologic,3183,14,0.4398,0,0.0
+olezarsen-tryngolza,Hyperglycemia,Metabolic,3183,0,0.0,0,0.0
+olezarsen-tryngolza,Infection,Infection,3183,0,0.0,0,0.0
+olezarsen-tryngolza,Injection site reaction,Procedure related,3183,56,1.7593,0,0.0
+olezarsen-tryngolza,Musculoskeletal disorser,Musculoskeletal,3183,7,0.2199,0,0.0
+olezarsen-tryngolza,Thrombocytopenia,Hematologic,3183,31,0.9739,0,0.0
+olezarsen-tryngolza,Transaminase Increase,Gastrointestinal,3183,78,2.4505,0,0.0
+olezarsen-tryngolza,Trismus,Other,3183,3,0.0943,0,0.0
+pelacarsen-ionis-akcea-apo-a-lr-ionis-681257-isis-681257,Fatigue,General,332,3,0.9036,0,0.0
+pelacarsen-ionis-akcea-apo-a-lr-ionis-681257-isis-681257,Fever,General,332,3,0.9036,0,0.0
+pelacarsen-ionis-akcea-apo-a-lr-ionis-681257-isis-681257,Flu-like,General,332,37,11.1446,0,0.0
+pelacarsen-ionis-akcea-apo-a-lr-ionis-681257-isis-681257,Headache,Neurologic,332,35,10.5422,0,0.0
+pelacarsen-ionis-akcea-apo-a-lr-ionis-681257-isis-681257,Injection site reaction,Procedure related,332,77,23.1928,0,0.0
+pelacarsen-ionis-akcea-apo-a-lr-ionis-681257-isis-681257,Mortality,Mortality,332,1,0.3012,1,0.3012
+pelacarsen-ionis-akcea-apo-a-lr-ionis-681257-isis-681257,Musculoskeletal disorser,Musculoskeletal,332,37,11.1446,0,0.0
+pelacarsen-ionis-akcea-apo-a-lr-ionis-681257-isis-681257,Thrombocytopenia,Hematologic,332,49,14.759,0,0.0
+pelacarsen-ionis-akcea-apo-a-lr-ionis-681257-isis-681257,Transaminase Increase,Gastrointestinal,332,6,1.8072,0,0.0
+pelacarsen-ionis-akcea-apo-a-lr-ionis-681257-isis-681257,Urinary Tract Infection,Genitourinary,332,39,11.747,0,0.0
+pelacarsen-ionis-akcea-apo-a-lr-ionis-681257-isis-681257,Urinary Tract Infection,Musculoskeletal,332,1,0.3012,0,0.0
+pgn-edo51,Hypomagnesemia,Metabolic,36,4,11.1111,0,0.0
+pgn-edo51,Renal Injury,Renal,36,10,27.7778,0,0.0
+prax-222-elsunersen,Fever,General,4,1,25.0,0,0.0
+prax-222-elsunersen,Irritability,General,4,1,25.0,0,0.0
+qr1123,Cataract,Ocular,11,3,27.2727,0,0.0
+qr1123,Macular Oedema,Ocular,11,7,63.6364,0,0.0
+qr313,No AE,No AE,2,0,0.0,0,0.0
+radavirsen-avi-7100,Arrhythmias,Cardiovascular,66,11,16.6667,0,0.0
+radavirsen-avi-7100,Chills,General,66,5,7.5758,0,0.0
+radavirsen-avi-7100,Diarrhoea,Gastrointestinal,66,5,7.5758,0,0.0
+radavirsen-avi-7100,Fatigue,General,66,5,7.5758,0,0.0
+radavirsen-avi-7100,Flu-like,General,66,11,16.6667,0,0.0
+radavirsen-avi-7100,Gingivitis,Mucocutaneous,66,5,7.5758,0,0.0
+radavirsen-avi-7100,Headache,Neurologic,66,33,50.0,0,0.0
+radavirsen-avi-7100,Hematuria,Genitourinary,66,1,1.5152,0,0.0
+radavirsen-avi-7100,Hyperbilirubinemia,Gastrointestinal,66,11,16.6667,0,0.0
+radavirsen-avi-7100,Hyperglycemia,Metabolic,66,6,9.0909,0,0.0
+radavirsen-avi-7100,Hypertension,Cardiovascular,66,1,1.5152,0,0.0
+radavirsen-avi-7100,Hypoglycemia,Metabolic,66,1,1.5152,0,0.0
+radavirsen-avi-7100,Hypotension,Cardiovascular,66,1,1.5152,0,0.0
+radavirsen-avi-7100,Injection site reaction,Procedure related,66,0,0.0,0,0.0
+radavirsen-avi-7100,Metabolic disorder,Metabolic,66,4,6.0606,0,0.0
+radavirsen-avi-7100,Microglubulin in urine,Renal,66,11,16.6667,0,0.0
+radavirsen-avi-7100,Musculoskeletal disorser,Musculoskeletal,66,5,7.5758,0,0.0
+radavirsen-avi-7100,Proteinuria,Renal,66,22,33.3333,0,0.0
+radavirsen-avi-7100,Rash,Mucocutaneous,66,3,4.5455,0,0.0
+radavirsen-avi-7100,Transaminase Increase,Gastrointestinal,66,11,16.6667,0,0.0
+radavirsen-avi-7100,Upper Respiratory Tract Infection or symptoms,Respiratory,66,5,7.5758,0,0.0
+ro7062931,Diarrhoea,Gastrointestinal,135,17,12.5926,0,0.0
+ro7062931,Epistaxis,Hematologic,135,16,11.8519,0,0.0
+ro7062931,Headache,Neurologic,135,34,25.1852,0,0.0
+ro7062931,Influenza,Infection,135,50,37.037,0,0.0
+ro7062931,Injection site reaction,Procedure related,135,67,49.6296,0,0.0
+ro7062931,Musculoskeletal disorser,Musculoskeletal,135,34,25.1852,0,0.0
+ro7062931,Transaminase Increase,Gastrointestinal,135,2,1.4815,0,0.0
+ro7062931,Upper Respiratory Tract Infection or symptoms,Respiratory,135,34,25.1852,0,0.0
+rugonersen-ro7248824-rg6091,Anorexia,General,61,0,0.0,0,0.0
+rugonersen-ro7248824-rg6091,Ataxia,Neurologic,61,25,40.9836,25,40.9836
+rugonersen-ro7248824-rg6091,Fatigue,General,61,0,0.0,0,0.0
+rugonersen-ro7248824-rg6091,Fever,General,61,52,85.2459,0,0.0
+rugonersen-ro7248824-rg6091,Headache,Neurologic,61,16,26.2295,0,0.0
+rugonersen-ro7248824-rg6091,Hydrocephalous,Neurologic,61,16,26.2295,16,26.2295
+rugonersen-ro7248824-rg6091,Nausea And Vomiting,Gastrointestinal,61,41,67.2131,0,0.0
+rugonersen-ro7248824-rg6091,Seizure,Neurologic,61,19,31.1475,19,31.1475
+rugonersen-ro7248824-rg6091,Upper Respiratory Tract Infection or symptoms,Respiratory,61,20,32.7869,0,0.0
+salanersen-biib115-ion306,Fever,General,24,0,0.0,0,0.0
+salanersen-biib115-ion306,Upper Respiratory Tract Infection or symptoms,Respiratory,24,0,0.0,0,0.0
+sefaxersen-ionis-fb-lrx-ro7434656,Fatigue,General,54,7,12.963,0,0.0
+sefaxersen-ionis-fb-lrx-ro7434656,Headache,Neurologic,54,15,27.7778,0,0.0
+sefaxersen-ionis-fb-lrx-ro7434656,Musculoskeletal disorser,Musculoskeletal,54,12,22.2222,0,0.0
+sefaxersen-ionis-fb-lrx-ro7434656,Upper Respiratory Tract Infection or symptoms,Respiratory,54,9,16.6667,0,0.0
+sepofarsen-qr110,Abnormal vision,Ocular,36,1,2.7778,0,0.0
+sepofarsen-qr110,Cataract,Ocular,36,8,22.2222,8,22.2222
+sepofarsen-qr110,Conjectival hyperemia,Ocular,36,3,8.3333,0,0.0
+sepofarsen-qr110,Conjunctival Haemorrhage,Ocular,36,8,22.2222,0,0.0
+sepofarsen-qr110,Dizziness,Neurologic,36,1,2.7778,0,0.0
+sepofarsen-qr110,Dry eye,Ocular,36,1,2.7778,0,0.0
+sepofarsen-qr110,Ear Infection,Infection,36,1,2.7778,0,0.0
+sepofarsen-qr110,Hypotony of eye,Ocular,36,1,2.7778,0,0.0
+sepofarsen-qr110,Macular Oedema,Ocular,36,3,8.3333,0,0.0
+sepofarsen-qr110,Ocular Opacity,Ocular,36,2,5.5556,0,0.0
+sepofarsen-qr110,Retinal degeneration,Ocular,36,2,5.5556,2,5.5556
+sepofarsen-qr110,Upper Respiratory Tract Infection or symptoms,Respiratory,36,1,2.7778,0,0.0
+shj002-anti-microrna-328-ophthalmic-solution,No AE,No AE,340,0,0.0,0,0.0
+splisense-s-spl84,Flu-like,General,32,0,0.0,0,0.0
+splisense-s-spl84,Headache,Neurologic,32,0,0.0,0,0.0
+splisense-s-spl84,Insomnia,General,32,0,0.0,0,0.0
+splisense-s-spl84,Pulmonary Function Tests Abnormalities,Respiratory,32,2,6.25,0,0.0
+tadnersen-biib078,Aspiration,Respiratory,106,3,2.8302,3,2.8302
+tadnersen-biib078,Dysphagia,Neurologic,106,3,2.8302,0,0.0
+tadnersen-biib078,Elevated neurofilament,Neurologic,106,69,65.0943,69,65.0943
+tadnersen-biib078,Fall,Neurologic,106,56,52.8302,56,52.8302
+tadnersen-biib078,Fatigue,General,106,14,13.2075,0,0.0
+tadnersen-biib078,Fever,General,106,0,0.0,0,0.0
+tadnersen-biib078,Headache,Neurologic,106,30,28.3019,0,0.0
+tadnersen-biib078,Inflammatory response,Inflammatory,106,0,0.0,0,0.0
+tadnersen-biib078,Nausea And Vomiting,Gastrointestinal,106,17,16.0377,0,0.0
+tadnersen-biib078,Post Lumbar Puncture Syndrome,Procedure related,106,42,39.6226,0,0.0
+tadnersen-biib078,Pre Existing Condition Exacerbation,Other,106,3,2.8302,3,2.8302
+tadnersen-biib078,Pulmonary Embolism,Cardiovascular,106,3,2.8302,3,2.8302
+tadnersen-biib078,Respiratory Failure,Respiratory,106,6,5.6604,6,5.6604
+tofersen-qalsody,Aseptic Meningitis,Neurologic,647,9,1.391,9,1.391
+tofersen-qalsody,CSF Pleocytosis,Neurologic,647,48,7.4189,7,1.0819
+tofersen-qalsody,CSF protein increase,Neurologic,647,12,1.8547,0,0.0
+tofersen-qalsody,Chemical meningitis,Neurologic,647,2,0.3091,2,0.3091
+tofersen-qalsody,Constipation,Gastrointestinal,647,12,1.8547,0,0.0
+tofersen-qalsody,Encephalitis,Neurologic,647,3,0.4637,3,0.4637
+tofersen-qalsody,Fall,Neurologic,647,60,9.2736,9,1.391
+tofersen-qalsody,Fatigue,General,647,42,6.4915,0,0.0
+tofersen-qalsody,Fever,General,647,11,1.7002,0,0.0
+tofersen-qalsody,Headache,Neurologic,647,72,11.1283,0,0.0
+tofersen-qalsody,Hydrocephalous,Neurologic,647,15,2.3184,15,2.3184
+tofersen-qalsody,Injection site reaction,Procedure related,647,143,22.102,0,0.0
+tofersen-qalsody,Lower Extremity Weakness,Neurologic,647,1,0.1546,0,0.0
+tofersen-qalsody,Lower Respiratory Tract Infection or symptoms,Respiratory,647,23,3.5549,23,3.5549
+tofersen-qalsody,Mortality,Mortality,647,28,4.3277,28,4.3277
+tofersen-qalsody,Musculoskeletal disorser,Musculoskeletal,647,58,8.9645,0,0.0
+tofersen-qalsody,Nausea And Vomiting,Gastrointestinal,647,12,1.8547,0,0.0
+tofersen-qalsody,Neuralgia,Neurologic,647,9,1.391,0,0.0
+tofersen-qalsody,Pulmonary Embolism,Cardiovascular,647,7,1.0819,7,1.0819
+tofersen-qalsody,Radiculitis,Neurologic,647,20,3.0912,20,3.0912
+tofersen-qalsody,Sepsis,Infection,647,2,0.3091,2,0.3091
+tofersen-qalsody,Upper Respiratory Tract Infection or symptoms,Respiratory,647,0,0.0,0,0.0
+tofersen-qalsody,Urinary Tract Infection,Genitourinary,647,2,0.3091,0,0.0
+tominersen,CSF Pleocytosis,Neurologic,1000,100,10.0,100,10.0
+tominersen,Dizziness,Neurologic,1000,0,0.0,0,0.0
+tominersen,Elevated neurofilament,Neurologic,1000,100,10.0,100,10.0
+tominersen,Fall,Neurologic,1000,250,25.0,250,25.0
+tominersen,Headache,Neurologic,1000,0,0.0,0,0.0
+tominersen,Hydrocephalous,Neurologic,1000,100,10.0,100,10.0
+tominersen,Injection site reaction,Procedure related,1000,570,57.0,0,0.0
+transportin-2-tnpo2-leosen-aso,No AE,No AE,1,0,0.0,0,0.0
+ultevursen-qr421a,Cataract,Ocular,20,1,5.0,0,0.0
+ultevursen-qr421a,Dry eye,Ocular,20,1,5.0,0,0.0
+ultevursen-qr421a,Eye Pain,Ocular,20,2,10.0,0,0.0
+ultevursen-qr421a,Increased Intraocular Pressure,Ocular,20,0,0.0,0,0.0
+ultevursen-qr421a,Injection site reaction,Procedure related,20,3,15.0,0,0.0
+ultevursen-qr421a,Macular Oedema,Ocular,20,1,5.0,0,0.0
+ultevursen-qr421a,Ocular Opacity,Ocular,20,0,0.0,0,0.0
+ultevursen-qr421a,Ocular disorder,Ocular,20,3,15.0,0,0.0
+ultevursen-qr421a,Pruritis,Mucocutaneous,20,0,0.0,0,0.0
+valeriasen,Hydrocephalous,Neurologic,2,2,100.0,2,100.0
+valeriasen,Mortality,Mortality,2,1,50.0,1,50.0
+vesleteplirsen,Hypomagnesemia,Metabolic,12,2,16.6667,2,16.6667
+viltolarsen-viltepso,Abnormal vision,Ocular,194,1,0.5155,0,0.0
+viltolarsen-viltepso,Adrenocortical Insufficiency,Metabolic,194,1,0.5155,1,0.5155
+viltolarsen-viltepso,Anaphylaxis,Inflammatory,194,3,1.5464,2,1.0309
+viltolarsen-viltepso,Anemia,Hematologic,194,1,0.5155,1,0.5155
+viltolarsen-viltepso,Angina Pectoris,Cardiovascular,194,3,1.5464,3,1.5464
+viltolarsen-viltepso,Anorexia,General,194,4,2.0619,0,0.0
+viltolarsen-viltepso,Arrhythmias,Cardiovascular,194,1,0.5155,0,0.0
+viltolarsen-viltepso,Aspiration,Respiratory,194,2,1.0309,2,1.0309
+viltolarsen-viltepso,BNP increased,Cardiovascular,194,2,1.0309,2,1.0309
+viltolarsen-viltepso,Beta-N-acetyl-D-glucosaminidase increased,Renal,194,3,1.5464,0,0.0
+viltolarsen-viltepso,Chills,General,194,1,0.5155,0,0.0
+viltolarsen-viltepso,Congestive Hepatopathy,Gastrointestinal,194,1,0.5155,1,0.5155
+viltolarsen-viltepso,Contusion,Procedure related,194,4,2.0619,0,0.0
+viltolarsen-viltepso,Costochondritis,Musculoskeletal,194,1,0.5155,1,0.5155
+viltolarsen-viltepso,Cystatin C Increased,Renal,194,2,1.0309,0,0.0
+viltolarsen-viltepso,Diarrhoea,Gastrointestinal,194,11,5.6701,0,0.0
+viltolarsen-viltepso,Dizziness,Neurologic,194,1,0.5155,0,0.0
+viltolarsen-viltepso,Edema,General,194,1,0.5155,0,0.0
+viltolarsen-viltepso,Fall,Neurologic,194,8,4.1237,3,1.5464
+viltolarsen-viltepso,Fever,General,194,28,14.433,0,0.0
+viltolarsen-viltepso,Fracture,Musculoskeletal,194,11,5.6701,11,5.6701
+viltolarsen-viltepso,GI Bleeding,Gastrointestinal,194,1,0.5155,0,0.0
+viltolarsen-viltepso,GI symptoms,Gastrointestinal,194,7,3.6082,0,0.0
+viltolarsen-viltepso,Gait Disturbance,Neurologic,194,2,1.0309,0,0.0
+viltolarsen-viltepso,Headache,Neurologic,194,9,4.6392,0,0.0
+viltolarsen-viltepso,Heart Failure,Cardiovascular,194,9,4.6392,9,4.6392
+viltolarsen-viltepso,Hematuria,Genitourinary,194,7,3.6082,0,0.0
+viltolarsen-viltepso,Hypertension,Cardiovascular,194,2,1.0309,0,0.0
+viltolarsen-viltepso,Hypokalemia,Metabolic,194,1,0.5155,1,0.5155
+viltolarsen-viltepso,Hypotension,Cardiovascular,194,3,1.5464,3,1.5464
+viltolarsen-viltepso,IL Level Increased,Inflammatory,194,2,1.0309,0,0.0
+viltolarsen-viltepso,Infection,Infection,194,6,3.0928,0,0.0
+viltolarsen-viltepso,Injection site reaction,Procedure related,194,37,19.0722,0,0.0
+viltolarsen-viltepso,Injury,Other,194,1,0.5155,0,0.0
+viltolarsen-viltepso,Insomnia,General,194,1,0.5155,0,0.0
+viltolarsen-viltepso,Lower Respiratory Tract Infection or symptoms,Respiratory,194,16,8.2474,9,4.6392
+viltolarsen-viltepso,Malaise,General,194,6,3.0928,0,0.0
+viltolarsen-viltepso,Meningitis,Neurologic,194,1,0.5155,1,0.5155
+viltolarsen-viltepso,Mortality,Mortality,194,2,1.0309,2,1.0309
+viltolarsen-viltepso,Musculoskeletal disorser,Musculoskeletal,194,11,5.6701,0,0.0
+viltolarsen-viltepso,Nausea And Vomiting,Gastrointestinal,194,18,9.2784,0,0.0
+viltolarsen-viltepso,Nephrolithiasis,Genitourinary,194,1,0.5155,0,0.0
+viltolarsen-viltepso,Oliguria,Renal,194,1,0.5155,0,0.0
+viltolarsen-viltepso,Pain,General,194,2,1.0309,0,0.0
+viltolarsen-viltepso,Pallor,General,194,2,1.0309,0,0.0
+viltolarsen-viltepso,Pre Existing Condition Exacerbation,Other,194,1,0.5155,0,0.0
+viltolarsen-viltepso,Proteinuria,Renal,194,9,4.6392,0,0.0
+viltolarsen-viltepso,Rash,Mucocutaneous,194,15,7.732,0,0.0
+viltolarsen-viltepso,Renal Injury,Renal,194,2,1.0309,2,1.0309
+viltolarsen-viltepso,Respiratory Failure,Respiratory,194,1,0.5155,1,0.5155
+viltolarsen-viltepso,Rhabdomyolysis,Musculoskeletal,194,1,0.5155,1,0.5155
+viltolarsen-viltepso,Sepsis,Infection,194,1,0.5155,1,0.5155
+viltolarsen-viltepso,Staphylococcal/Streptococcal Infection,Infection,194,1,0.5155,0,0.0
+viltolarsen-viltepso,Tachycardia,Cardiovascular,194,3,1.5464,0,0.0
+viltolarsen-viltepso,Thrombocytopenia,Hematologic,194,1,0.5155,0,0.0
+viltolarsen-viltepso,Transaminase Increase,Gastrointestinal,194,1,0.5155,0,0.0
+viltolarsen-viltepso,Upper Respiratory Tract Infection or symptoms,Respiratory,194,88,45.3608,0,0.0
+viltolarsen-viltepso,poisoning,Other,194,1,0.5155,0,0.0
+volanesorsen,Anaphylaxis,Inflammatory,342,2,0.5848,2,0.5848
+volanesorsen,CRP increase,Inflammatory,342,7,2.0468,0,0.0
+volanesorsen,Chills,General,342,4,1.1696,0,0.0
+volanesorsen,Coagulation abnormalities,Hematologic,342,10,2.924,0,0.0
+volanesorsen,Dehydration,Other,342,1,0.2924,0,0.0
+volanesorsen,Edema,General,342,1,0.2924,0,0.0
+volanesorsen,Epistaxis,Hematologic,342,10,2.924,0,0.0
+volanesorsen,Fatigue,General,342,28,8.1871,0,0.0
+volanesorsen,Fever,General,342,2,0.5848,0,0.0
+volanesorsen,GI symptoms,Gastrointestinal,342,36,10.5263,0,0.0
+volanesorsen,Headache,Neurologic,342,15,4.386,0,0.0
+volanesorsen,Hyperglycemia,Metabolic,342,8,2.3392,0,0.0
+volanesorsen,Injection site reaction,Procedure related,342,121,35.3801,0,0.0
+volanesorsen,Muscular Weakness,Musculoskeletal,342,10,2.924,0,0.0
+volanesorsen,Musculoskeletal disorser,Musculoskeletal,342,19,5.5556,0,0.0
+volanesorsen,Nausea And Vomiting,Gastrointestinal,342,29,8.4795,0,0.0
+volanesorsen,Pancreatitis,Gastrointestinal,342,3,0.8772,3,0.8772
+volanesorsen,Petechiae,Hematologic,342,8,2.3392,0,0.0
+volanesorsen,Pre Existing Condition Exacerbation,Other,342,1,0.2924,1,0.2924
+volanesorsen,Sarcoidosis,Inflammatory,342,1,0.2924,1,0.2924
+volanesorsen,Seizure,Neurologic,342,1,0.2924,1,0.2924
+volanesorsen,Thrombocytopenia,Hematologic,342,69,20.1754,3,0.8772
+volanesorsen,Upper Respiratory Tract Infection or symptoms,Respiratory,342,3,0.8772,0,0.0
+vupanorsen,Arrhythmias,Cardiovascular,104,1,0.9615,1,0.9615
+vupanorsen,Atrial fibrilation/flutter,Cardiovascular,104,1,0.9615,1,0.9615
+vupanorsen,Headache,Neurologic,104,0,0.0,0,0.0
+vupanorsen,Hepatic Steatosis,Gastrointestinal,104,50,48.0769,50,48.0769
+vupanorsen,Injection site reaction,Procedure related,104,21,20.1923,0,0.0
+vupanorsen,Musculoskeletal disorser,Musculoskeletal,104,1,0.9615,0,0.0
+vupanorsen,Myocardial Infarction,Cardiovascular,104,1,0.9615,1,0.9615
+vupanorsen,Pancreatitis,Gastrointestinal,104,1,0.9615,1,0.9615
+vupanorsen,Renal Injury,Renal,104,1,0.9615,0,0.0
+vupanorsen,Transaminase Increase,Gastrointestinal,104,57,54.8077,0,0.0
+vupanorsen,Upper Respiratory Tract Infection or symptoms,Respiratory,104,0,0.0,0,0.0
+vupanorsen,Urinary Tract Infection,Genitourinary,104,0,0.0,0,0.0
+wve-004,Headache,Neurologic,35,0,0.0,0,0.0
+wve-004,Injection site reaction,Procedure related,35,0,0.0,0,0.0
+wve-120101-rovanersen,Fatigue,General,61,6,9.8361,0,0.0
+wve-120101-rovanersen,Headache,Neurologic,61,6,9.8361,0,0.0
+wve-120101-rovanersen,Injection site reaction,Procedure related,61,6,9.8361,0,0.0
+wve-120101-rovanersen,Musculoskeletal disorser,Musculoskeletal,61,6,9.8361,0,0.0
+wve-120101-rovanersen,Nausea And Vomiting,Gastrointestinal,61,6,9.8361,0,0.0
+wve-120101-rovanersen,Post Lumbar Puncture Syndrome,Procedure related,61,6,9.8361,0,0.0
+wve-120102-lexanersen,Dizziness,Neurologic,88,0,0.0,0,0.0
+wve-120102-lexanersen,Fatigue,General,88,26,29.5455,0,0.0
+wve-120102-lexanersen,Headache,Neurologic,88,6,6.8182,0,0.0
+wve-120102-lexanersen,Musculoskeletal disorser,Musculoskeletal,88,0,0.0,0,0.0
+wve-120102-lexanersen,Nausea And Vomiting,Gastrointestinal,88,0,0.0,0,0.0
+wve-120102-lexanersen,Post Lumbar Puncture Syndrome,Procedure related,88,0,0.0,0,0.0
+wve-120102-lexanersen,Psychiatric disorder,Psychiatric,88,8,9.0909,8,9.0909
+wve-120102-lexanersen,Upper Respiratory Tract Infection or symptoms,Respiratory,88,0,0.0,0,0.0
+wve-n531,Upper Respiratory Tract Infection or symptoms,Respiratory,3,3,100.0,0,0.0
+zebronkysen,Anxiety,Psychiatric,2,2,100.0,0,0.0
+zebronkysen,Fall,Neurologic,2,1,50.0,0,0.0
+zebronkysen,Hypoxia,Respiratory,2,1,50.0,1,50.0
+zebronkysen,Insomnia,General,2,1,50.0,0,0.0
+zebronkysen,Pre Existing Condition Exacerbation,Other,2,1,50.0,0,0.0
+zebronkysen,Upper Respiratory Tract Infection or symptoms,Respiratory,2,2,100.0,0,0.0
+zilganersen-ion373,No AE,No AE,54,0,0.0,0,0.0
+zorevunersen-stk-001,Aseptic Meningitis,Neurologic,81,1,1.2346,1,1.2346
+zorevunersen-stk-001,Bradycardia,Cardiovascular,81,8,9.8765,0,0.0
+zorevunersen-stk-001,Bruise,Other,81,17,20.9877,0,0.0
+zorevunersen-stk-001,CSF Pleocytosis,Neurologic,81,0,0.0,0,0.0
+zorevunersen-stk-001,CSF protein increase,Neurologic,81,61,75.3086,1,1.2346
+zorevunersen-stk-001,Dehydration,Cardiovascular,81,1,1.2346,1,1.2346
+zorevunersen-stk-001,Diarrhoea,Gastrointestinal,81,12,14.8148,0,0.0
+zorevunersen-stk-001,EEG Abnormalities,Neurologic,81,0,0.0,0,0.0
+zorevunersen-stk-001,Epistaxis,Hematologic,81,8,9.8765,0,0.0
+zorevunersen-stk-001,Fall,Neurologic,81,12,14.8148,0,0.0
+zorevunersen-stk-001,Fatigue,General,81,0,0.0,0,0.0
+zorevunersen-stk-001,Fever,General,81,25,30.8642,0,0.0
+zorevunersen-stk-001,Head injury,Neurologic,81,8,9.8765,8,9.8765
+zorevunersen-stk-001,Headache,Neurologic,81,0,0.0,0,0.0
+zorevunersen-stk-001,Hypertension,Cardiovascular,81,0,0.0,0,0.0
+zorevunersen-stk-001,Hypoglycemia,Metabolic,81,0,0.0,0,0.0
+zorevunersen-stk-001,Injection site reaction,Procedure related,81,8,9.8765,0,0.0
+zorevunersen-stk-001,Irritability,General,81,0,0.0,0,0.0
+zorevunersen-stk-001,Lower Respiratory Tract Infection or symptoms,Respiratory,81,8,9.8765,8,9.8765
+zorevunersen-stk-001,Mortality,Mortality,81,1,1.2346,1,1.2346
+zorevunersen-stk-001,Musculoskeletal disorser,Musculoskeletal,81,0,0.0,0,0.0
+zorevunersen-stk-001,Nausea And Vomiting,Gastrointestinal,81,30,37.037,1,1.2346
+zorevunersen-stk-001,Seizure,Neurologic,81,17,20.9877,17,20.9877
+zorevunersen-stk-001,Tachycardia,Cardiovascular,81,0,0.0,0,0.0
+zorevunersen-stk-001,Transaminase Increase,Gastrointestinal,81,0,0.0,0,0.0
+zorevunersen-stk-001,Tremor,Neurologic,81,8,9.8765,0,0.0
+zorevunersen-stk-001,Upper Respiratory Tract Infection or symptoms,Respiratory,81,21,25.9259,0,0.0

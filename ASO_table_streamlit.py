@@ -190,8 +190,84 @@ def table_exists(name: str) -> bool:
     except Exception:
         return False
 
+# ====================== CSV Loader ======================
+csv_path = Path("adverse_events_gold_cursor.csv")
+loaded_custom = False
+
+if csv_path.exists():
+    try:
+        # Check if we already loaded it this session or if table exists
+        if table_exists("adverse_events_custom_upload"):
+            loaded_custom = True
+        else:
+            # Auto-load on startup if not present
+            csv_df = pd.read_csv(csv_path)
+            
+            # Check required columns
+            required_csv_cols = ["treatment_id", "ae_term", "ae_group", "treated", "observed", "percent"]
+            missing = [c for c in required_csv_cols if c not in csv_df.columns]
+            
+            if not missing:
+                # Rename to match DB schema
+                csv_df = csv_df.rename(columns={
+                    "treated": "total_treated",
+                    "observed": "pts_observed_n",
+                    "percent": "pts_observed_percent"
+                })
+                
+                # Add missing schema columns with defaults
+                if "source_type" not in csv_df.columns:
+                    csv_df["source_type"] = "Custom CSV"
+                if "severity" not in csv_df.columns:
+                    csv_df["severity"] = ""
+                
+                # Write to DB as a new table
+                table_name = "adverse_events_custom_upload"
+                with sqlite3.connect(DBP) as con:
+                    csv_df.to_sql(table_name, con, if_exists="replace", index=False)
+                loaded_custom = True
+    except Exception:
+        pass
+
+    with st.sidebar:
+        st.markdown('<div class="aso-card">', unsafe_allow_html=True)
+        st.markdown("#### 📂 Custom Data")
+        if st.button("Reload Custom CSV"):
+            try:
+                # Load CSV
+                csv_df = pd.read_csv(csv_path)
+                
+                required_csv_cols = ["treatment_id", "ae_term", "ae_group", "treated", "observed", "percent"]
+                missing = [c for c in required_csv_cols if c not in csv_df.columns]
+                
+                if missing:
+                    st.error(f"CSV missing columns: {missing}")
+                else:
+                    csv_df = csv_df.rename(columns={
+                        "treated": "total_treated",
+                        "observed": "pts_observed_n",
+                        "percent": "pts_observed_percent"
+                    })
+                    
+                    if "source_type" not in csv_df.columns:
+                        csv_df["source_type"] = "Custom CSV"
+                    if "severity" not in csv_df.columns:
+                        csv_df["severity"] = ""
+                    
+                    table_name = "adverse_events_custom_upload"
+                    with sqlite3.connect(DBP) as con:
+                        csv_df.to_sql(table_name, con, if_exists="replace", index=False)
+                    
+                    st.success(f"Reloaded {len(csv_df)} rows")
+                    st.rerun()
+                    
+            except Exception as e:
+                st.error(f"Error loading CSV: {e}")
+        st.markdown('</div>', unsafe_allow_html=True)
+
 # ====================== AE table autodetect ======================
 candidate_ae = [
+    "adverse_events_custom_upload", # Prioritize custom upload if exists
     "adverse_events_normalized_v8_validated",
     "adverse_events_normalized_v8v",
     "adverse_events_normalized_v8",
