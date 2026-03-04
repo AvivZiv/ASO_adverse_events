@@ -383,7 +383,7 @@ def numeric_expr_for(label: str) -> Optional[str]:
 # ====================== Metrics ======================
 METRICS: Dict[str, Dict[str, str]] = {"Row Count": {"agg": "COUNT", "expr": "*"}}
 if "pts_observed_n" in AE_NUM:
-    METRICS["Total Patients with AE"] = {"agg": "SUM", "expr": AE_NUM["pts_observed_n"]}
+    METRICS["Total Incidence"] = {"agg": "SUM", "expr": AE_NUM["pts_observed_n"]}
 if "pts_observed_percent" in AE_NUM:
     METRICS["Avg. AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_percent"]}
 if "total_treated" in AE_NUM:
