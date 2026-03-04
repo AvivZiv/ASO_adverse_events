@@ -269,11 +269,15 @@ if csv_path.exists():
             
             if not missing:
                 # Rename to match DB schema
-                csv_df = csv_df.rename(columns={
+                rename_map = {
                     "treated": "total_treated",
                     "observed": "pts_observed_n",
-                    "percent": "pts_observed_percent"
-                })
+                    "percent": "pts_observed_percent",
+                    "observed_severe": "pts_observed_severe_n",
+                    "percent_severe": "pts_observed_severe_percent"
+                }
+                # Only rename columns that exist
+                csv_df = csv_df.rename(columns={k: v for k, v in rename_map.items() if k in csv_df.columns})
                 
                 # Add missing schema columns with defaults
                 if "source_type" not in csv_df.columns:
@@ -302,11 +306,14 @@ if csv_path.exists():
                 if missing:
                     st.error(f"CSV missing columns: {missing}")
                 else:
-                    csv_df = csv_df.rename(columns={
+                    rename_map = {
                         "treated": "total_treated",
                         "observed": "pts_observed_n",
-                        "percent": "pts_observed_percent"
-                    })
+                        "percent": "pts_observed_percent",
+                        "observed_severe": "pts_observed_severe_n",
+                        "percent_severe": "pts_observed_severe_percent"
+                    }
+                    csv_df = csv_df.rename(columns={k: v for k, v in rename_map.items() if k in csv_df.columns})
                     
                     if "source_type" not in csv_df.columns:
                         csv_df["source_type"] = "Custom CSV"
@@ -364,7 +371,7 @@ def _ae_num_cast(col: str) -> Optional[str]:
     return f'CAST(ae."{col}" AS FLOAT)'
 
 AE_NUM: Dict[str, str] = {}
-for col in ("total_treated", "pts_observed_n", "pts_observed_percent"):
+for col in ("total_treated", "pts_observed_n", "pts_observed_percent", "pts_observed_severe_n", "pts_observed_severe_percent"):
     expr = _ae_num_cast(col)
     if expr: AE_NUM[col] = expr
 
@@ -1016,6 +1023,10 @@ with info_tab:
             pts_pct_expr = AE_NUM.get("pts_observed_percent", "NULL")
             total_treated_expr = AE_NUM.get("total_treated", 'ae."total_treated"')
             pts_obs_n_expr = AE_NUM.get("pts_observed_n", 'ae."pts_observed_n"')
+            
+            pts_obs_sev_n_expr = AE_NUM.get("pts_observed_severe_n", "0")
+            pts_obs_sev_pct_expr = AE_NUM.get("pts_observed_severe_percent", "NULL")
+            
             q_ae_src = (
                 f"""
                 SELECT
@@ -1023,8 +1034,8 @@ with info_tab:
                     SUM({total_treated_expr})      AS "Total Treated",
                     SUM({pts_obs_n_expr})          AS "AE Incidence",
                     AVG({pts_pct_expr})            AS "AE Rate",
-                    SUM(CASE WHEN CAST(ae."severity" AS INTEGER) = 1 THEN {pts_obs_n_expr} ELSE 0 END) AS "Severe AE Incidence",
-                    COALESCE(AVG(CASE WHEN CAST(ae."severity" AS INTEGER) = 1 THEN {pts_pct_expr} ELSE NULL END), 0) AS "Severe AE Rate"
+                    SUM({pts_obs_sev_n_expr})      AS "Severe AE Incidence",
+                    AVG({pts_obs_sev_pct_expr})    AS "Severe AE Rate"
                 FROM {AE_TABLE} ae
                 WHERE ae.treatment_id IN (
                     SELECT treatment_id FROM treatments
