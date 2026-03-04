@@ -489,7 +489,7 @@ group_positions: List[int] = []
 
 for i, d in enumerate(gb_all, start=1):
     expr = DIMENSIONS[d]["expr"]
-    select_parts.append(f"{expr} AS g{i}")
+    select_parts.append(f'{expr} AS "{d}"')
     group_positions.append(i)
 
 for m in metric_sel:
@@ -620,9 +620,9 @@ if df.empty:
 else:
     chart_df = edited_df if "edited_df" in locals() else df
 
-    dims = [c for c in chart_df.columns if c.startswith("g")]
+    dims = [c for c in chart_df.columns if c in gb_all]
     output_metric_cols = [c for c in chart_df.columns if c in METRICS.keys()]
-    dim_labels = {f"g{i}": gb_all[i-1] for i in range(1, len(gb_all)+1)}
+    dim_labels = {d: d for d in gb_all}
 
     cc1, cc2, cc3, cc4 = st.columns([1.2, 1, 1, 1])
     chart_type = cc1.selectbox("Chart type", ["Bar", "Line", "Pie"], index=0)
