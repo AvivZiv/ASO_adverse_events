@@ -223,7 +223,6 @@ def run_sql(sql: str, params: Optional[dict] = None) -> pd.DataFrame:
     with sqlite3.connect(DBP) as con:
         return pd.read_sql(sql, con, params=params or {})
 
-@st.cache_data(show_spinner=False)
 def _get_columns_cached(db_path: str, table: str) -> List[Tuple[str, str]]:
     try:
         with sqlite3.connect(db_path) as con:
@@ -258,9 +257,16 @@ if csv_path.exists():
     try:
         # Check if we already loaded it this session or if table exists
         if table_exists("adverse_events_custom_upload"):
-            loaded_custom = True
-        else:
-            # Auto-load on startup if not present
+            # Check if columns are correct
+            existing_cols = get_columns("adverse_events_custom_upload")
+            required_db_cols = ["pts_observed_severe_n", "pts_observed_severe_percent"]
+            if all(c in existing_cols for c in required_db_cols):
+                loaded_custom = True
+            else:
+                loaded_custom = False # Force reload
+        
+        if not loaded_custom:
+            # Auto-load on startup if not present or missing columns
             csv_df = pd.read_csv(csv_path)
             
             # Check required columns
@@ -374,6 +380,14 @@ AE_NUM: Dict[str, str] = {}
 for col in ("total_treated", "pts_observed_n", "pts_observed_percent", "pts_observed_severe_n", "pts_observed_severe_percent"):
     expr = _ae_num_cast(col)
     if expr: AE_NUM[col] = expr
+
+# Force strict mapping for custom upload to ensure columns are picked up even if schema detection lags
+if AE_TABLE == "adverse_events_custom_upload":
+    AE_NUM["pts_observed_severe_n"] = 'CAST(ae."pts_observed_severe_n" AS FLOAT)'
+    AE_NUM["pts_observed_severe_percent"] = 'CAST(ae."pts_observed_severe_percent" AS FLOAT)'
+    AE_NUM["total_treated"] = 'CAST(ae."total_treated" AS FLOAT)'
+    AE_NUM["pts_observed_n"] = 'CAST(ae."pts_observed_n" AS FLOAT)'
+    AE_NUM["pts_observed_percent"] = 'CAST(ae."pts_observed_percent" AS FLOAT)'
 
 NUMERIC_CAST_EXPR: Dict[str, str] = {}
 if col_exists(AE_TABLE, "total_treated"):
