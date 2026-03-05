@@ -9,168 +9,145 @@ from pathlib import Path
 # ====================== App setup ======================
 st.set_page_config(page_title="ASO Analytics", layout="wide", page_icon="🧬")
 
-# ---------- Theme System (colorful + elegant) ----------
+# ---------- Theme System ----------
 PALETTES = {
-    "Dark Flat": {
-        "bg_grad": "#0f172a",
-        "card_bg": "#1e293b",
-        "glass_border": "rgba(255,255,255,0.08)",
-        "text_primary": "#e2e8f0",
-        "muted": "#94a3b8",
-        "accent": "#facc15",
-        "chip_bg": "#334155",
-        "chip_text": "#e2e8f0",
+    "Dark": {
+        "bg":         "#0f172a",
+        "sidebar_bg": "#1e293b",
+        "card_bg":    "#1e293b",
+        "input_bg":   "#0f172a",
+        "border":     "rgba(255,255,255,0.10)",
+        "text":       "#e2e8f0",
+        "muted":      "#94a3b8",
+        "accent":     "#facc15",
+        "chip_bg":    "#334155",
+        "chip_text":  "#e2e8f0",
         "plot": ["#006A4E", "#FFC72C", "#94a3b8", "#14b8a6", "#3b82f6", "#ef4444"],
     },
-    "Minimal": {
-        "bg_grad": "#f8f9fa",
-        "card_bg": "#ffffff",
-        "glass_border": "rgba(0,0,0,0.08)",
-        "text_primary": "#212529",
-        "muted": "#6c757d",
-        "accent": "#0f172a",
-        "chip_bg": "#e9ecef",
-        "chip_text": "#495057",
+    "Bright": {
+        "bg":         "#f1f5f9",
+        "sidebar_bg": "#e2e8f0",
+        "card_bg":    "#ffffff",
+        "input_bg":   "#ffffff",
+        "border":     "rgba(0,0,0,0.10)",
+        "text":       "#0f172a",
+        "muted":      "#475569",
+        "accent":     "#0f172a",
+        "chip_bg":    "#e2e8f0",
+        "chip_text":  "#334155",
         "plot": ["#334155", "#0ea5e9", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"],
-    },
-    "Aurora": {
-        "bg_grad": "linear-gradient(135deg,#0ea5e9 0%,#6366f1 50%,#a855f7 100%)",
-        "card_bg": "rgba(255,255,255,.7)",
-        "glass_border": "rgba(255,255,255,.35)",
-        "text_primary": "#0b1221",
-        "muted": "#4b5563",
-        "accent": "#7c3aed",
-        "chip_bg": "rgba(124,58,237,.12)",
-        "chip_text": "#2e1065",
-        "plot": ["#0ea5e9", "#7c3aed", "#10b981", "#f59e0b", "#ef4444", "#14b8a6"],
-    },
-    "Sunset": {
-        "bg_grad": "linear-gradient(135deg,#fb7185 0%,#f59e0b 50%,#22c55e 100%)",
-        "card_bg": "rgba(255,255,255,.72)",
-        "glass_border": "rgba(255,255,255,.38)",
-        "text_primary": "#101418",
-        "muted": "#475569",
-        "accent": "#f97316",
-        "chip_bg": "rgba(249,115,22,.12)",
-        "chip_text": "#7c2d12",
-        "plot": ["#fb7185", "#f59e0b", "#22c55e", "#06b6d4", "#8b5cf6", "#ef4444"],
-    },
-    "Oceanic": {
-        "bg_grad": "linear-gradient(135deg,#14b8a6 0%,#0ea5e9 50%,#22d3ee 100%)",
-        "card_bg": "rgba(255,255,255,.76)",
-        "glass_border": "rgba(255,255,255,.4)",
-        "text_primary": "#0b1221",
-        "muted": "#334155",
-        "accent": "#0891b2",
-        "chip_bg": "rgba(8,145,178,.12)",
-        "chip_text": "#083344",
-        "plot": ["#14b8a6", "#0ea5e9", "#22d3ee", "#f59e0b", "#8b5cf6", "#ef4444"],
-    },
-    "Orchid": {
-        "bg_grad": "linear-gradient(135deg,#9333ea 0%,#f472b6 50%,#f43f5e 100%)",
-        "card_bg": "rgba(255,255,255,.74)",
-        "glass_border": "rgba(255,255,255,.38)",
-        "text_primary": "#100a1c",
-        "muted": "#3f3d56",
-        "accent": "#c026d3",
-        "chip_bg": "rgba(192,38,211,.12)",
-        "chip_text": "#4a044e",
-        "plot": ["#9333ea", "#f472b6", "#f43f5e", "#10b981", "#0ea5e9", "#f59e0b"],
     },
 }
 
-def inject_theme(palette: Dict[str, str]):
+def inject_theme(p: Dict[str, str]):
     st.markdown(
         f"""
         <style>
+        /* ---- global tokens ---- */
         :root {{
-            --aso-bg-grad: {palette['bg_grad']};
-            --aso-card-bg: {palette['card_bg']};
-            --aso-glass-border: {palette['glass_border']};
-            --aso-text: {palette['text_primary']};
-            --aso-muted: {palette['muted']};
-            --aso-accent: {palette['accent']};
-            --aso-chip-bg: {palette['chip_bg']};
-            --aso-chip-text: {palette['chip_text']};
-            --aso-shadow-1: 0 8px 30px rgba(2,6,23,.20);
-            --aso-shadow-2: 0 6px 22px rgba(2,6,23,.12);
+            --aso-bg:         {p['bg']};
+            --aso-sidebar:    {p['sidebar_bg']};
+            --aso-card:       {p['card_bg']};
+            --aso-input:      {p['input_bg']};
+            --aso-border:     {p['border']};
+            --aso-text:       {p['text']};
+            --aso-muted:      {p['muted']};
+            --aso-accent:     {p['accent']};
+            --aso-chip-bg:    {p['chip_bg']};
+            --aso-chip-text:  {p['chip_text']};
         }}
-        .stApp {{
-            background: var(--aso-bg-grad);
-        }}
-        .block-container {{ padding-top: 3rem; max-width: 1500px; }}
 
-        h1, h2, h3, h4, h5, h6, p, label, .stMarkdown, .stText, .stCaption {{
+        /* ---- main background ---- */
+        .stApp, .stApp > div, [data-testid="stAppViewContainer"] {{
+            background-color: var(--aso-bg) !important;
+        }}
+        .block-container {{ padding-top: 2.5rem; max-width: 1500px; }}
+
+        /* ---- sidebar ---- */
+        [data-testid="stSidebar"],
+        [data-testid="stSidebar"] > div {{
+            background-color: var(--aso-sidebar) !important;
+        }}
+
+        /* ---- all text ---- */
+        h1, h2, h3, h4, h5, h6, p, label, span,
+        .stMarkdown, .stText, .stCaption,
+        [data-testid="stSidebar"] h1,
+        [data-testid="stSidebar"] h2,
+        [data-testid="stSidebar"] h3,
+        [data-testid="stSidebar"] h4,
+        [data-testid="stSidebar"] p,
+        [data-testid="stSidebar"] label,
+        [data-testid="stSidebar"] span,
+        [data-testid="stSidebar"] .stMarkdown {{
             color: var(--aso-text) !important;
         }}
 
-        .aso-banner {{
-            background: var(--aso-bg-grad); color: var(--aso-text); border-radius: 22px;
-            padding: 22px 28px;
-            margin: 18px 0 12px 0; position: relative; overflow: hidden;
-        }}
-        
-        .stSidebar {{
-            background-color: #1e293b;
-        }}
-        .stSidebar [data-testid="stMarkdownContainer"] p, .stSidebar [data-testid="stMarkdownContainer"] h1, .stSidebar [data-testid="stMarkdownContainer"] h2, .stSidebar [data-testid="stMarkdownContainer"] h3, .stSidebar [data-testid="stMarkdownContainer"] h4, .stSidebar [data-testid="stMarkdownContainer"] h5, .stSidebar [data-testid="stMarkdownContainer"] h6 {{
-            color: var(--aso-text) !important;
-        }}
-        
-        /* Input fields, selectboxes, multiselects - ensure dark bg */
+        /* ---- inputs (main + sidebar) ---- */
         .stTextInput > div > div > input,
-        .stSelectbox > div > div > div,
-        .stMultiSelect > div > div > div,
-        .stNumberInput > div > div > input {{
-            background-color: var(--aso-card-bg) !important;
+        .stNumberInput > div > div > input,
+        .stSelectbox > div > div,
+        .stMultiSelect > div > div,
+        [data-testid="stSidebar"] .stTextInput > div > div > input,
+        [data-testid="stSidebar"] .stNumberInput > div > div > input,
+        [data-testid="stSidebar"] .stSelectbox > div > div,
+        [data-testid="stSidebar"] .stMultiSelect > div > div {{
+            background-color: var(--aso-input) !important;
             color: var(--aso-text) !important;
-            border: 1px solid var(--aso-glass-border) !important;
-        }}
-        
-        /* Expander headers in sidebar */
-        .stSidebar .streamlit-expanderHeader {{
-            background-color: var(--aso-card-bg) !important;
-            color: var(--aso-text) !important;
-            border: 1px solid var(--aso-glass-border) !important;
+            border: 1px solid var(--aso-border) !important;
         }}
 
-        .aso-banner h1 {{ font-size: 2.05rem; line-height: 1.1; margin: 0 0 6px 0; }}
-        .aso-sub {{ opacity: .95; font-weight: 500; letter-spacing:.2px; }}
+        /* ---- expanders (main + sidebar) ---- */
+        [data-testid="stExpander"] > details,
+        [data-testid="stSidebar"] [data-testid="stExpander"] > details {{
+            background: var(--aso-card) !important;
+            border: 1px solid var(--aso-border) !important;
+            border-radius: 8px;
+            color: var(--aso-text) !important;
+        }}
+        .streamlit-expanderHeader,
+        [data-testid="stSidebar"] .streamlit-expanderHeader {{
+            background-color: var(--aso-card) !important;
+            color: var(--aso-text) !important;
+        }}
 
-        /* Dataframe/Table styling */
+        /* ---- tables / dataframes ---- */
+        [data-testid="stDataFrame"],
+        [data-testid="stDataFrame"] > div,
         .stDataFrame, .stDataEditor {{
-            background-color: var(--aso-card-bg);
-            border: 1px solid var(--aso-glass-border);
+            background-color: var(--aso-card) !important;
+            border: 1px solid var(--aso-border) !important;
             border-radius: 8px;
         }}
-        
-        /* Force dark background on gl-container (the underlying grid) if possible via CSS injection (limited) */
-        [data-testid="stDataFrame"] > div {{
-            background-color: var(--aso-card-bg) !important;
+
+        /* ---- metric cards ---- */
+        [data-testid="stMetric"] {{
+            background: var(--aso-card) !important;
+            border: 1px solid var(--aso-border) !important;
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: var(--aso-text) !important;
         }}
 
+        /* ---- custom components ---- */
         .aso-card {{
-            background: var(--aso-card-bg);
-            border: 1px solid var(--aso-glass-border); border-radius: 12px; padding: 14px 16px;
+            background: var(--aso-card);
+            border: 1px solid var(--aso-border);
+            border-radius: 12px;
+            padding: 14px 16px;
         }}
         .aso-chip {{
-            display:inline-block; padding:.25rem .6rem; border-radius:9999px; font-size:.78rem; font-weight:600;
-            letter-spacing:.2px; background: var(--aso-chip-bg); color: var(--aso-chip-text);
+            display: inline-block; padding: .25rem .6rem; border-radius: 9999px;
+            font-size: .78rem; font-weight: 600; letter-spacing: .2px;
+            background: var(--aso-chip-bg); color: var(--aso-chip-text);
         }}
         .aso-note {{
-            border-radius: 8px; padding: 10px 12px; background: var(--aso-card-bg);
-            border: 1px solid var(--aso-glass-border); color: var(--aso-text);
-            line-height: 1.35; white-space: pre-wrap;
+            border-radius: 8px; padding: 10px 12px;
+            background: var(--aso-card); border: 1px solid var(--aso-border);
+            color: var(--aso-text); line-height: 1.35; white-space: pre-wrap;
         }}
-        [data-testid="stMetric"] {{
-            border-radius: 8px; background: var(--aso-card-bg); border: 1px solid var(--aso-glass-border);
-            padding: 10px 12px; color: var(--aso-text);
-        }}
-        [data-testid="stDataFrame"] {{ border: 1px solid var(--aso-glass-border); border-radius: 8px; }}
-        [data-testid="stExpander"] > details {{ border: 1px solid var(--aso-glass-border); border-radius: 8px; background: var(--aso-card-bg); color: var(--aso-text); }}
-        .aso-section-title {{ margin: 0 0 6px 0; color: var(--aso-text); letter-spacing:.2px; }}
+        .aso-section-title {{ margin: 0 0 6px 0; color: var(--aso-text); letter-spacing: .2px; }}
         .aso-muted {{ color: var(--aso-muted); }}
-
         .aso-spacer-xxl {{ height: 48px; }}
         </style>
         """,
@@ -182,7 +159,7 @@ with st.sidebar:
 
 with settings_expander:
     st.markdown("#### 🎨 Theme")
-    theme_name = st.selectbox("Palette", list(PALETTES.keys()), index=0, key="sel_palette")
+    theme_name = st.selectbox("Theme", list(PALETTES.keys()), index=0, key="sel_palette")
 inject_theme(PALETTES[theme_name])
 COLOR_SEQ = PALETTES[theme_name]["plot"]
 
