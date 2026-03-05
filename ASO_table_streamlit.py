@@ -479,10 +479,8 @@ if not available_ae:
     st.stop()
 
 with st.sidebar:
-    st.markdown('<div class="aso-card">', unsafe_allow_html=True)
     AE_TABLE = st.selectbox("Adverse Events Table", available_ae, index=0, key="sel_ae_table")
     st.caption(f"Using AE table: `{AE_TABLE}`")
-    st.markdown('</div>', unsafe_allow_html=True)
 
 ALIASES = {AE_TABLE: "ae", "treatments": "t", "approvals": "ap", "refs": "rf", "trials": "tr"}
 JOINS: Dict[Tuple[str, str], str] = {
@@ -702,7 +700,6 @@ def distinct_for_display(col_label: str) -> List[str]:
     return _distinct_cached(str(DBP), table, simple)
 
 # ====================== Build analysis UI ======================
-st.markdown('<div class="aso-card">', unsafe_allow_html=True)
 st.markdown("### 📊 Build analysis")
 dim_choices = list(DIMENSIONS.keys())
 metric_choices = list(METRICS.keys())
@@ -764,7 +761,6 @@ with c3:
     limit_rows = st.number_input("Row limit", min_value=10, max_value=20000, value=1000, step=10, key="num_row_limit")
 with c4:
     show_sql = st.toggle("Show generated SQL", value=False, key="tgl_show_sql")
-st.markdown('</div>', unsafe_allow_html=True)
 
 # Compose grouping list
 gb_all: List[str] = list(group_by)
@@ -889,7 +885,6 @@ def render_plotly(fig):
     st.plotly_chart(fig, use_container_width=True, config={"responsive": True})
 
 # ====================== Results ======================
-st.markdown('<div class="aso-card">', unsafe_allow_html=True)
 st.markdown("### 📈 Results")
 
 if df.empty:
@@ -909,11 +904,8 @@ else:
     edited_df = st.data_editor(df, use_container_width=True, height=440, key="main_table")
     csv = edited_df.to_csv(index=False).encode("utf-8")
     st.download_button("⬇️ Download CSV", csv, file_name="aso_analytics.csv", mime="text/csv")
-st.markdown('</div>', unsafe_allow_html=True)
 
-# ====================== Chart (SINGLE SECTION with unique keys) ======================
-# ====================== Chart (SINGLE SECTION with unique keys) ======================
-st.markdown('<div class="aso-card">', unsafe_allow_html=True)
+# ====================== Chart ======================
 st.markdown("### 🎨 Chart")
 
 if df.empty:
@@ -929,7 +921,6 @@ else:
     chart_type = cc1.selectbox("Chart type", ["Bar", "Line", "Pie"], index=0)
     if not output_metric_cols:
         st.info("Add at least one metric to draw a chart.")
-        st.markdown('</div>', unsafe_allow_html=True)
         st.stop()
 
     metric_for_chart = cc2.selectbox("Metric", output_metric_cols, index=0)
@@ -944,7 +935,6 @@ else:
 
     if work.empty:
         st.info("No valid numeric data for chart.")
-        st.markdown('</div>', unsafe_allow_html=True)
         st.stop()
 
     # ----- PIE -----
@@ -1044,9 +1034,6 @@ else:
             )
             render_plotly(fig)
 
-st.markdown('</div>', unsafe_allow_html=True)
-st.markdown('<div class="aso-spacer-xxl"></div>', unsafe_allow_html=True)
-
 
 # ====================== Reference: row counts ======================
 with st.expander("🗂️ Database Statistics"):
@@ -1068,7 +1055,6 @@ with st.expander("🗂️ Database Statistics"):
 # ====================== Treatment info tab ======================
 info_tab = st.tabs(["🧪 Treatment info"])[0]
 with info_tab:
-    st.markdown('<div class="aso-card">', unsafe_allow_html=True)
     st.markdown('<h4 class="aso-section-title">Select a treatment to view chemistry and evidence</h4>', unsafe_allow_html=True)
 
     try:
@@ -1253,6 +1239,3 @@ with info_tab:
                 title="AE Group Share"
             )
             render_plotly(pie)
-
-    st.markdown('</div>', unsafe_allow_html=True)
-
