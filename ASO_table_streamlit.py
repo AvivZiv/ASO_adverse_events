@@ -192,31 +192,12 @@ st.markdown("##### ASO Human Trials Global Safety Atlas")
 
 
 # ====================== DB selection ======================
-DEFAULT_DB_CANDIDATES = [
-    "final_so_far_13_11.db",   # the DB inside your repo
-]
+DB_FILENAME = "final_so_far_13_11.db"
+DBP = Path(DB_FILENAME)
 
-existing = [str(p) for p in map(Path, DEFAULT_DB_CANDIDATES) if p.exists()]
-
-with settings_expander:
-    st.markdown("#### 📦 Database")
-    db_path = st.text_input(
-        "SQLite DB path",
-        value=(existing[0] if existing else "/Users/avivziv/Downloads/streamlit_db.db"),
-        key="db_path_input",
-    )
-    st.caption("Tip: Update the path if your DB lives elsewhere.")
-
-if not db_path:
-    st.info("Enter path to your `.db` in the sidebar.")
-    st.stop()
-
-DBP = Path(db_path)
 if not DBP.exists():
-    st.error(f"DB not found: {DBP.resolve()}")
+    st.error(f"Database file '{DB_FILENAME}' not found in repository. Please ensure it is committed.")
     st.stop()
-
-st.caption(f"📁 Using DB: `{DBP.resolve()}`")
 
 # ====================== DB helpers ======================
 def run_sql(sql: str, params: Optional[dict] = None) -> pd.DataFrame:
