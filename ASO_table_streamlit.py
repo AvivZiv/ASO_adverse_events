@@ -436,6 +436,19 @@ if col_exists(AE_TABLE, "pts_observed_percent"):
     DIMENSIONS["Patients with AE % (Record)"] = {"expr": 'ae."pts_observed_percent"', "table": AE_TABLE}
 
 # Treatments
+# Handle schema variations dynamically
+struct_col = 't."Structure"'
+if col_exists("treatments", "structure "):
+    struct_col = 't."structure "'
+elif col_exists("treatments", "Structure"):
+    struct_col = 't."Structure"'
+
+conj_col = 't."conjugate"'
+if col_exists("treatments", "conjugate\xa0"):
+    conj_col = 't."conjugate\xa0"'
+elif col_exists("treatments", "conjugate"):
+    conj_col = 't."conjugate"'
+
 DIMENSIONS.update({
     "Name": {"expr": 't."generic_name"', "table": "treatments"},
     "Target Gene": {"expr": 't."Target gene"', "table": "treatments"},
@@ -443,9 +456,9 @@ DIMENSIONS.update({
     "Route of Administration": {"expr": 't."route"', "table": "treatments"},
     "Backbone": {"expr": 't."backbone"', "table": "treatments"},
     "Sugar Modification": {"expr": 't."sugar"', "table": "treatments"},
-    "Structure": {"expr": 't."structure "', "table": "treatments"},  # trailing space in column
+    "Structure": {"expr": struct_col, "table": "treatments"},
     "Gapmer Notes": {"expr": 't."gapmer_notes"', "table": "treatments"},
-    "Conjugate": {"expr": 't."conjugate"', "table": "treatments"},
+    "Conjugate": {"expr": conj_col, "table": "treatments"},
     "Nucleotide Length": {"expr": 't."chem_length_nt"', "table": "treatments"},
     "Treatment Classification": {"expr": 't."treatment_group"', "table": "treatments"},
 })
@@ -937,8 +950,8 @@ with info_tab:
                 '  "Target gene"           AS "Target Gene", '
                 '  "mechanism_summary"     AS "Mechanism of Action", '
                 '  "route"                 AS "Route of Administration", '
-                '  "conjugate"             AS "Conjugate", '
-                '  "structure "            AS "Structure", '
+                f'  {conj_col.replace("t.", "")}             AS "Conjugate", '
+                f'  {struct_col.replace("t.", "")}            AS "Structure", '
                 '  "backbone"              AS "Backbone", '
                 '  "sugar"                 AS "Sugar Modification", '
                 '  "Nof1"                  AS "Single Patient Study (N=1)?", '
