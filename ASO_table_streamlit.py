@@ -58,63 +58,101 @@ def inject_theme(p: Dict[str, str]):
         }}
 
         /* ---- main background ---- */
-        .stApp, .stApp > div, [data-testid="stAppViewContainer"] {{
+        .stApp,
+        .stApp > div,
+        [data-testid="stAppViewContainer"],
+        [data-testid="stAppViewContainer"] > section,
+        .main .block-container {{
             background-color: var(--aso-bg) !important;
         }}
         .block-container {{ padding-top: 2.5rem; max-width: 1500px; }}
 
         /* ---- sidebar ---- */
         [data-testid="stSidebar"],
-        [data-testid="stSidebar"] > div {{
+        [data-testid="stSidebar"] > div,
+        [data-testid="stSidebar"] > div > div {{
             background-color: var(--aso-sidebar) !important;
         }}
 
         /* ---- all text ---- */
-        h1, h2, h3, h4, h5, h6, p, label, span,
+        body, h1, h2, h3, h4, h5, h6, p, label, span, li, td, th,
         .stMarkdown, .stText, .stCaption,
-        [data-testid="stSidebar"] h1,
-        [data-testid="stSidebar"] h2,
-        [data-testid="stSidebar"] h3,
-        [data-testid="stSidebar"] h4,
-        [data-testid="stSidebar"] p,
-        [data-testid="stSidebar"] label,
-        [data-testid="stSidebar"] span,
-        [data-testid="stSidebar"] .stMarkdown {{
+        [data-testid="stSidebar"] * {{
             color: var(--aso-text) !important;
         }}
 
-        /* ---- inputs (main + sidebar) ---- */
-        .stTextInput > div > div > input,
-        .stNumberInput > div > div > input,
-        .stSelectbox > div > div,
-        .stMultiSelect > div > div,
-        [data-testid="stSidebar"] .stTextInput > div > div > input,
-        [data-testid="stSidebar"] .stNumberInput > div > div > input,
-        [data-testid="stSidebar"] .stSelectbox > div > div,
-        [data-testid="stSidebar"] .stMultiSelect > div > div {{
+        /* ---- every white/light surface ---- */
+        div[data-baseweb="base-input"],
+        div[data-baseweb="input"],
+        div[data-baseweb="select"] > div,
+        div[data-baseweb="popover"],
+        div[data-baseweb="menu"],
+        ul[data-baseweb="menu"],
+        li[role="option"],
+        [data-testid="stNumberInput"] div[data-baseweb="base-input"],
+        input, textarea, select {{
             background-color: var(--aso-input) !important;
             color: var(--aso-text) !important;
+        }}
+
+        /* ---- input borders ---- */
+        div[data-baseweb="base-input"],
+        div[data-baseweb="select"] > div:first-child {{
+            border: 1px solid var(--aso-border) !important;
+            border-radius: 6px !important;
+        }}
+
+        /* ---- multiselect tags ---- */
+        [data-baseweb="tag"] {{
+            background-color: var(--aso-chip-bg) !important;
+            color: var(--aso-chip-text) !important;
+        }}
+        [data-baseweb="tag"] span {{
+            color: var(--aso-chip-text) !important;
+        }}
+
+        /* ---- number input +/- buttons ---- */
+        [data-testid="stNumberInput"] button,
+        [data-testid="baseButton-secondary"] {{
+            background-color: var(--aso-card) !important;
+            color: var(--aso-text) !important;
             border: 1px solid var(--aso-border) !important;
         }}
 
-        /* ---- expanders (main + sidebar) ---- */
-        [data-testid="stExpander"] > details,
-        [data-testid="stSidebar"] [data-testid="stExpander"] > details {{
-            background: var(--aso-card) !important;
+        /* ---- all st.button ---- */
+        .stButton > button {{
+            background-color: var(--aso-card) !important;
+            color: var(--aso-text) !important;
             border: 1px solid var(--aso-border) !important;
-            border-radius: 8px;
+        }}
+        .stButton > button:hover {{
+            border-color: var(--aso-accent) !important;
+            color: var(--aso-accent) !important;
+        }}
+
+        /* ---- toggle / checkbox ---- */
+        [data-testid="stCheckbox"] label span,
+        [data-testid="stToggle"] label span {{
             color: var(--aso-text) !important;
         }}
-        .streamlit-expanderHeader,
-        [data-testid="stSidebar"] .streamlit-expanderHeader {{
+
+        /* ---- expanders ---- */
+        [data-testid="stExpander"] details,
+        [data-testid="stExpander"] details summary,
+        [data-testid="stSidebar"] [data-testid="stExpander"] details,
+        [data-testid="stSidebar"] [data-testid="stExpander"] details summary {{
             background-color: var(--aso-card) !important;
+            border: 1px solid var(--aso-border) !important;
+            border-radius: 8px;
             color: var(--aso-text) !important;
         }}
 
         /* ---- tables / dataframes ---- */
         [data-testid="stDataFrame"],
         [data-testid="stDataFrame"] > div,
-        .stDataFrame, .stDataEditor {{
+        [data-testid="stDataFrame"] iframe,
+        .stDataFrame, .stDataEditor,
+        .stDataFrame > div {{
             background-color: var(--aso-card) !important;
             border: 1px solid var(--aso-border) !important;
             border-radius: 8px;
@@ -126,6 +164,40 @@ def inject_theme(p: Dict[str, str]):
             border: 1px solid var(--aso-border) !important;
             border-radius: 8px;
             padding: 10px 12px;
+        }}
+        [data-testid="stMetricValue"],
+        [data-testid="stMetricLabel"] {{
+            color: var(--aso-text) !important;
+        }}
+
+        /* ---- download button ---- */
+        [data-testid="stDownloadButton"] > button {{
+            background-color: var(--aso-card) !important;
+            color: var(--aso-text) !important;
+            border: 1px solid var(--aso-border) !important;
+        }}
+
+        /* ---- tabs ---- */
+        [data-testid="stTabs"] [role="tablist"] {{
+            background-color: var(--aso-card) !important;
+            border-bottom: 1px solid var(--aso-border) !important;
+        }}
+        [data-testid="stTabs"] button[role="tab"] {{
+            color: var(--aso-muted) !important;
+            background-color: transparent !important;
+        }}
+        [data-testid="stTabs"] button[role="tab"][aria-selected="true"] {{
+            color: var(--aso-text) !important;
+            border-bottom: 2px solid var(--aso-accent) !important;
+        }}
+        [data-testid="stTabsContent"] {{
+            background-color: var(--aso-bg) !important;
+        }}
+
+        /* ---- info / warning / error banners ---- */
+        [data-testid="stAlert"] {{
+            background-color: var(--aso-card) !important;
+            border: 1px solid var(--aso-border) !important;
             color: var(--aso-text) !important;
         }}
 
@@ -139,7 +211,7 @@ def inject_theme(p: Dict[str, str]):
         .aso-chip {{
             display: inline-block; padding: .25rem .6rem; border-radius: 9999px;
             font-size: .78rem; font-weight: 600; letter-spacing: .2px;
-            background: var(--aso-chip-bg); color: var(--aso-chip-text);
+            background: var(--aso-chip-bg); color: var(--aso-chip-text) !important;
         }}
         .aso-note {{
             border-radius: 8px; padding: 10px 12px;
@@ -147,7 +219,7 @@ def inject_theme(p: Dict[str, str]):
             color: var(--aso-text); line-height: 1.35; white-space: pre-wrap;
         }}
         .aso-section-title {{ margin: 0 0 6px 0; color: var(--aso-text); letter-spacing: .2px; }}
-        .aso-muted {{ color: var(--aso-muted); }}
+        .aso-muted {{ color: var(--aso-muted) !important; }}
         .aso-spacer-xxl {{ height: 48px; }}
         </style>
         """,
