@@ -232,8 +232,37 @@ with st.sidebar:
 with settings_expander:
     st.markdown("#### 🎨 Theme")
     theme_name = st.selectbox("Theme", list(PALETTES.keys()), index=0, key="sel_palette")
-inject_theme(PALETTES[theme_name])
-COLOR_SEQ = PALETTES[theme_name]["plot"]
+_palette = PALETTES[theme_name]
+
+# Write config.toml to match selected theme so dataframe iframes inherit correct base
+_is_dark = (theme_name == "Dark")
+_toml_dir = Path(".streamlit")
+_toml_dir.mkdir(exist_ok=True)
+_toml_path = _toml_dir / "config.toml"
+_toml_content = (
+    f'[theme]\nbase="dark"\nprimaryColor="{_palette["accent"]}"\n'
+    f'backgroundColor="{_palette["bg"]}"\n'
+    f'secondaryBackgroundColor="{_palette["card_bg"]}"\n'
+    f'textColor="{_palette["text"]}"\nfont="sans serif"\n'
+    if _is_dark else
+    f'[theme]\nbase="light"\nprimaryColor="{_palette["accent"]}"\n'
+    f'backgroundColor="{_palette["bg"]}"\n'
+    f'secondaryBackgroundColor="{_palette["card_bg"]}"\n'
+    f'textColor="{_palette["text"]}"\nfont="sans serif"\n'
+)
+try:
+    if not _toml_path.exists() or _toml_path.read_text() != _toml_content:
+        _toml_path.write_text(_toml_content)
+        st.rerun()
+except Exception:
+    pass
+
+inject_theme(_palette)
+COLOR_SEQ    = _palette["plot"]
+PLOT_BG      = _palette["card_bg"]
+PLOT_PAPER   = _palette["bg"]
+PLOT_TEXT    = _palette["text"]
+PLOT_GRID    = _palette["border"]
 
 # ====================== Header ======================
 st.title("🧬 SafeSense")
@@ -841,12 +870,18 @@ except Exception as e:
 
 # ====================== Plot helper ======================
 def render_plotly(fig):
-    fig.update_xaxes(automargin=True)
-    fig.update_yaxes(automargin=True)
+    fig.update_xaxes(automargin=True, gridcolor=PLOT_GRID, zerolinecolor=PLOT_GRID, color=PLOT_TEXT)
+    fig.update_yaxes(automargin=True, gridcolor=PLOT_GRID, zerolinecolor=PLOT_GRID, color=PLOT_TEXT)
     fig.update_layout(
         height=560,
         margin=dict(l=30, r=30, t=60, b=170),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        legend=dict(
+            orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1,
+            font=dict(color=PLOT_TEXT),
+        ),
+        paper_bgcolor=PLOT_PAPER,
+        plot_bgcolor=PLOT_BG,
+        font=dict(color=PLOT_TEXT),
     )
     if not fig.data or len(fig.data) == 0:
         st.info("Nothing to plot with the current selections (no non-null values after filtering).")
@@ -1002,7 +1037,11 @@ else:
             if log_y:
                 fig.update_yaxes(type="log")
 
-            fig.update_layout(margin=dict(l=30, r=30, t=60, b=220), height=680)
+            fig.update_layout(
+                margin=dict(l=30, r=30, t=60, b=220), height=680,
+                paper_bgcolor=PLOT_PAPER, plot_bgcolor=PLOT_BG,
+                font=dict(color=PLOT_TEXT),
+            )
             render_plotly(fig)
 
 st.markdown('</div>', unsafe_allow_html=True)
