@@ -230,6 +230,74 @@ def table_exists(name: str) -> bool:
     except Exception:
         return False
 
+# ====================== References Loader (ReferencesV2.xlsx) ======================
+refs_xlsx_path = Path("ReferencesV2.xlsx")
+
+def _load_references_xlsx():
+    """Load ReferencesV2.xlsx into the DB as references_v2 table, matching drug -> treatment_id."""
+    df = pd.read_excel(refs_xlsx_path)
+    treatments = pd.read_sql('SELECT treatment_id, generic_name FROM treatments', sqlite3.connect(DBP))
+    name_to_id = {row["generic_name"].strip().lower(): row["treatment_id"] for _, row in treatments.iterrows()}
+
+    manual_map = {
+        "\u200bIONIS-DGAT2(Rx) - ION224 (CS-2)": "ionis-dgat2-rx-ion224-cs-2",
+        "AZD8233":                                "azd8233-ion449",
+        "Baliforsen (ISIS 598769":                "baliforsen-isis-598769",
+        "Casimersen":                             "casimersen-amondys45",
+        "Custirsen":                              "custirsen-ogx-011",
+        "Danvatirsen":                            "danvatirsen-azd9150-ionis-stat3-2-5r-isis-481464",
+        "Eplontersen":                            "eplontersen-wainua",
+        "Eteplirsen":                             "eteplirsen-exon-dys51",
+        "Golodirsen":                             "golodirsen-vyondys53",
+        "Olezarsen":                              "olezarsen-tryngolza",
+        "Pelacarsen":                             "pelacarsen-ionis-akcea-apo-a-lr-ionis-681257-isis-681257",
+        "Salanersen/BIIB115/ION306":              "salanersen-biib115-ion306",
+        "Sepofarsen(QR\u2011110)":                "sepofarsen-qr110",
+        "SHJ002 (Anti\u2013microRNA-328 Ophthalmic Solution)": "shj002-anti-microrna-328-ophthalmic-solution",
+        "Tadnersen":                              "tadnersen-biib078",
+        "Tofersen":                               "tofersen-qalsody",
+        "Ultevursen (QR\u2011421a)":              "ultevursen-qr421a",
+        "Viltolarsen":                            "viltolarsen-viltepso",
+        "Sefaxersen":                             "sefaxersen-ionis-fb-lrx-ro7434656",
+        "Volanesorsen":                           "volanesorsen-waylivra",
+    }
+
+    def resolve(drug_val):
+        if pd.isna(drug_val):
+            return None
+        s = str(drug_val).strip()
+        if s in manual_map:
+            return manual_map[s]
+        norm = s.lower().replace("\xa0", " ").replace("\u200b", "").strip()
+        return name_to_id.get(norm)
+
+    df["treatment_id"] = df["drug"].apply(resolve)
+    df = df.rename(columns={
+        "reference": "ref_value",
+        "category":  "ref_type",
+    })
+    df = df[df["treatment_id"].notna()]
+    keep = ["treatment_id", "ref_type", "ref_value", "nct_id", "pmid", "pmcid"]
+    df = df[[c for c in keep if c in df.columns]]
+    with sqlite3.connect(DBP) as con:
+        df.to_sql("references_v2", con, if_exists="replace", index=False)
+
+if refs_xlsx_path.exists():
+    try:
+        if not table_exists("references_v2"):
+            _load_references_xlsx()
+    except Exception:
+        pass
+    with settings_expander:
+        st.markdown("#### 📄 References Data")
+        if st.button("Reload References"):
+            try:
+                _load_references_xlsx()
+                st.success("References reloaded.")
+                st.rerun()
+            except Exception as e:
+                st.error(f"Error loading references: {e}")
+
 # ====================== CSV Loader ======================
 csv_path = Path("adverse_events_gold_cursor.csv")
 loaded_custom = False
@@ -1004,17 +1072,17 @@ with info_tab:
                 st.info("No primary indication recorded.")
 
         try:
-            q_refs = (
-                """SELECT DISTINCT ref_type AS "Type", ref_value AS "Reference"
-                   FROM refs
-                   WHERE treatment_id IN (
+            refs_source = "references_v2" if table_exists("references_v2") else "refs"
+            q_refs = f"""SELECT DISTINCT ref_type AS "Type", ref_value AS "Reference"
+                   FROM {refs_source}
+                   WHERE treatment_id = (
                        SELECT treatment_id FROM treatments
                        WHERE TRIM(LOWER("generic_name")) = TRIM(LOWER(:n))
+                       LIMIT 1
                    )
                    AND ref_type IS NOT NULL AND TRIM(ref_type) <> ''
                    AND ref_value IS NOT NULL AND TRIM(ref_value) <> ''
                    ORDER BY 1, 2;"""
-            )
             refs_df = run_sql(q_refs, {"n": sel_name})
         except Exception as e:
             refs_df = pd.DataFrame()
