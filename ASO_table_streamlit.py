@@ -521,12 +521,6 @@ if col_exists(AE_TABLE, "pts_observed_n"):
     DIMENSIONS["AE Reports (Incidence)"] = {"expr": 'ae."pts_observed_n"', "table": AE_TABLE}
 if col_exists(AE_TABLE, "pts_observed_percent"):
     DIMENSIONS["AE Reports (Rate)"] = {"expr": 'ae."pts_observed_percent"', "table": AE_TABLE}
-if col_exists(AE_TABLE, "pts_observed_severe_n"):
-    DIMENSIONS["Severe AE Incidence"] = {"expr": 'ae."pts_observed_severe_n"', "table": AE_TABLE}
-    NUMERIC_CAST_EXPR["Severe AE Incidence"] = _ae_num_cast("pts_observed_severe_n")
-if col_exists(AE_TABLE, "pts_observed_severe_percent"):
-    DIMENSIONS["Severe AE Rate"] = {"expr": 'ae."pts_observed_severe_percent"', "table": AE_TABLE}
-    NUMERIC_CAST_EXPR["Severe AE Rate"] = _ae_num_cast("pts_observed_severe_percent")
 
 # Treatments
 # Handle schema variations dynamically
@@ -570,10 +564,6 @@ if "pts_observed_n" in AE_NUM:
     METRICS["Total AE Incidence"] = {"agg": "SUM", "expr": AE_NUM["pts_observed_n"]}
 if "pts_observed_percent" in AE_NUM:
     METRICS["Avg. AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_percent"]}
-if "pts_observed_severe_n" in AE_NUM:
-    METRICS["Total Severe AE Incidence"] = {"agg": "SUM", "expr": AE_NUM["pts_observed_severe_n"]}
-if "pts_observed_severe_percent" in AE_NUM:
-    METRICS["Avg. Severe AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_severe_percent"]}
 if "total_treated" in AE_NUM:
     METRICS["Avg. Treated Population"] = {"agg": "AVG", "expr": AE_NUM["total_treated"], "dedup_by": "ae.treatment_id"}
     METRICS["Treated Population"] = {"agg": "SUM", "expr": AE_NUM["total_treated"], "dedup_by": "ae.treatment_id"}
