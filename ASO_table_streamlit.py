@@ -1173,7 +1173,8 @@ with info_tab:
             q_ae_src = (
                 f"""
                 SELECT
-                    ae.ae_term AS "Adverse Event",
+                    ae.ae_term  AS "Adverse Event",
+                    ae.ae_group AS "Adverse Event Category",
                     {total_treated_expr}           AS "Total Treated",
                     {pts_obs_n_expr}               AS "AE Incidence",
                     {pts_pct_expr}                 AS "AE Rate",
