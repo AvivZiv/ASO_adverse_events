@@ -347,6 +347,30 @@ if refs_xlsx_path.exists():
     except Exception:
         pass
 
+# ====================== Treatments CSV Loader ======================
+treatments_csv_path = Path("treatments_cursor.csv")
+
+def _load_treatments_csv():
+    df = pd.read_csv(treatments_csv_path)
+    # Fix mojibake on conjugate column (Â\xa0 -> \xa0)
+    df.columns = [c.replace("Â\xa0", "\xa0").replace("Â ", " ") for c in df.columns]
+    with sqlite3.connect(DBP) as con:
+        df.to_sql("treatments", con, if_exists="replace", index=False)
+
+if treatments_csv_path.exists():
+    try:
+        # Reload if treatments table row count differs from CSV
+        csv_row_count = sum(1 for _ in open(treatments_csv_path)) - 1
+        db_row_count = 0
+        try:
+            db_row_count = run_sql('SELECT COUNT(*) AS n FROM treatments')["n"].iloc[0]
+        except Exception:
+            pass
+        if int(db_row_count) != csv_row_count:
+            _load_treatments_csv()
+    except Exception:
+        pass
+
 # ====================== CSV Loader ======================
 csv_path = Path("adverse_events_gold_cursor.csv")
 loaded_custom = False
