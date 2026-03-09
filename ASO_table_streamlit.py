@@ -686,6 +686,16 @@ with c2:
 
 metric_sel = st.multiselect("Select Metrics", metric_choices, default=["Row Count"], max_selections=4, key="ms_metrics")
 
+_severe_capable = ("pts_observed_severe_n" in AE_NUM and "pts_observed_severe_percent" in AE_NUM)
+only_severe = st.toggle("Only Severe AEs", value=False, key="tgl_only_severe", disabled=not _severe_capable)
+
+# When Only Severe AEs is on, redirect AE Incidence/Rate metrics to their severe equivalents
+if only_severe:
+    if "Total AE Incidence" in METRICS and "pts_observed_severe_n" in AE_NUM:
+        METRICS["Total AE Incidence"] = {"agg": "SUM", "expr": AE_NUM["pts_observed_severe_n"]}
+    if "Avg. AE Rate (%)" in METRICS and "pts_observed_severe_percent" in AE_NUM:
+        METRICS["Avg. AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_severe_percent"]}
+
 # -------- Advanced Filters --------
 with st.expander("🎛️ Filters (optional)", expanded=False):
     filter_specs: Dict[str, dict] = {}
@@ -769,6 +779,8 @@ select_sql = "SELECT " + ", ".join(select_parts) if select_parts else "SELECT CO
 
 # WHERE
 where_parts: List[str] = []
+if only_severe and "pts_observed_severe_n" in AE_NUM:
+    where_parts.append(f"{AE_NUM['pts_observed_severe_n']} > 0")
 params: Dict[str, str] = {}
 pidx = 0
 
