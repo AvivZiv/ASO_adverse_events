@@ -521,6 +521,16 @@ if col_exists(AE_TABLE, "pts_observed_n"):
     DIMENSIONS["AE Reports (Incidence)"] = {"expr": 'ae."pts_observed_n"', "table": AE_TABLE}
 if col_exists(AE_TABLE, "pts_observed_percent"):
     DIMENSIONS["AE Reports (Rate)"] = {"expr": 'ae."pts_observed_percent"', "table": AE_TABLE}
+if col_exists(AE_TABLE, "pts_observed_severe_n"):
+    DIMENSIONS["Severe AE Incidence"] = {"expr": 'ae."pts_observed_severe_n"', "table": AE_TABLE}
+    NUMERIC_CAST_EXPR["Severe AE Incidence"] = _ae_num_cast("pts_observed_severe_n")
+    DIMENSIONS["Has Severe AE"] = {
+        "expr": 'CASE WHEN CAST(ae."pts_observed_severe_n" AS FLOAT) > 0 THEN \'Yes\' ELSE \'No\' END',
+        "table": AE_TABLE,
+    }
+if col_exists(AE_TABLE, "pts_observed_severe_percent"):
+    DIMENSIONS["Severe AE Rate"] = {"expr": 'ae."pts_observed_severe_percent"', "table": AE_TABLE}
+    NUMERIC_CAST_EXPR["Severe AE Rate"] = _ae_num_cast("pts_observed_severe_percent")
 
 # Treatments
 # Handle schema variations dynamically
