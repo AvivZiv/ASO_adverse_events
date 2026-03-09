@@ -516,18 +516,18 @@ if AE_TABLE == "adverse_events_custom_upload":
 
 NUMERIC_CAST_EXPR: Dict[str, str] = {}
 if col_exists(AE_TABLE, "total_treated"):
-    NUMERIC_CAST_EXPR["Total Treated (Record)"] = _ae_num_cast("total_treated")
+    NUMERIC_CAST_EXPR["Treated Population"] = _ae_num_cast("total_treated")
 if col_exists(AE_TABLE, "pts_observed_n"):
-    NUMERIC_CAST_EXPR["Patients with AE (Record)"] = _ae_num_cast("pts_observed_n")
+    NUMERIC_CAST_EXPR["AE Reports (Incidence)"] = _ae_num_cast("pts_observed_n")
 if col_exists(AE_TABLE, "pts_observed_percent"):
-    NUMERIC_CAST_EXPR["Patients with AE % (Record)"] = _ae_num_cast("pts_observed_percent")
+    NUMERIC_CAST_EXPR["AE Reports (Rate)"] = _ae_num_cast("pts_observed_percent")
 if col_exists("treatments", "chem_length_nt"):
     NUMERIC_CAST_EXPR["Nucleotide Length"] = 'CAST(t."chem_length_nt" AS FLOAT)'
 
 # ====================== Dimensions ======================
 DIMENSIONS: Dict[str, Dict[str, str]] = {}
 
-DIMENSIONS["Source Type"] = {
+DIMENSIONS["Publication Source Type"] = {
     "expr": (
         "CASE ae.source_type "
         "WHEN 'P' THEN 'Peer Review' "
@@ -540,9 +540,9 @@ DIMENSIONS["Source Type"] = {
     "table": AE_TABLE,
 }
 if col_exists(AE_TABLE, "ae_term"):
-    DIMENSIONS["Adverse Effect"] = {"expr": 'ae."ae_term"', "table": AE_TABLE}
+    DIMENSIONS["Adverse Event"] = {"expr": 'ae."ae_term"', "table": AE_TABLE}
 if col_exists(AE_TABLE, "ae_group"):
-    DIMENSIONS["Adverse Effect Group"] = {"expr": 'ae."ae_group"', "table": AE_TABLE}
+    DIMENSIONS["Adverse Event Category"] = {"expr": 'ae."ae_group"', "table": AE_TABLE}
 if col_exists(AE_TABLE, "severity"):
     DIMENSIONS["Severity"] = {
         "expr": (
@@ -554,11 +554,11 @@ if col_exists(AE_TABLE, "severity"):
         "table": AE_TABLE,
     }
 if col_exists(AE_TABLE, "total_treated"):
-    DIMENSIONS["Total Treated (Record)"] = {"expr": 'ae."total_treated"', "table": AE_TABLE}
+    DIMENSIONS["Treated Population"] = {"expr": 'ae."total_treated"', "table": AE_TABLE}
 if col_exists(AE_TABLE, "pts_observed_n"):
-    DIMENSIONS["Patients with AE (Record)"] = {"expr": 'ae."pts_observed_n"', "table": AE_TABLE}
+    DIMENSIONS["AE Reports (Incidence)"] = {"expr": 'ae."pts_observed_n"', "table": AE_TABLE}
 if col_exists(AE_TABLE, "pts_observed_percent"):
-    DIMENSIONS["Patients with AE % (Record)"] = {"expr": 'ae."pts_observed_percent"', "table": AE_TABLE}
+    DIMENSIONS["AE Reports (Rate)"] = {"expr": 'ae."pts_observed_percent"', "table": AE_TABLE}
 
 # Treatments
 # Handle schema variations dynamically
@@ -575,23 +575,22 @@ elif col_exists("treatments", "conjugate"):
     conj_col = 't."conjugate"'
 
 DIMENSIONS.update({
-    "Name": {"expr": 't."generic_name"', "table": "treatments"},
+    "Drug Name": {"expr": 't."generic_name"', "table": "treatments"},
     "Target Gene": {"expr": 't."Target gene"', "table": "treatments"},
     "Mechanism of Action": {"expr": 't."mechanism_summary"', "table": "treatments"},
     "Route of Administration": {"expr": 't."route"', "table": "treatments"},
     "Backbone": {"expr": 't."backbone"', "table": "treatments"},
     "Sugar Modification": {"expr": 't."sugar"', "table": "treatments"},
-    "Structure": {"expr": struct_col, "table": "treatments"},
-    "Gapmer Notes": {"expr": 't."gapmer_notes"', "table": "treatments"},
-    "Conjugate": {"expr": conj_col, "table": "treatments"},
+    "Chemical Structure": {"expr": struct_col, "table": "treatments"},
+    "Gapmer Configuration": {"expr": 't."gapmer_notes"', "table": "treatments"},
+    "Conjugate Status": {"expr": conj_col, "table": "treatments"},
     "Nucleotide Length": {"expr": 't."chem_length_nt"', "table": "treatments"},
-    "Treatment Classification": {"expr": 't."treatment_group"', "table": "treatments"},
+    "Treatment Indication": {"expr": 't."treatment_group"', "table": "treatments"},
 })
 
 # Approvals / Trials
 DIMENSIONS.update({
-    "Phase": {"expr": 'tr."phase"', "table": "trials"},
-    "Approval Date": {"expr": 'ap."decision_date"', "table": "approvals"},
+    "Clinical Phase": {"expr": 'tr."phase"', "table": "trials"},
 })
 
 def numeric_expr_for(label: str) -> Optional[str]:
@@ -1073,13 +1072,13 @@ with info_tab:
                 '  "Target gene"           AS "Target Gene", '
                 '  "mechanism_summary"     AS "Mechanism of Action", '
                 '  "route"                 AS "Route of Administration", '
-                f'  {conj_col.replace("t.", "")}             AS "Conjugate", '
-                f'  {struct_col.replace("t.", "")}            AS "Structure", '
+                f'  {conj_col.replace("t.", "")}             AS "Conjugate Status", '
+                f'  {struct_col.replace("t.", "")}            AS "Chemical Structure", '
                 '  "backbone"              AS "Backbone", '
                 '  "sugar"                 AS "Sugar Modification", '
                 '  "Nof1"                  AS "Single Patient Study (N=1)?", '
-                '  "treatment_group"       AS "Treatment Classification", '
-                '  "gapmer_notes"          AS "Gapmer Notes", '
+                '  "treatment_group"       AS "Treatment Indication", '
+                '  "gapmer_notes"          AS "Gapmer Configuration", '
                 '  "chem_length_nt"        AS "Nucleotide Length", '
                 '  "indication_primary"    AS "Primary Indication" '
                 'FROM treatments '
@@ -1101,14 +1100,12 @@ with info_tab:
             a2.metric("Mechanism of Action", str(row.get("Mechanism of Action", "")))
             a3.metric("Route of Administration", str(row.get("Route of Administration", "")))
             
-            conj_raw = str(row.get("Conjugate", "")).strip()
-            # If the database value is just "N", display "None" or "Unconjugated"
-            # Adjust according to your preference. Here we map "N" -> "None"
+            conj_raw = str(row.get("Conjugate Status", "")).strip()
             conj_val = "None" if conj_raw == "N" else conj_raw
-            a4.metric("Conjugate", conj_val)
+            a4.metric("Conjugate Status", conj_val)
 
             b1, b2, b3, b4 = st.columns(4)
-            b1.metric("Structure", str(row.get("Structure", "")))
+            b1.metric("Chemical Structure", str(row.get("Chemical Structure", "")))
             b2.metric("Backbone", str(row.get("Backbone", "")))
             
             sugar_raw = str(row.get("Sugar Modification", "")).strip()
@@ -1127,11 +1124,11 @@ with info_tab:
 
 
             c1, c2, c3 = st.columns(3)
-            c1.metric("Treatment Classification", str(row.get("Treatment Classification", "")))
+            c1.metric("Treatment Indication", str(row.get("Treatment Indication", "")))
 
-            gapmer_notes = str(row.get("Gapmer Notes", "") or "").strip()
+            gapmer_notes = str(row.get("Gapmer Configuration", "") or "").strip()
             if gapmer_notes:
-                c2.metric("Gapmer Notes", gapmer_notes)
+                c2.metric("Gapmer Configuration", gapmer_notes)
 
             nt_len = row.get("Nucleotide Length", None)
             nt_len = "" if nt_len is None else str(nt_len).strip()
@@ -1180,7 +1177,7 @@ with info_tab:
             q_ae_src = (
                 f"""
                 SELECT
-                    ae.ae_term AS "Adverse Effect",
+                    ae.ae_term AS "Adverse Event",
                     {total_treated_expr}           AS "Total Treated",
                     {pts_obs_n_expr}               AS "AE Incidence",
                     {pts_pct_expr}                 AS "AE Rate",
@@ -1207,11 +1204,11 @@ with info_tab:
         else:
             st.dataframe(ae_by_source_df, use_container_width=True)
 
-        st.markdown("#### Adverse Effect Group Distribution")
+        st.markdown("#### Adverse Event Category Distribution")
         try:
             q_ae_group_counts = (
                 f"""
-                SELECT ae_group AS "Adverse Effect Group", COUNT(*) AS rows
+                SELECT ae_group AS "Adverse Event Category", COUNT(*) AS rows
                 FROM {AE_TABLE}
                 WHERE (treatment_id COLLATE NOCASE IN (
                     SELECT treatment_id FROM treatments
@@ -1232,10 +1229,10 @@ with info_tab:
         else:
             pie = px.pie(
                 ae_group_counts_df,
-                names="Adverse Effect Group",
+                names="Adverse Event Category",
                 values="rows",
                 hole=0.45,
                 color_discrete_sequence=COLOR_SEQ,
-                title="AE Group Share"
+                title="AE Category Share"
             )
             render_plotly(pie)
