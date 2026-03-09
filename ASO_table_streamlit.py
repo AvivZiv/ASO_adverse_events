@@ -627,11 +627,11 @@ def build_from_join(used_tables: List[str]) -> str:
     return sql
 
 @st.cache_data(show_spinner=False)
-def _distinct_cached(db_path: str, table: str, expr: str) -> List[str]:
+def _distinct_cached(db_path: str, table: str, expr: str, alias: str = "ae") -> List[str]:
     q = f"""
         SELECT DISTINCT TRIM(COALESCE({expr}, '')) AS v
-        FROM "{table}"
-        WHERE {expr} IS NOT NULL AND TRIM({expr}) <> ''
+        FROM "{table}" {alias}
+        WHERE {expr} IS NOT NULL AND TRIM(CAST({expr} AS TEXT)) <> ''
         ORDER BY 1
         LIMIT 1000
     """
@@ -646,10 +646,12 @@ def distinct_for_display(col_label: str) -> List[str]:
     if col_label not in DIMENSIONS: return []
     info = DIMENSIONS[col_label]
     expr, table = info["expr"], info["table"]
-    simple = expr
-    for pref in ["ae.", "t.", "tr.", "ap.", "rf."]:
-        if simple.startswith(pref): simple = simple[len(pref):]
-    return _distinct_cached(str(DBP), table, simple)
+    # For complex expressions (CASE, functions) use the full expr with the table alias.
+    # For simple column refs strip the alias prefix and query the raw table.
+    alias_map = {AE_TABLE: "ae", "treatments": "t", "trials": "tr",
+                 "approvals": "ap", "refs": "rf"}
+    alias = alias_map.get(table, "ae")
+    return _distinct_cached(str(DBP), table, expr, alias)
 
 # ====================== Build analysis UI ======================
 st.markdown("### 📊 Build analysis")
