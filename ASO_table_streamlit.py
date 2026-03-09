@@ -599,15 +599,11 @@ def numeric_expr_for(label: str) -> Optional[str]:
 # ====================== Metrics ======================
 METRICS: Dict[str, Dict[str, str]] = {"Row Count": {"agg": "COUNT", "expr": "*"}}
 if "pts_observed_n" in AE_NUM:
-    METRICS["Total Incidence"] = {"agg": "SUM", "expr": AE_NUM["pts_observed_n"]}
+    METRICS["Total AE Incidence"] = {"agg": "SUM", "expr": AE_NUM["pts_observed_n"]}
 if "pts_observed_percent" in AE_NUM:
     METRICS["Avg. AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_percent"]}
 if "total_treated" in AE_NUM:
-    METRICS["Avg Total Treated"] = {"agg": "AVG", "expr": AE_NUM["total_treated"]}
-if col_exists("trials", "n_treated"):
-    METRICS["Total Treated (Trials)"] = {"agg": "SUM", "expr": 'tr."n_treated"'}
-if col_exists("trials", "N_in_trial"):
-    METRICS["Max Participants (Trial)"] = {"agg": "MAX", "expr": 'tr."N_in_trial"'}
+    METRICS["Avg. Treated Population"] = {"agg": "AVG", "expr": AE_NUM["total_treated"]}
 
 # ====================== SQL builders ======================
 def resolve_tables(fields: List[str], metrics: List[str], filters: Dict[str, dict]) -> List[str]:
