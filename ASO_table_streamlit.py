@@ -574,6 +574,10 @@ if "pts_observed_n" in AE_NUM:
     METRICS["Total AE Incidence"] = {"agg": "SUM", "expr": AE_NUM["pts_observed_n"]}
 if "pts_observed_percent" in AE_NUM:
     METRICS["Avg. AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_percent"]}
+if "pts_observed_severe_n" in AE_NUM:
+    METRICS["Total Severe AE Incidence"] = {"agg": "SUM", "expr": AE_NUM["pts_observed_severe_n"]}
+if "pts_observed_severe_percent" in AE_NUM:
+    METRICS["Avg. Severe AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_severe_percent"]}
 if "total_treated" in AE_NUM:
     METRICS["Avg. Treated Population"] = {"agg": "AVG", "expr": AE_NUM["total_treated"], "dedup_by": "ae.treatment_id"}
     METRICS["Treated Population"] = {"agg": "SUM", "expr": AE_NUM["total_treated"], "dedup_by": "ae.treatment_id"}
