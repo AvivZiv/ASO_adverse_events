@@ -962,22 +962,6 @@ else:
             render_plotly(fig)
 
 
-# ====================== Reference: row counts ======================
-with st.expander("🗂️ Database Statistics"):
-    try:
-        names = run_sql("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY 1;")
-        names = names["name"].tolist()
-        rc = []
-        for tname in names:
-            try:
-                n = run_sql(f'SELECT COUNT(*) AS n FROM "{tname}"')["n"].iloc[0]
-            except Exception:
-                n = "ERR"
-            rc.append((tname, n))
-        ref_df = pd.DataFrame(rc, columns=["table", "rows"])
-        st.dataframe(ref_df, use_container_width=True)
-    except Exception as e:
-        st.warning(f"Could not list tables: {e}")
 
 # ====================== Treatment info tab ======================
 info_tab = st.tabs(["🧪 Treatment info"])[0]
