@@ -411,7 +411,7 @@ if csv_path.exists():
                 if "source_type" not in csv_df.columns:
                     csv_df["source_type"] = "Custom CSV"
                 if "severity" not in csv_df.columns:
-                    csv_df["severity"] = ""
+                    csv_df["severity"] = None
                 
                 # Write to DB as a new table
                 table_name = "adverse_events_custom_upload"
@@ -500,15 +500,21 @@ if col_exists(AE_TABLE, "ae_term"):
 if col_exists(AE_TABLE, "ae_group"):
     DIMENSIONS["Adverse Event Category"] = {"expr": 'ae."ae_group"', "table": AE_TABLE}
 if col_exists(AE_TABLE, "severity"):
-    DIMENSIONS["Severity"] = {
-        "expr": (
-            'CASE CAST(ae."severity" AS INTEGER) '
-            "WHEN 0 THEN 'Mild' "
-            "WHEN 1 THEN 'Severe' "
-            'ELSE TRIM(COALESCE(ae."severity", "")) END'
-        ),
-        "table": AE_TABLE,
-    }
+    # Only add Severity dimension if the column has actual non-null values
+    try:
+        _sev_count = run_sql(f'SELECT COUNT(*) AS n FROM "{AE_TABLE}" WHERE "severity" IS NOT NULL AND TRIM(CAST("severity" AS TEXT)) <> ""')["n"].iloc[0]
+    except Exception:
+        _sev_count = 0
+    if int(_sev_count) > 0:
+        DIMENSIONS["Severity"] = {
+            "expr": (
+                'CASE CAST(ae."severity" AS INTEGER) '
+                "WHEN 0 THEN 'Mild' "
+                "WHEN 1 THEN 'Severe' "
+                'ELSE TRIM(COALESCE(ae."severity", "")) END'
+            ),
+            "table": AE_TABLE,
+        }
 if col_exists(AE_TABLE, "total_treated"):
     DIMENSIONS["Treated Population"] = {"expr": 'ae."total_treated"', "table": AE_TABLE}
 if col_exists(AE_TABLE, "pts_observed_n"):
