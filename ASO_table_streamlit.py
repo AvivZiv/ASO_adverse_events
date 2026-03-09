@@ -815,20 +815,18 @@ where_sql = ("WHERE " + " AND ".join(where_parts)) if where_parts else ""
 group_sql = "GROUP BY " + ", ".join(str(i) for i in group_positions) if group_positions else ""
 order_sql = f"ORDER BY \"{metric_sel[0]}\" DESC" if metric_sel else ("ORDER BY 1" if group_positions else "")
 
-# If any selected metric requires per-treatment deduplication (e.g. Avg. Treated Population),
-# wrap the AE table in a subquery that collapses it to one row per treatment_id first,
-# so the outer AVG is not inflated by treatments with many AE rows.
+# If any selected metric requires per-treatment deduplication (e.g. Avg/Sum Treated Population),
+# wrap the AE table in a subquery that collapses to one row per treatment_id.
+# We include ALL ae columns referenced anywhere in the query so WHERE clauses still work.
 _dedup_metrics = [m for m in metric_sel if METRICS[m].get("dedup_by")]
 if _dedup_metrics and group_positions and AE_TABLE in used_tables:
-    _dedup_cols = set()
-    for m in _dedup_metrics:
-        # extract raw column name from the CAST expression, e.g. CAST(ae."total_treated" AS FLOAT)
-        import re as _re
-        _match = _re.search(r'ae\."?(\w+)"?', METRICS[m]["expr"])
-        if _match:
-            _dedup_cols.add(_match.group(1))
-    if _dedup_cols:
-        _inner_cols = ", ".join([f'MAX("{c}") AS "{c}"' for c in _dedup_cols])
+    import re as _re
+    # Collect every ae."col" reference from select + where + group
+    _full_sql_so_far = select_sql + " " + where_sql + " " + group_sql
+    _all_ae_cols = set(_re.findall(r'ae\."(\w+)"', _full_sql_so_far))
+    _all_ae_cols.discard("treatment_id")
+    if _all_ae_cols:
+        _inner_cols = ", ".join([f'MAX("{c}") AS "{c}"' for c in sorted(_all_ae_cols)])
         _dedup_subq = (
             f"(SELECT treatment_id, {_inner_cols} "
             f"FROM {AE_TABLE} GROUP BY treatment_id)"
