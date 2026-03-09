@@ -790,7 +790,7 @@ if _dedup_metrics and group_positions and AE_TABLE in used_tables:
             f"(SELECT treatment_id, {_inner_cols} "
             f"FROM {AE_TABLE} GROUP BY treatment_id)"
         )
-        from_join_sql = from_join_sql.replace(AE_TABLE, _dedup_subq, 1)
+        from_join_sql = from_join_sql.replace(f'"{AE_TABLE}"', _dedup_subq, 1)
 
 final_sql = f"""
 {select_sql}
