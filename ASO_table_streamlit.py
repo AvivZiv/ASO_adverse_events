@@ -536,6 +536,7 @@ if "pts_observed_percent" in AE_NUM:
     METRICS["Avg. AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_percent"]}
 if "total_treated" in AE_NUM:
     METRICS["Avg. Treated Population"] = {"agg": "AVG", "expr": AE_NUM["total_treated"], "dedup_by": "ae.treatment_id"}
+    METRICS["Treated Population"] = {"agg": "SUM", "expr": AE_NUM["total_treated"], "dedup_by": "ae.treatment_id"}
 
 # ====================== SQL builders ======================
 def resolve_tables(fields: List[str], metrics: List[str], filters: Dict[str, dict]) -> List[str]:
