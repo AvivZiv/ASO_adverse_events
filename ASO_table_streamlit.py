@@ -535,7 +535,7 @@ if "pts_observed_n" in AE_NUM:
 if "pts_observed_percent" in AE_NUM:
     METRICS["Avg. AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_percent"]}
 if "total_treated" in AE_NUM:
-    METRICS["Avg. Treated Population"] = {"agg": "AVG", "expr": AE_NUM["total_treated"]}
+    METRICS["Avg. Treated Population"] = {"agg": "AVG", "expr": AE_NUM["total_treated"], "dedup_by": "ae.treatment_id"}
 
 # ====================== SQL builders ======================
 def resolve_tables(fields: List[str], metrics: List[str], filters: Dict[str, dict]) -> List[str]:
@@ -711,9 +711,12 @@ for i, d in enumerate(gb_all, start=1):
     group_positions.append(i)
 
 for m in metric_sel:
-    agg = METRICS[m]["agg"]; expr = METRICS[m]["expr"]
-    if expr == "*": select_parts.append(f'{agg}(*) AS "{m}"')
-    else:           select_parts.append(f"{agg}({expr}) AS \"{m}\"")
+    agg  = METRICS[m]["agg"]
+    expr = METRICS[m]["expr"]
+    if expr == "*":
+        select_parts.append(f'{agg}(*) AS "{m}"')
+    else:
+        select_parts.append(f"{agg}({expr}) AS \"{m}\"")
 
 select_sql = "SELECT " + ", ".join(select_parts) if select_parts else "SELECT COUNT(*) AS \"Row Count\""
 
@@ -768,6 +771,26 @@ for col, spec in filter_specs.items():
 where_sql = ("WHERE " + " AND ".join(where_parts)) if where_parts else ""
 group_sql = "GROUP BY " + ", ".join(str(i) for i in group_positions) if group_positions else ""
 order_sql = f"ORDER BY \"{metric_sel[0]}\" DESC" if metric_sel else ("ORDER BY 1" if group_positions else "")
+
+# If any selected metric requires per-treatment deduplication (e.g. Avg. Treated Population),
+# wrap the AE table in a subquery that collapses it to one row per treatment_id first,
+# so the outer AVG is not inflated by treatments with many AE rows.
+_dedup_metrics = [m for m in metric_sel if METRICS[m].get("dedup_by")]
+if _dedup_metrics and group_positions and AE_TABLE in used_tables:
+    _dedup_cols = set()
+    for m in _dedup_metrics:
+        # extract raw column name from the CAST expression, e.g. CAST(ae."total_treated" AS FLOAT)
+        import re as _re
+        _match = _re.search(r'ae\."?(\w+)"?', METRICS[m]["expr"])
+        if _match:
+            _dedup_cols.add(_match.group(1))
+    if _dedup_cols:
+        _inner_cols = ", ".join([f'MAX("{c}") AS "{c}"' for c in _dedup_cols])
+        _dedup_subq = (
+            f"(SELECT treatment_id, {_inner_cols} "
+            f"FROM {AE_TABLE} GROUP BY treatment_id)"
+        )
+        from_join_sql = from_join_sql.replace(AE_TABLE, _dedup_subq, 1)
 
 final_sql = f"""
 {select_sql}
