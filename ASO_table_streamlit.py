@@ -308,11 +308,11 @@ def table_exists(name: str) -> bool:
     except Exception:
         return False
 
-# ====================== References Loader (ReferencesV2.xlsx) ======================
-refs_xlsx_path = Path("ReferencesV2.xlsx")
+# ====================== References Loader (ReferencesV3.xlsx) ======================
+refs_xlsx_path = Path("ReferencesV3.xlsx")
 
 def _load_references_xlsx():
-    """Load ReferencesV2.xlsx into the DB as references_v2 table, matching drug -> treatment_id."""
+    """Load ReferencesV3.xlsx into the DB as references_v2 table, matching drug -> treatment_id."""
     df = pd.read_excel(refs_xlsx_path)
     treatments = pd.read_sql('SELECT treatment_id, generic_name FROM treatments', sqlite3.connect(DBP))
     name_to_id = {row["generic_name"].strip().lower(): row["treatment_id"] for _, row in treatments.iterrows()}
@@ -353,16 +353,18 @@ def _load_references_xlsx():
     df = df.rename(columns={
         "reference": "ref_value",
         "category":  "ref_type",
+        "Type":      "ref_source_type",
     })
     df = df[df["treatment_id"].notna()]
-    keep = ["treatment_id", "ref_type", "ref_value", "nct_id", "pmid", "pmcid"]
+    keep = ["treatment_id", "ref_type", "ref_source_type", "ref_value"]
     df = df[[c for c in keep if c in df.columns]]
     with sqlite3.connect(DBP) as con:
         df.to_sql("references_v2", con, if_exists="replace", index=False)
 
 if refs_xlsx_path.exists():
     try:
-        if not table_exists("references_v2"):
+        # Reload if table missing or schema doesn't have ref_source_type (V3 column)
+        if not table_exists("references_v2") or not col_exists("references_v2", "ref_source_type"):
             _load_references_xlsx()
     except Exception:
         pass
@@ -1140,7 +1142,9 @@ with info_tab:
 
         try:
             refs_source = "references_v2" if table_exists("references_v2") else "refs"
-            q_refs = f"""SELECT DISTINCT ref_type AS "Type", ref_value AS "Reference"
+            _has_source_type = col_exists(refs_source, "ref_source_type")
+            _extra_col = ', ref_source_type AS "Source Type"' if _has_source_type else ""
+            q_refs = f"""SELECT DISTINCT ref_type AS "Category"{_extra_col}, ref_value AS "Reference"
                    FROM {refs_source}
                    WHERE treatment_id = (
                        SELECT treatment_id FROM treatments
