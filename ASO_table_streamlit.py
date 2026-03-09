@@ -718,7 +718,7 @@ with st.expander("🎛️ Filters (optional)", expanded=False):
         st.markdown(f"**{col}**")
         f1, f2, f3 = st.columns([1.1, 2.2, 1.2])
         mode = f1.selectbox(
-            "Mode", ["Include", "Exclude", "Greater than", "Less than", "Between"],
+            "Mode", ["Include", "Exclude", "Greater than", "Less than", "Between", "Min", "Max"],
             key=f"mode_{col}"
         )
         exclude_null = f3.checkbox("Exclude Empty/Null", value=True, key=f"nonnull_{col}")
@@ -747,6 +747,12 @@ with st.expander("🎛️ Filters (optional)", expanded=False):
                     spec["value"] = val
                 elif mode == "Less than":
                     val = f2.number_input("Value", value=0.0, key=f"lt_{col}")
+                    spec["value"] = val
+                elif mode == "Min":
+                    val = f2.number_input("Keep rows at or above this minimum", value=0.0, key=f"minval_{col}")
+                    spec["value"] = val
+                elif mode == "Max":
+                    val = f2.number_input("Keep rows at or below this maximum", value=0.0, key=f"maxval_{col}")
                     spec["value"] = val
 
         filter_specs[col] = spec
@@ -812,7 +818,7 @@ for col, spec in filter_specs.items():
             op = "IN" if mode == "Include" else "NOT IN"
             where_parts.append(f"{norm_sql(expr)} COLLATE NOCASE {op} ({', '.join(ph)})")
 
-    elif mode in ("Greater than", "Less than", "Between"):
+    elif mode in ("Greater than", "Less than", "Between", "Min", "Max"):
         # reuse previously defined numeric_expr_for
         def numeric_expr_for(label: str) -> Optional[str]:
             return NUMERIC_CAST_EXPR.get(label)
@@ -832,6 +838,14 @@ for col, spec in filter_specs.items():
                 params[key1] = float(spec.get("min", 0))
                 params[key2] = float(spec.get("max", 0))
                 where_parts.append(f"({num_expr} >= :{key1} AND {num_expr} <= :{key2})")
+            elif mode == "Min":
+                key = f"p{pidx}"; pidx += 1
+                params[key] = float(spec.get("value", 0))
+                where_parts.append(f"{num_expr} >= :{key}")
+            elif mode == "Max":
+                key = f"p{pidx}"; pidx += 1
+                params[key] = float(spec.get("value", 0))
+                where_parts.append(f"{num_expr} <= :{key}")
 
 where_sql = ("WHERE " + " AND ".join(where_parts)) if where_parts else ""
 group_sql = "GROUP BY " + ", ".join(str(i) for i in group_positions) if group_positions else ""
