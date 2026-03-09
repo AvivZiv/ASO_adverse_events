@@ -234,28 +234,6 @@ with settings_expander:
     theme_name = st.selectbox("Theme", list(PALETTES.keys()), index=0, key="sel_palette")
 _palette = PALETTES[theme_name]
 
-# Write config.toml to match selected theme so dataframe iframes inherit correct base
-_is_dark = (theme_name == "Dark")
-_toml_dir = Path(".streamlit")
-_toml_dir.mkdir(exist_ok=True)
-_toml_path = _toml_dir / "config.toml"
-_toml_content = (
-    f'[theme]\nbase="dark"\nprimaryColor="{_palette["accent"]}"\n'
-    f'backgroundColor="{_palette["bg"]}"\n'
-    f'secondaryBackgroundColor="{_palette["card_bg"]}"\n'
-    f'textColor="{_palette["text"]}"\nfont="sans serif"\n'
-    if _is_dark else
-    f'[theme]\nbase="light"\nprimaryColor="{_palette["accent"]}"\n'
-    f'backgroundColor="{_palette["bg"]}"\n'
-    f'secondaryBackgroundColor="{_palette["card_bg"]}"\n'
-    f'textColor="{_palette["text"]}"\nfont="sans serif"\n'
-)
-try:
-    if not _toml_path.exists() or _toml_path.read_text() != _toml_content:
-        _toml_path.write_text(_toml_content)
-        st.rerun()
-except Exception:
-    pass
 
 inject_theme(_palette)
 COLOR_SEQ    = _palette["plot"]
@@ -368,15 +346,6 @@ if refs_xlsx_path.exists():
             _load_references_xlsx()
     except Exception:
         pass
-    with settings_expander:
-        st.markdown("#### 📄 References Data")
-        if st.button("Reload References"):
-            try:
-                _load_references_xlsx()
-                st.success("References reloaded.")
-                st.rerun()
-            except Exception as e:
-                st.error(f"Error loading references: {e}")
 
 # ====================== CSV Loader ======================
 csv_path = Path("adverse_events_gold_cursor.csv")
@@ -428,42 +397,6 @@ if csv_path.exists():
     except Exception:
         pass
 
-    with settings_expander:
-        st.markdown("#### 📂 Custom Data")
-        if st.button("Reload Custom CSV"):
-            try:
-                # Load CSV
-                csv_df = pd.read_csv(csv_path)
-                
-                required_csv_cols = ["treatment_id", "ae_term", "ae_group", "treated", "observed", "percent"]
-                missing = [c for c in required_csv_cols if c not in csv_df.columns]
-                
-                if missing:
-                    st.error(f"CSV missing columns: {missing}")
-                else:
-                    rename_map = {
-                        "treated": "total_treated",
-                        "observed": "pts_observed_n",
-                        "percent": "pts_observed_percent",
-                        "observed_severe": "pts_observed_severe_n",
-                        "percent_severe": "pts_observed_severe_percent"
-                    }
-                    csv_df = csv_df.rename(columns={k: v for k, v in rename_map.items() if k in csv_df.columns})
-                    
-                    if "source_type" not in csv_df.columns:
-                        csv_df["source_type"] = "Custom CSV"
-                    if "severity" not in csv_df.columns:
-                        csv_df["severity"] = ""
-                    
-                    table_name = "adverse_events_custom_upload"
-                    with sqlite3.connect(DBP) as con:
-                        csv_df.to_sql(table_name, con, if_exists="replace", index=False)
-                    
-                    st.success(f"Reloaded {len(csv_df)} rows")
-                    st.rerun()
-                    
-            except Exception as e:
-                st.error(f"Error loading CSV: {e}")
 
 # ====================== AE table autodetect ======================
 candidate_ae = [
@@ -479,10 +412,7 @@ available_ae = [t for t in candidate_ae if table_exists(t)]
 if not available_ae:
     st.error("No AE table found. Expected one of: " + ", ".join(candidate_ae))
     st.stop()
-
-with st.sidebar:
-    AE_TABLE = st.selectbox("Adverse Events Table", available_ae, index=0, key="sel_ae_table")
-    st.caption(f"Using AE table: `{AE_TABLE}`")
+AE_TABLE = available_ae[0]
 
 ALIASES = {AE_TABLE: "ae", "treatments": "t", "approvals": "ap", "refs": "rf", "trials": "tr"}
 JOINS: Dict[Tuple[str, str], str] = {
@@ -592,7 +522,7 @@ DIMENSIONS.update({
 
 # Approvals / Trials
 DIMENSIONS.update({
-    "Clinical Phase": {"expr": 'tr."phase"', "table": "trials"},
+    "Clinical Trial Phase": {"expr": 'tr."phase"', "table": "trials"},
 })
 
 def numeric_expr_for(label: str) -> Optional[str]:
