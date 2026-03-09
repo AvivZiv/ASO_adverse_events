@@ -1232,3 +1232,38 @@ with info_tab:
                 title="AE Category Share"
             )
             render_plotly(pie)
+
+# ====================== Abbreviations Legend ======================
+st.markdown("---")
+with st.expander("📖 Abbreviations & Terminology"):
+    legend = {
+        "Backbone": {
+            "PS":    "Phosphorothioate",
+            "PMO":   "Phosphorodiamidate Morpholino Oligomers",
+            "PO/PS": "Phosphodiester / Phosphorothioate",
+        },
+        "Gapmer Configuration": {
+            "G":  "Gapmer",
+            "FM": "Fully Modified",
+            "NM": "Non-Modified",
+        },
+        "Sugar Modification": {
+            "N":     "Unmodified DNA (sugar position only)",
+            "2'MOE": "2'-O-Methoxyethyl",
+            "2'OMe": "2'-O-Methylation",
+            "LNA":   "Locked Nucleic Acid",
+            "cEt":   "Constrained Ethyl",
+            "MIX":   "Mixed Sugar Modification",
+        },
+    }
+    for section, terms in legend.items():
+        st.markdown(f"**{section}**")
+        rows = "".join(
+            f"<tr><td style='padding:3px 16px 3px 0;font-weight:600;white-space:nowrap'>{abbr}</td>"
+            f"<td style='padding:3px 0'>{full}</td></tr>"
+            for abbr, full in terms.items()
+        )
+        st.markdown(
+            f"<table style='border-collapse:collapse;margin-bottom:10px'>{rows}</table>",
+            unsafe_allow_html=True,
+        )
