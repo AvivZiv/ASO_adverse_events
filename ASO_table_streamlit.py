@@ -1056,9 +1056,7 @@ with info_tab:
 
         try:
             refs_source = "references_v2" if table_exists("references_v2") else "refs"
-            _has_source_type = col_exists(refs_source, "ref_source_type")
-            _extra_col = ', ref_source_type AS "Source Type"' if _has_source_type else ""
-            q_refs = f"""SELECT DISTINCT ref_type AS "Category"{_extra_col}, ref_value AS "Reference"
+            q_refs = f"""SELECT DISTINCT ref_type AS "Category", ref_value AS "Reference"
                    FROM {refs_source}
                    WHERE treatment_id = (
                        SELECT treatment_id FROM treatments
