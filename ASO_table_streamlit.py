@@ -158,44 +158,6 @@ def inject_theme(p: Dict[str, str]):
             border-radius: 8px;
         }}
 
-        /* ---- custom HTML tables ---- */
-        .aso-table-wrap {{
-            overflow: auto;
-            border-radius: 8px;
-            border: 1px solid var(--aso-border);
-            background: var(--aso-card);
-            width: 100%;
-        }}
-        .aso-table-wrap table {{
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--aso-card);
-            color: var(--aso-text);
-            font-size: 0.85rem;
-        }}
-        .aso-table-wrap thead tr {{
-            background: var(--aso-sidebar);
-            position: sticky;
-            top: 0;
-            z-index: 1;
-        }}
-        .aso-table-wrap th {{
-            padding: 8px 12px;
-            text-align: left;
-            color: var(--aso-text);
-            font-weight: 600;
-            border-bottom: 2px solid var(--aso-border);
-            white-space: nowrap;
-        }}
-        .aso-table-wrap td {{
-            padding: 6px 12px;
-            border-bottom: 1px solid var(--aso-border);
-            color: var(--aso-text);
-        }}
-        .aso-table-wrap tbody tr:hover td {{
-            background: var(--aso-sidebar);
-        }}
-
         /* ---- metric cards ---- */
         [data-testid="stMetric"] {{
             background: var(--aso-card) !important;
@@ -277,21 +239,6 @@ inject_theme(_palette)
 COLOR_SEQ    = _palette["plot"]
 PLOT_BG      = _palette["card_bg"]
 PLOT_PAPER   = _palette["bg"]
-
-def show_table(df: pd.DataFrame, height: int = 440):
-    """Render a DataFrame as a themed HTML table that respects the active CSS palette."""
-    if df is None or df.empty:
-        st.info("No data to display.")
-        return
-    display = df.copy()
-    for col in display.select_dtypes(include="float").columns:
-        display[col] = display[col].map(lambda v: f"{v:,.2f}" if pd.notna(v) else "—")
-    display = display.fillna("—")
-    html = display.to_html(index=False, escape=True, border=0)
-    st.markdown(
-        f'<div class="aso-table-wrap" style="max-height:{height}px;">{html}</div>',
-        unsafe_allow_html=True,
-    )
 PLOT_TEXT    = _palette["text"]
 PLOT_GRID    = _palette["border"]
 
@@ -951,8 +898,9 @@ else:
         except Exception:
             pass
 
-    show_table(df, height=440)
-    csv = df.to_csv(index=False).encode("utf-8")
+    # Use data_editor so interactive filters/edits are reflected in the returned dataframe
+    edited_df = st.data_editor(df, use_container_width=True, height=440, key="main_table")
+    csv = edited_df.to_csv(index=False).encode("utf-8")
     st.download_button("⬇️ Download CSV", csv, file_name="aso_analytics.csv", mime="text/csv")
 
 # ====================== Chart ======================
@@ -1198,7 +1146,7 @@ with info_tab:
         if refs_df.empty:
             st.info("No references found for this treatment.")
         else:
-            show_table(refs_df, height=400)
+            st.dataframe(refs_df, use_container_width=True)
 
         st.markdown("#### Adverse Effects")
         try:
@@ -1238,7 +1186,7 @@ with info_tab:
         if ae_by_source_df.empty:
             st.info("No adverse effects found for this treatment.")
         else:
-            show_table(ae_by_source_df, height=400)
+            st.dataframe(ae_by_source_df, use_container_width=True)
 
         st.markdown("#### Adverse Event Category Distribution")
         try:
