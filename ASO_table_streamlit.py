@@ -1,5 +1,6 @@
 # Python 3.9 compatible
 from typing import Optional, Dict, List, Tuple, Set
+import math
 import sqlite3
 import pandas as pd
 import plotly.express as px
@@ -1105,13 +1106,21 @@ else:
 
     metric_for_chart = cc2.selectbox("Metric", output_metric_cols, index=0)
     sort_x = cc3.toggle("Sort Descending", value=True)
-    log_y = cc4.toggle("Log Scale (Y-axis)", value=False)
+    apply_log1p = cc4.toggle("Apply log1p", value=False)
 
     work = chart_df.copy()
     work[metric_for_chart] = pd.to_numeric(work[metric_for_chart], errors="coerce")
     work = work.dropna(subset=[metric_for_chart])
     for d in dims:
         work[d] = work[d].astype(str)
+
+    chart_metric_col = metric_for_chart
+    chart_metric_label = metric_for_chart
+    if apply_log1p:
+        chart_metric_col = f"__log1p__{metric_for_chart}"
+        work = work[work[metric_for_chart] > -1].copy()
+        work[chart_metric_col] = work[metric_for_chart].map(lambda v: math.log1p(v) if pd.notna(v) else None)
+        chart_metric_label = f"log1p({metric_for_chart})"
 
     if work.empty:
         st.info("No valid numeric data for chart.")
@@ -1122,6 +1131,8 @@ else:
         if len(dims) == 0:
             st.info("Pick at least one grouping column to draw a pie chart.")
         else:
+            if apply_log1p:
+                st.info("Pie charts use the raw metric. `log1p` is applied only to bar and line charts.")
             names_col = dims[0]
             names_label = dim_labels.get(names_col, names_col)
             donut = st.checkbox("Donut Chart", value=True)
@@ -1147,19 +1158,18 @@ else:
             x = dims[0]
             x_label = dim_labels.get(x, x)
             if sort_x:
-                work = work.sort_values(by=metric_for_chart, ascending=False)
+                work = work.sort_values(by=chart_metric_col, ascending=False)
 
             if chart_type == "Bar":
-                fig = px.bar(work, x=x, y=metric_for_chart,
+                fig = px.bar(work, x=x, y=chart_metric_col,
                              color_discrete_sequence=COLOR_SEQ,
-                             title=f"{metric_for_chart} by {x_label}")
+                             title=f"{chart_metric_label} by {x_label}")
             else:
-                fig = px.line(work, x=x, y=metric_for_chart,
+                fig = px.line(work, x=x, y=chart_metric_col,
                               color_discrete_sequence=COLOR_SEQ,
-                              title=f"{metric_for_chart} by {x_label}")
+                              title=f"{chart_metric_label} by {x_label}")
 
-            if log_y:
-                fig.update_yaxes(type="log")
+            fig.update_yaxes(title_text=chart_metric_label)
             render_plotly(fig)
 
         # 2 dimensions
@@ -1168,19 +1178,18 @@ else:
             x_label = dim_labels.get(x, x)
             color_label = dim_labels.get(color, color)
             if sort_x:
-                work = work.sort_values(by=metric_for_chart, ascending=False)
+                work = work.sort_values(by=chart_metric_col, ascending=False)
 
             if chart_type == "Bar":
-                fig = px.bar(work, x=x, y=metric_for_chart, color=color, barmode="group",
+                fig = px.bar(work, x=x, y=chart_metric_col, color=color, barmode="group",
                              color_discrete_sequence=COLOR_SEQ,
-                             title=f"{metric_for_chart} by {x_label} and {color_label}")
+                             title=f"{chart_metric_label} by {x_label} and {color_label}")
             else:
-                fig = px.line(work, x=x, y=metric_for_chart, color=color,
+                fig = px.line(work, x=x, y=chart_metric_col, color=color,
                               color_discrete_sequence=COLOR_SEQ,
-                              title=f"{metric_for_chart} by {x_label} and {color_label}")
+                              title=f"{chart_metric_label} by {x_label} and {color_label}")
 
-            if log_y:
-                fig.update_yaxes(type="log")
+            fig.update_yaxes(title_text=chart_metric_label)
             render_plotly(fig)
 
         # 3 dimensions
@@ -1192,20 +1201,19 @@ else:
 
             if chart_type == "Bar":
                 fig = px.bar(
-                    work, x=x, y=metric_for_chart, color=color, facet_col=facet,
+                    work, x=x, y=chart_metric_col, color=color, facet_col=facet,
                     facet_col_wrap=3, barmode="group",
                     color_discrete_sequence=COLOR_SEQ,
-                    title=f"{metric_for_chart} by {x_label}, {color_label} (facet: {facet_label})"
+                    title=f"{chart_metric_label} by {x_label}, {color_label} (facet: {facet_label})"
                 )
             else:
                 fig = px.line(
-                    work, x=x, y=metric_for_chart, color=color, facet_col=facet,
+                    work, x=x, y=chart_metric_col, color=color, facet_col=facet,
                     facet_col_wrap=3, color_discrete_sequence=COLOR_SEQ,
-                    title=f"{metric_for_chart} by {x_label}, {color_label} (facet: {facet_label})"
+                    title=f"{chart_metric_label} by {x_label}, {color_label} (facet: {facet_label})"
                 )
 
-            if log_y:
-                fig.update_yaxes(type="log")
+            fig.update_yaxes(title_text=chart_metric_label)
 
             fig.update_layout(
                 margin=dict(l=30, r=30, t=60, b=220), height=680,
