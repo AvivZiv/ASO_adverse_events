@@ -539,18 +539,16 @@ if col_exists("treatments", "chem_length_nt"):
 # ====================== Dimensions ======================
 DIMENSIONS: Dict[str, Dict[str, str]] = {}
 
-SOURCE_TYPE_CASE_13_11 = (
-    "CASE src.source_type "
-    "WHEN 'P' THEN 'Peer Review' "
-    "WHEN 'N' THEN 'Non-Peer Review' "
-    "WHEN 'G' THEN 'Gray Literature' "
-    "WHEN 'F' THEN 'FAERS Database' "
-    "WHEN 'L' THEN 'Labeling' "
-    "ELSE NULL END"
-)
-
 DIMENSIONS["Publication Source Type"] = {
-    "expr": "NULL",
+    "expr": (
+        "CASE ae.source_type "
+        "WHEN 'P' THEN 'Peer Review' "
+        "WHEN 'N' THEN 'Non-Peer Review' "
+        "WHEN 'G' THEN 'Gray Literature' "
+        "WHEN 'F' THEN 'FAERS Database' "
+        "WHEN 'L' THEN 'Labeling' "
+        "ELSE ae.source_type END"
+    ),
     "table": AE_TABLE,
 }
 if col_exists(AE_TABLE, "ae_term"):
@@ -690,47 +688,6 @@ def build_from_join(used_tables: List[str]) -> str:
             raise ValueError(f"Cannot connect tables: {used_tables}")
     return sql
 
-def load_publication_source_bridge() -> pd.DataFrame:
-    q = f"""
-        SELECT
-            src.treatment_id AS "__treatment_id",
-            LOWER(TRIM(COALESCE(src.ae_term, ''))) AS "__source_ae_term",
-            {SOURCE_TYPE_CASE_13_11} AS "Publication Source Type"
-        FROM adverse_events_13_11 src
-        WHERE TRIM(COALESCE(src.source_type, '')) <> ''
-          AND {SOURCE_TYPE_CASE_13_11} IS NOT NULL
-        GROUP BY 1, 2, 3
-    """
-    return run_sql(q)
-
-def attach_publication_source_type(raw_df: pd.DataFrame) -> pd.DataFrame:
-    if raw_df.empty:
-        raw_df["Publication Source Type"] = []
-        return raw_df
-    bridge = load_publication_source_bridge()
-    if bridge.empty:
-        raw_df["Publication Source Type"] = None
-        return raw_df
-    out = raw_df.copy()
-    out["__source_ae_term"] = out["__source_ae_term"].fillna("").astype(str).str.strip().str.lower()
-    return out.merge(bridge, on=["__treatment_id", "__source_ae_term"], how="left")
-
-def apply_publication_source_filter(raw_df: pd.DataFrame, spec: dict) -> pd.DataFrame:
-    if "Publication Source Type" not in raw_df.columns:
-        return raw_df
-    out = raw_df.copy()
-    col = out["Publication Source Type"].fillna("").astype(str).str.strip()
-    if spec.get("exclude_null", False):
-        out = out[col != ""]
-        col = out["Publication Source Type"].fillna("").astype(str).str.strip()
-    values = [(v or "").strip().lower() for v in (spec.get("values") or []) if (v or "").strip()]
-    if values:
-        if spec.get("mode") == "Include":
-            out = out[col.str.lower().isin(values)]
-        elif spec.get("mode") == "Exclude":
-            out = out[~col.str.lower().isin(values)]
-    return out
-
 RATE_DENOM_EXCLUDED_DIMS = {
     "Adverse Event",
     "Adverse Event Category",
@@ -846,20 +803,6 @@ def _distinct_cached(db_path: str, table: str, expr: str, alias: str = "ae") -> 
 
 def distinct_for_display(col_label: str) -> List[str]:
     if col_label not in DIMENSIONS: return []
-    if col_label == "Publication Source Type":
-        q = f"""
-            SELECT DISTINCT {SOURCE_TYPE_CASE_13_11} AS v
-            FROM adverse_events_13_11 src
-            WHERE TRIM(COALESCE(src.source_type, '')) <> ''
-              AND {SOURCE_TYPE_CASE_13_11} IS NOT NULL
-            ORDER BY 1
-        """
-        try:
-            with sqlite3.connect(DBP) as con:
-                df = pd.read_sql(q, con)
-            return [str(x) for x in df["v"].tolist() if str(x).strip()]
-        except Exception:
-            return []
     info = DIMENSIONS[col_label]
     expr, table = info["expr"], info["table"]
     # For complex expressions (CASE, functions) use the full expr with the table alias.
@@ -948,34 +891,19 @@ if stratify_by != "(none)" and stratify_by not in gb_all:
     if len(gb_all) < 3: gb_all.append(stratify_by)
     else: st.warning("Stratify ignored: already using 3 grouping columns.")
 
-_use_source_type_bridge = (
-    "Publication Source Type" in gb_all
-    or (
-        "Publication Source Type" in filter_specs
-        and (
-            bool(filter_specs["Publication Source Type"].get("values"))
-            or filter_specs["Publication Source Type"].get("exclude_null", False)
-        )
-    )
-)
-sql_group_dims = [d for d in gb_all if d != "Publication Source Type"]
-sql_filter_specs = {k: v for k, v in filter_specs.items() if k != "Publication Source Type"}
-_use_corrected_rate_logic = "Avg. AE Rate (%)" in metric_sel
-_use_python_aggregation = _use_corrected_rate_logic or _use_source_type_bridge
-
 # ====================== Build SQL ======================
-used_tables = resolve_tables(sql_group_dims, metric_sel, sql_filter_specs)
-if (_use_corrected_rate_logic or _use_source_type_bridge) and AE_TABLE not in used_tables:
-    used_tables = [AE_TABLE] + used_tables
+used_tables = resolve_tables(gb_all, metric_sel, filter_specs)
 try:
     from_join_sql = build_from_join(used_tables)
 except Exception as e:
     st.error(str(e)); st.stop()
 
+_use_corrected_rate_logic = "Avg. AE Rate (%)" in metric_sel
+
 select_parts: List[str] = []
 group_positions: List[int] = []
 
-for i, d in enumerate(sql_group_dims, start=1):
+for i, d in enumerate(gb_all, start=1):
     expr = DIMENSIONS[d]["expr"]
     select_parts.append(f'{expr} AS "{d}"')
     group_positions.append(i)
@@ -1000,7 +928,7 @@ pidx = 0
 def norm_sql(s: str) -> str:
     return f"TRIM(COALESCE({s}, ''))"
 
-for col, spec in sql_filter_specs.items():
+for col, spec in filter_specs.items():
     expr = DIMENSIONS[col]["expr"]
     mode = spec.get("mode")
     exclude_null = spec.get("exclude_null", False)
@@ -1067,14 +995,13 @@ if _dedup_metrics and group_positions and AE_TABLE in used_tables:
         )
         from_join_sql = from_join_sql.replace(f'"{AE_TABLE}"', _dedup_subq, 1)
 
-if _use_python_aggregation:
+if _use_corrected_rate_logic:
     raw_select_parts = []
-    for d in sql_group_dims:
+    for d in gb_all:
         expr = DIMENSIONS[d]["expr"]
         raw_select_parts.append(f'{expr} AS "{d}"')
     raw_select_parts.extend([
         'ae."treatment_id" AS "__treatment_id"',
-        'LOWER(TRIM(COALESCE(ae."ae_term", \'\'))) AS "__source_ae_term"',
         f'{AE_NUM.get("total_treated", "0")} AS "__total_treated"',
     ])
     metric_incidence_expr = AE_NUM.get("pts_observed_severe_n" if only_severe else "pts_observed_n", "0")
@@ -1100,20 +1027,14 @@ if show_sql:
         st.code(final_sql, language="sql")
         if _use_corrected_rate_logic:
             st.caption("`Avg. AE Rate (%)` is computed after query execution as: grouped incidence / deduplicated treated population, ignoring AE-only dimensions in the denominator.")
-        if _use_source_type_bridge:
-            st.caption("`Publication Source Type` is attached from deduplicated `adverse_events_13_11` rows matched on `treatment_id + ae_term`.")
         with st.expander("Filter debug", expanded=False):
             st.write("Filter specs:", filter_specs)
             st.write("SQL params:", params)
 
 # ====================== Run query ======================
 try:
-    if _use_python_aggregation:
+    if _use_corrected_rate_logic:
         raw_df = run_sql(final_sql, params)
-        if _use_source_type_bridge:
-            raw_df = attach_publication_source_type(raw_df)
-            if "Publication Source Type" in filter_specs:
-                raw_df = apply_publication_source_filter(raw_df, filter_specs["Publication Source Type"])
         df = aggregate_metrics_from_rows(raw_df, gb_all, metric_sel)
         if metric_sel and metric_sel[0] in df.columns:
             df = df.sort_values(by=metric_sel[0], ascending=False, na_position="last")
