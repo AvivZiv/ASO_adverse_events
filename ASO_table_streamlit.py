@@ -815,13 +815,17 @@ def distinct_for_display(col_label: str) -> List[str]:
 # ====================== Build analysis UI ======================
 st.markdown("### 📊 Build analysis")
 dim_choices = list(DIMENSIONS.keys())
+group_dim_choices = [
+    d for d in dim_choices
+    if d not in {"Treated Population", "AE Reports (Incidence)", "AE Reports (Rate)"}
+]
 metric_choices = list(METRICS.keys())
 
 c1, c2 = st.columns([2, 1])
 with c1:
-    group_by = st.multiselect("Group By (Max 3)", dim_choices, max_selections=3, key="ms_group_by")
+    group_by = st.multiselect("Group By (Max 3)", group_dim_choices, max_selections=3, key="ms_group_by")
 with c2:
-    stratify_by = st.selectbox("Stratify By", ["(none)"] + dim_choices, index=0, key="sel_stratify")
+    stratify_by = st.selectbox("Stratify By", ["(none)"] + group_dim_choices, index=0, key="sel_stratify")
 
 metric_sel = st.multiselect("Select Metrics", metric_choices, default=["Row Count"], max_selections=4, key="ms_metrics")
 
