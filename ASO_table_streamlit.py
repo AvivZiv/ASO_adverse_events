@@ -895,12 +895,26 @@ if stratify_by != "(none)" and stratify_by not in gb_all:
     if len(gb_all) < 3: gb_all.append(stratify_by)
     else: st.warning("Stratify ignored: already using 3 grouping columns.")
 
+_use_trials_phase_dedup = (
+    "Clinical Trial Phase" in gb_all
+    or "Clinical Trial Phase" in filter_specs
+)
+
 # ====================== Build SQL ======================
 used_tables = resolve_tables(gb_all, metric_sel, filter_specs)
 try:
     from_join_sql = build_from_join(used_tables)
 except Exception as e:
     st.error(str(e)); st.stop()
+
+if _use_trials_phase_dedup and "trials" in used_tables:
+    _trials_phase_subq = (
+        '(SELECT treatment_id, MAX(phase) AS phase '
+        'FROM trials '
+        'WHERE phase IS NOT NULL AND TRIM(COALESCE(phase, \'\')) <> \'\' '
+        'GROUP BY treatment_id)'
+    )
+    from_join_sql = from_join_sql.replace('"trials"', _trials_phase_subq, 1)
 
 _use_corrected_rate_logic = "Avg. AE Rate (%)" in metric_sel
 
