@@ -948,8 +948,6 @@ select_sql = "SELECT " + ", ".join(select_parts) if select_parts else "SELECT CO
 
 # WHERE
 where_parts: List[str] = []
-if only_severe and "pts_observed_severe_n" in AE_NUM:
-    where_parts.append(f"{AE_NUM['pts_observed_severe_n']} > 0")
 params: Dict[str, str] = {}
 pidx = 0
 
@@ -1012,14 +1010,9 @@ if _dedup_metrics and group_positions and AE_TABLE in used_tables:
     _all_ae_cols.discard("treatment_id")
     if _all_ae_cols:
         _inner_cols = ", ".join([f'MAX("{c}") AS "{c}"' for c in sorted(_all_ae_cols)])
-        # When Only Severe AEs toggle is on, pre-filter inside the dedup subquery so
-        # it deduplicates over severe-AE rows only, not all AEs per treatment.
-        _dedup_inner_where = ""
-        if only_severe and "pts_observed_severe_n" in AE_NUM:
-            _dedup_inner_where = ' WHERE CAST("pts_observed_severe_n" AS FLOAT) > 0'
         _dedup_subq = (
             f"(SELECT treatment_id, {_inner_cols} "
-            f"FROM {AE_TABLE}{_dedup_inner_where} GROUP BY treatment_id)"
+            f"FROM {AE_TABLE} GROUP BY treatment_id)"
         )
         from_join_sql = from_join_sql.replace(f'"{AE_TABLE}"', _dedup_subq, 1)
 
