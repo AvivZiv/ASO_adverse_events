@@ -620,7 +620,7 @@ if "pts_observed_n" in AE_NUM:
     METRICS["Total AE Incidence"] = {"agg": "SUM", "expr": AE_NUM["pts_observed_n"]}
 if "pts_observed_percent" in AE_NUM:
     METRICS["Accumulated AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_percent"]}
-    METRICS["Mean AE Row Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_percent"]}
+    METRICS["Mean AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_percent"]}
 if "total_treated" in AE_NUM:
     METRICS["Avg. Treated Population"] = {"agg": "AVG", "expr": AE_NUM["total_treated"], "dedup_by": "ae.treatment_id"}
     METRICS["Treated Population"] = {"agg": "SUM", "expr": AE_NUM["total_treated"], "dedup_by": "ae.treatment_id"}
@@ -762,12 +762,12 @@ def aggregate_metrics_from_rows(raw_df: pd.DataFrame, group_cols: List[str], sel
         keep = list(group_cols) + ["Accumulated AE Rate (%)"]
         merge_metric(rate_df[keep])
 
-    if "Mean AE Row Rate (%)" in selected_metrics:
+    if "Mean AE Rate (%)" in selected_metrics:
         rate_s = (
             raw_df.groupby(group_cols, dropna=False)["__metric_row_rate"].mean()
             if group_cols else pd.Series([raw_df["__metric_row_rate"].mean()])
         )
-        merge_metric(_series_to_frame(rate_s, "Mean AE Row Rate (%)", group_cols))
+        merge_metric(_series_to_frame(rate_s, "Mean AE Rate (%)", group_cols))
 
     if "Avg. Treated Population" in selected_metrics or "Treated Population" in selected_metrics:
         treated_dedup_keys = group_cols + ["__treatment_id"] if group_cols else ["__treatment_id"]
@@ -846,8 +846,8 @@ if only_severe:
         METRICS["Total AE Incidence"] = {"agg": "SUM", "expr": AE_NUM["pts_observed_severe_n"]}
     if "Accumulated AE Rate (%)" in METRICS and "pts_observed_severe_percent" in AE_NUM:
         METRICS["Accumulated AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_severe_percent"]}
-    if "Mean AE Row Rate (%)" in METRICS and "pts_observed_severe_percent" in AE_NUM:
-        METRICS["Mean AE Row Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_severe_percent"]}
+    if "Mean AE Rate (%)" in METRICS and "pts_observed_severe_percent" in AE_NUM:
+        METRICS["Mean AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_severe_percent"]}
 
 # -------- Advanced Filters --------
 with st.expander("🎛️ Filters (optional)", expanded=False):
@@ -926,7 +926,7 @@ if _use_trials_phase_dedup and "trials" in used_tables:
     )
     from_join_sql = from_join_sql.replace('"trials"', _trials_phase_subq, 1)
 
-_use_custom_rate_logic = any(m in metric_sel for m in ["Accumulated AE Rate (%)", "Mean AE Row Rate (%)"])
+_use_custom_rate_logic = any(m in metric_sel for m in ["Accumulated AE Rate (%)", "Mean AE Rate (%)"])
 
 select_parts: List[str] = []
 group_positions: List[int] = []
@@ -1049,7 +1049,7 @@ if show_sql:
     with st.expander("🧾 Generated SQL", expanded=True):
         st.code(final_sql, language="sql")
         if _use_custom_rate_logic:
-            st.caption("`Accumulated AE Rate (%)` uses grouped incidence over deduplicated treated population, while `Mean AE Row Rate (%)` averages the raw AE-row percentage values.")
+            st.caption("`Accumulated AE Rate (%)` uses grouped incidence over deduplicated treated population, while `Mean AE Rate (%)` averages the raw AE-row percentage values.")
         with st.expander("Filter debug", expanded=False):
             st.write("Filter specs:", filter_specs)
             st.write("SQL params:", params)
