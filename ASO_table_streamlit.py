@@ -619,6 +619,7 @@ METRICS: Dict[str, Dict[str, str]] = {"Row Count": {"agg": "COUNT", "expr": "*"}
 if "pts_observed_n" in AE_NUM:
     METRICS["Total AE Incidence"] = {"agg": "SUM", "expr": AE_NUM["pts_observed_n"]}
 if "pts_observed_percent" in AE_NUM:
+    METRICS["Accumulated AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_percent"]}
     METRICS["Mean AE Row Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_percent"]}
 if "total_treated" in AE_NUM:
     METRICS["Avg. Treated Population"] = {"agg": "AVG", "expr": AE_NUM["total_treated"], "dedup_by": "ae.treatment_id"}
@@ -688,6 +689,14 @@ def build_from_join(used_tables: List[str]) -> str:
             raise ValueError(f"Cannot connect tables: {used_tables}")
     return sql
 
+RATE_DENOM_EXCLUDED_DIMS = {
+    "Adverse Event",
+    "Adverse Event Category",
+    "Severity",
+    "AE Reports (Incidence)",
+    "AE Reports (Rate)",
+}
+
 def _series_to_frame(s: pd.Series, name: str, group_cols: List[str]) -> pd.DataFrame:
     if group_cols:
         return s.reset_index(name=name)
@@ -721,6 +730,37 @@ def aggregate_metrics_from_rows(raw_df: pd.DataFrame, group_cols: List[str], sel
             if group_cols else pd.Series([raw_df["__metric_incidence"].sum()])
         )
         merge_metric(_series_to_frame(inc_s, "Total AE Incidence", group_cols))
+
+    if "Accumulated AE Rate (%)" in selected_metrics:
+        denom_group_cols = [c for c in group_cols if c not in RATE_DENOM_EXCLUDED_DIMS]
+        denom_dedup_keys = denom_group_cols + ["__treatment_id"] if denom_group_cols else ["__treatment_id"]
+        denom_df = (
+            raw_df[denom_dedup_keys + ["__total_treated"]]
+            .groupby(denom_dedup_keys, dropna=False)["__total_treated"]
+            .max()
+            .reset_index()
+        )
+        if denom_group_cols:
+            denom_by_group = denom_df.groupby(denom_group_cols, dropna=False)["__total_treated"].sum().reset_index(name="__denom_treated")
+        else:
+            denom_by_group = pd.DataFrame([{"__denom_treated": denom_df["__total_treated"].sum()}])
+
+        num_s = (
+            raw_df.groupby(group_cols, dropna=False)["__metric_incidence"].sum()
+            if group_cols else pd.Series([raw_df["__metric_incidence"].sum()])
+        )
+        num_df = _series_to_frame(num_s, "__numerator", group_cols)
+        if denom_group_cols:
+            rate_df = num_df.merge(denom_by_group, on=denom_group_cols, how="left")
+        else:
+            rate_df = num_df.copy()
+            rate_df["__denom_treated"] = float(denom_by_group["__denom_treated"].iloc[0]) if not denom_by_group.empty else 0.0
+        rate_df["Accumulated AE Rate (%)"] = rate_df.apply(
+            lambda r: (float(r["__numerator"]) / float(r["__denom_treated"]) * 100.0) if float(r["__denom_treated"] or 0) > 0 else 0.0,
+            axis=1,
+        )
+        keep = list(group_cols) + ["Accumulated AE Rate (%)"]
+        merge_metric(rate_df[keep])
 
     if "Mean AE Row Rate (%)" in selected_metrics:
         rate_s = (
@@ -804,6 +844,8 @@ only_severe = st.toggle("Only Severe AEs", value=False, key="tgl_only_severe", d
 if only_severe:
     if "Total AE Incidence" in METRICS and "pts_observed_severe_n" in AE_NUM:
         METRICS["Total AE Incidence"] = {"agg": "SUM", "expr": AE_NUM["pts_observed_severe_n"]}
+    if "Accumulated AE Rate (%)" in METRICS and "pts_observed_severe_percent" in AE_NUM:
+        METRICS["Accumulated AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_severe_percent"]}
     if "Mean AE Row Rate (%)" in METRICS and "pts_observed_severe_percent" in AE_NUM:
         METRICS["Mean AE Row Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_severe_percent"]}
 
@@ -884,7 +926,7 @@ if _use_trials_phase_dedup and "trials" in used_tables:
     )
     from_join_sql = from_join_sql.replace('"trials"', _trials_phase_subq, 1)
 
-_use_mean_row_rate_logic = "Mean AE Row Rate (%)" in metric_sel
+_use_custom_rate_logic = any(m in metric_sel for m in ["Accumulated AE Rate (%)", "Mean AE Row Rate (%)"])
 
 select_parts: List[str] = []
 group_positions: List[int] = []
@@ -981,7 +1023,7 @@ if _dedup_metrics and group_positions and AE_TABLE in used_tables:
         )
         from_join_sql = from_join_sql.replace(f'"{AE_TABLE}"', _dedup_subq, 1)
 
-if _use_mean_row_rate_logic:
+if _use_custom_rate_logic:
     raw_select_parts = []
     for d in gb_all:
         expr = DIMENSIONS[d]["expr"]
@@ -1013,15 +1055,15 @@ LIMIT {int(limit_rows)};
 if show_sql:
     with st.expander("🧾 Generated SQL", expanded=True):
         st.code(final_sql, language="sql")
-        if _use_mean_row_rate_logic:
-            st.caption("`Mean AE Row Rate (%)` is computed after query execution as the mean of raw AE-row percentage values, so it stays stable alongside deduplicated population metrics.")
+        if _use_custom_rate_logic:
+            st.caption("`Accumulated AE Rate (%)` uses grouped incidence over deduplicated treated population, while `Mean AE Row Rate (%)` averages the raw AE-row percentage values.")
         with st.expander("Filter debug", expanded=False):
             st.write("Filter specs:", filter_specs)
             st.write("SQL params:", params)
 
 # ====================== Run query ======================
 try:
-    if _use_mean_row_rate_logic:
+    if _use_custom_rate_logic:
         raw_df = run_sql(final_sql, params)
         df = aggregate_metrics_from_rows(raw_df, gb_all, metric_sel)
         if metric_sel and metric_sel[0] in df.columns:
