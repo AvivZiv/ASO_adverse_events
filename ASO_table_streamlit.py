@@ -689,14 +689,6 @@ def build_from_join(used_tables: List[str]) -> str:
             raise ValueError(f"Cannot connect tables: {used_tables}")
     return sql
 
-RATE_DENOM_EXCLUDED_DIMS = {
-    "Adverse Event",
-    "Adverse Event Category",
-    "Severity",
-    "AE Reports (Incidence)",
-    "AE Reports (Rate)",
-}
-
 def _series_to_frame(s: pd.Series, name: str, group_cols: List[str]) -> pd.DataFrame:
     if group_cols:
         return s.reset_index(name=name)
@@ -732,7 +724,10 @@ def aggregate_metrics_from_rows(raw_df: pd.DataFrame, group_cols: List[str], sel
         merge_metric(_series_to_frame(inc_s, "Total AE Incidence", group_cols))
 
     if "Accumulated AE Rate (%)" in selected_metrics:
-        denom_group_cols = [c for c in group_cols if c not in RATE_DENOM_EXCLUDED_DIMS]
+        # Use the full displayed grouping context for the denominator so
+        # category-by-group views (e.g. sugar x AE category) match the
+        # expected stacked-rate plots instead of pooling all categories together.
+        denom_group_cols = list(group_cols)
         denom_dedup_keys = denom_group_cols + ["__treatment_id"] if denom_group_cols else ["__treatment_id"]
         denom_df = (
             raw_df[denom_dedup_keys + ["__total_treated"]]
