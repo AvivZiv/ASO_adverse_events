@@ -820,7 +820,7 @@ st.markdown("### 📊 Build analysis")
 dim_choices = list(DIMENSIONS.keys())
 group_dim_choices = [
     d for d in dim_choices
-    if d not in {"Publication Source Type", "Treated Population", "AE Reports (Incidence)", "AE Reports (Rate)"}
+    if d not in {"Publication Source Type", "Clinical Trial Phase", "Treated Population", "AE Reports (Incidence)", "AE Reports (Rate)"}
 ]
 metric_choices = list(METRICS.keys())
 
