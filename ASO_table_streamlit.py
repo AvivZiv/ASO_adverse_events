@@ -1149,6 +1149,10 @@ else:
         st.info("No valid numeric data for chart.")
         st.stop()
 
+    stack_bars = False
+    if chart_type == "Bar" and len(dims) >= 2:
+        stack_bars = st.toggle("Stack bars", value=False, key="tgl_stack_bars")
+
     # ----- PIE -----
     if chart_type == "Pie":
         if len(dims) == 0:
@@ -1201,10 +1205,27 @@ else:
             x_label = dim_labels.get(x, x)
             color_label = dim_labels.get(color, color)
             if sort_x:
-                work = work.sort_values(by=chart_metric_col, ascending=False)
+                if stack_bars:
+                    x_order = (
+                        work.groupby(x, dropna=False)[chart_metric_col]
+                        .sum()
+                        .sort_values(ascending=False)
+                        .index
+                        .tolist()
+                    )
+                else:
+                    x_order = (
+                        work.groupby(x, dropna=False)[chart_metric_col]
+                        .max()
+                        .sort_values(ascending=False)
+                        .index
+                        .tolist()
+                    )
+                work[x] = pd.Categorical(work[x], categories=x_order, ordered=True)
+                work = work.sort_values(by=[x, chart_metric_col], ascending=[True, False])
 
             if chart_type == "Bar":
-                fig = px.bar(work, x=x, y=chart_metric_col, color=color, barmode="group",
+                fig = px.bar(work, x=x, y=chart_metric_col, color=color, barmode=("stack" if stack_bars else "group"),
                              color_discrete_sequence=COLOR_SEQ,
                              title=f"{chart_metric_label} by {x_label} and {color_label}")
             else:
@@ -1221,11 +1242,30 @@ else:
             x_label = dim_labels.get(x, x)
             color_label = dim_labels.get(color, color)
             facet_label = dim_labels.get(facet, facet)
+            if sort_x:
+                if chart_type == "Bar" and stack_bars:
+                    x_order = (
+                        work.groupby(x, dropna=False)[chart_metric_col]
+                        .sum()
+                        .sort_values(ascending=False)
+                        .index
+                        .tolist()
+                    )
+                else:
+                    x_order = (
+                        work.groupby(x, dropna=False)[chart_metric_col]
+                        .max()
+                        .sort_values(ascending=False)
+                        .index
+                        .tolist()
+                    )
+                work[x] = pd.Categorical(work[x], categories=x_order, ordered=True)
+                work = work.sort_values(by=[x, chart_metric_col], ascending=[True, False])
 
             if chart_type == "Bar":
                 fig = px.bar(
                     work, x=x, y=chart_metric_col, color=color, facet_col=facet,
-                    facet_col_wrap=3, barmode="group",
+                    facet_col_wrap=3, barmode=("stack" if stack_bars else "group"),
                     color_discrete_sequence=COLOR_SEQ,
                     title=f"{chart_metric_label} by {x_label}, {color_label} (facet: {facet_label})"
                 )
