@@ -621,6 +621,15 @@ if "pts_observed_n" in AE_NUM:
 if "pts_observed_percent" in AE_NUM:
     METRICS["Accumulated AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_percent"]}
     METRICS["Mean AE Rate (%)"] = {"agg": "AVG", "expr": AE_NUM["pts_observed_percent"]}
+if "pts_observed_n" in AE_NUM and "pts_observed_severe_n" in AE_NUM:
+    METRICS["Mean Severity Share (0-1)"] = {
+        "agg": "AVG",
+        "expr": (
+            f"CASE WHEN {AE_NUM['pts_observed_n']} > 0 "
+            f"THEN {AE_NUM['pts_observed_severe_n']} / {AE_NUM['pts_observed_n']} "
+            "ELSE NULL END"
+        ),
+    }
 if "total_treated" in AE_NUM:
     METRICS["Avg. Treated Population"] = {"agg": "AVG", "expr": AE_NUM["total_treated"], "dedup_by": "ae.treatment_id"}
     METRICS["Treated Population"] = {"agg": "SUM", "expr": AE_NUM["total_treated"], "dedup_by": "ae.treatment_id"}
@@ -764,6 +773,13 @@ def aggregate_metrics_from_rows(raw_df: pd.DataFrame, group_cols: List[str], sel
         )
         merge_metric(_series_to_frame(rate_s, "Mean AE Rate (%)", group_cols))
 
+    if "Mean Severity Share (0-1)" in selected_metrics:
+        share_s = (
+            raw_df.groupby(group_cols, dropna=False)["__severity_share_row"].mean()
+            if group_cols else pd.Series([raw_df["__severity_share_row"].mean()])
+        )
+        merge_metric(_series_to_frame(share_s, "Mean Severity Share (0-1)", group_cols))
+
     if "Avg. Treated Population" in selected_metrics or "Treated Population" in selected_metrics:
         treated_dedup_keys = group_cols + ["__treatment_id"] if group_cols else ["__treatment_id"]
         treated_df = (
@@ -787,6 +803,43 @@ def aggregate_metrics_from_rows(raw_df: pd.DataFrame, group_cols: List[str], sel
 
     ordered_cols = list(group_cols) + [m for m in selected_metrics if m in result.columns]
     return result[ordered_cols]
+
+def build_treatment_level_chart_df(raw_df: pd.DataFrame, group_col: str, metric_label: str) -> pd.DataFrame:
+    if raw_df is None or raw_df.empty or group_col not in raw_df.columns:
+        return pd.DataFrame(columns=[group_col, "__treatment_id", metric_label])
+
+    keys = [group_col, "__treatment_id"]
+    base = raw_df[keys].drop_duplicates().copy()
+
+    if metric_label == "Accumulated AE Rate (%)":
+        denom = raw_df.groupby(keys, dropna=False)["__total_treated"].max().reset_index(name="__denom")
+        num = raw_df.groupby(keys, dropna=False)["__metric_incidence"].sum().reset_index(name="__num")
+        out = base.merge(denom, on=keys, how="left").merge(num, on=keys, how="left")
+        out[metric_label] = out.apply(
+            lambda r: (float(r["__num"]) / float(r["__denom"]) * 100.0) if float(r["__denom"] or 0) > 0 else 0.0,
+            axis=1,
+        )
+        return out[[group_col, "__treatment_id", metric_label]]
+
+    if metric_label == "Mean AE Rate (%)":
+        out = raw_df.groupby(keys, dropna=False)["__metric_row_rate"].mean().reset_index(name=metric_label)
+        return out
+
+    if metric_label == "Mean Severity Share (0-1)":
+        out = raw_df.groupby(keys, dropna=False)["__severity_share_row"].mean().reset_index(name=metric_label)
+        return out
+
+    if metric_label == "Total AE Incidence":
+        out = raw_df.groupby(keys, dropna=False)["__metric_incidence"].sum().reset_index(name=metric_label)
+        return out
+
+    return pd.DataFrame(columns=[group_col, "__treatment_id", metric_label])
+
+def chart_metric_display_label(metric_label: str) -> str:
+    labels = {
+        "Mean Severity Share (0-1)": "Mean Severity Share",
+    }
+    return labels.get(metric_label, metric_label)
 
 @st.cache_data(show_spinner=False)
 def _distinct_cached(db_path: str, table: str, expr: str, alias: str = "ae") -> List[str]:
@@ -921,7 +974,10 @@ if _use_trials_phase_dedup and "trials" in used_tables:
     )
     from_join_sql = from_join_sql.replace('"trials"', _trials_phase_subq, 1)
 
-_use_custom_rate_logic = any(m in metric_sel for m in ["Accumulated AE Rate (%)", "Mean AE Rate (%)"])
+_use_custom_rate_logic = any(
+    m in metric_sel
+    for m in ["Total AE Incidence", "Accumulated AE Rate (%)", "Mean AE Rate (%)", "Mean Severity Share (0-1)"]
+)
 
 select_parts: List[str] = []
 group_positions: List[int] = []
@@ -1022,8 +1078,14 @@ if _use_custom_rate_logic:
     ])
     metric_incidence_expr = AE_NUM.get("pts_observed_severe_n" if only_severe else "pts_observed_n", "0")
     metric_rate_expr = AE_NUM.get("pts_observed_severe_percent" if only_severe else "pts_observed_percent", "NULL")
+    severity_share_expr = (
+        f"CASE WHEN {AE_NUM.get('pts_observed_n', '0')} > 0 "
+        f"THEN {AE_NUM.get('pts_observed_severe_n', '0')} / {AE_NUM.get('pts_observed_n', '0')} "
+        "ELSE NULL END"
+    )
     raw_select_parts.append(f'{metric_incidence_expr} AS "__metric_incidence"')
     raw_select_parts.append(f'{metric_rate_expr} AS "__metric_row_rate"')
+    raw_select_parts.append(f'{severity_share_expr} AS "__severity_share_row"')
     raw_sql = f"""
 SELECT {", ".join(raw_select_parts)}
 {from_join_sql}
@@ -1044,13 +1106,14 @@ if show_sql:
     with st.expander("🧾 Generated SQL", expanded=True):
         st.code(final_sql, language="sql")
         if _use_custom_rate_logic:
-            st.caption("`Accumulated AE Rate (%)` uses grouped incidence over deduplicated treated population, while `Mean AE Rate (%)` averages the raw AE-row percentage values.")
+            st.caption("`Accumulated AE Rate (%)` uses grouped incidence over deduplicated treated population, `Mean AE Rate (%)` averages the raw AE-row percentage values, and `Mean Severity Share (0-1)` averages `observed_severe / observed` across AE rows where observed incidence is positive.")
         with st.expander("Filter debug", expanded=False):
             st.write("Filter specs:", filter_specs)
             st.write("SQL params:", params)
 
 # ====================== Run query ======================
 try:
+    raw_df = None
     if _use_custom_rate_logic:
         raw_df = run_sql(final_sql, params)
         df = aggregate_metrics_from_rows(raw_df, gb_all, metric_sel)
@@ -1117,7 +1180,7 @@ else:
     dim_labels = {d: d for d in gb_all}
 
     cc1, cc2, cc3, cc4 = st.columns([1.2, 1, 1, 1])
-    chart_type = cc1.selectbox("Chart type", ["Bar", "Line", "Pie"], index=0)
+    chart_type = cc1.selectbox("Chart type", ["Bar", "Line", "Pie", "Box"], index=0)
     if not output_metric_cols:
         st.info("Add at least one metric to draw a chart.")
         st.stop()
@@ -1133,7 +1196,7 @@ else:
         work[d] = work[d].astype(str)
 
     chart_metric_col = metric_for_chart
-    chart_metric_label = metric_for_chart
+    chart_metric_label = chart_metric_display_label(metric_for_chart)
     if apply_log1p:
         chart_metric_col = f"__log1p__{metric_for_chart}"
         work = work[work[metric_for_chart] > -1].copy()
@@ -1142,6 +1205,10 @@ else:
 
     if work.empty:
         st.info("No valid numeric data for chart.")
+        st.stop()
+
+    if chart_type == "Box" and len(dims) != 1:
+        st.info("Box charts currently support exactly one 'Group by' dimension.")
         st.stop()
 
     stack_bars = False
@@ -1179,20 +1246,59 @@ else:
         elif len(dims) == 1:
             x = dims[0]
             x_label = dim_labels.get(x, x)
-            if sort_x:
-                work = work.sort_values(by=chart_metric_col, ascending=False)
-
-            if chart_type == "Bar":
-                fig = px.bar(work, x=x, y=chart_metric_col,
-                             color_discrete_sequence=COLOR_SEQ,
-                             title=f"{chart_metric_label} by {x_label}")
+            if chart_type == "Box":
+                if metric_for_chart not in {"Total AE Incidence", "Accumulated AE Rate (%)", "Mean AE Rate (%)", "Mean Severity Share (0-1)"} or raw_df is None:
+                    st.info("Box charts currently support treatment-level `Total AE Incidence`, `Accumulated AE Rate (%)`, `Mean AE Rate (%)`, and `Mean Severity Share (0-1)`.")
+                else:
+                    box_work = build_treatment_level_chart_df(raw_df, x, metric_for_chart)
+                    box_work[metric_for_chart] = pd.to_numeric(box_work[metric_for_chart], errors="coerce")
+                    box_work = box_work.dropna(subset=[metric_for_chart]).copy()
+                    box_work[x] = box_work[x].astype(str)
+                    box_metric_col = metric_for_chart
+                    box_metric_label = chart_metric_display_label(metric_for_chart)
+                    if apply_log1p:
+                        box_metric_col = f"__log1p__{metric_for_chart}"
+                        box_work = box_work[box_work[metric_for_chart] > -1].copy()
+                        box_work[box_metric_col] = box_work[metric_for_chart].map(lambda v: math.log1p(v) if pd.notna(v) else None)
+                        box_metric_label = f"log1p({chart_metric_display_label(metric_for_chart)})"
+                    if box_work.empty:
+                        st.info("No valid numeric data for box chart.")
+                    else:
+                        if sort_x:
+                            x_order = (
+                                box_work.groupby(x, dropna=False)[box_metric_col]
+                                .median()
+                                .sort_values(ascending=False)
+                                .index
+                                .tolist()
+                            )
+                            box_work[x] = pd.Categorical(box_work[x], categories=x_order, ordered=True)
+                            box_work = box_work.sort_values(by=x)
+                        fig = px.box(
+                            box_work,
+                            x=x,
+                            y=box_metric_col,
+                            points="all",
+                            color_discrete_sequence=COLOR_SEQ,
+                            title=f"Treatment-Level {box_metric_label} by {x_label}",
+                        )
+                        fig.update_yaxes(title_text=box_metric_label)
+                        render_plotly(fig)
             else:
-                fig = px.line(work, x=x, y=chart_metric_col,
-                              color_discrete_sequence=COLOR_SEQ,
-                              title=f"{chart_metric_label} by {x_label}")
+                if sort_x:
+                    work = work.sort_values(by=chart_metric_col, ascending=False)
 
-            fig.update_yaxes(title_text=chart_metric_label)
-            render_plotly(fig)
+                if chart_type == "Bar":
+                    fig = px.bar(work, x=x, y=chart_metric_col,
+                                 color_discrete_sequence=COLOR_SEQ,
+                                 title=f"{chart_metric_label} by {x_label}")
+                else:
+                    fig = px.line(work, x=x, y=chart_metric_col,
+                                  color_discrete_sequence=COLOR_SEQ,
+                                  title=f"{chart_metric_label} by {x_label}")
+
+                fig.update_yaxes(title_text=chart_metric_label)
+                render_plotly(fig)
 
         # 2 dimensions
         elif len(dims) == 2:
