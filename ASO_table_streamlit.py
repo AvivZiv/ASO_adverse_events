@@ -851,11 +851,7 @@ group_dim_choices = [
 ]
 metric_choices = list(METRICS.keys())
 
-c1, c2 = st.columns([2, 1])
-with c1:
-    group_by = st.multiselect("Group By (Max 3)", group_dim_choices, max_selections=3, key="ms_group_by")
-with c2:
-    stratify_by = st.selectbox("Stratify By", ["(none)"] + group_dim_choices, index=0, key="sel_stratify")
+group_by = st.multiselect("Group By (Max 3)", group_dim_choices, max_selections=3, key="ms_group_by")
 
 metric_sel = st.multiselect("Select Metrics", metric_choices, default=["Row Count"], max_selections=4, key="ms_metrics")
 
@@ -923,9 +919,6 @@ with c4:
 
 # Compose grouping list
 gb_all: List[str] = list(group_by)
-if stratify_by != "(none)" and stratify_by not in gb_all:
-    if len(gb_all) < 3: gb_all.append(stratify_by)
-    else: st.warning("Stratify ignored: already using 3 grouping columns.")
 
 _use_trials_phase_dedup = (
     "Clinical Trial Phase" in gb_all
